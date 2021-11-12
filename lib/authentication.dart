@@ -2,6 +2,7 @@ import 'package:auth_demo/auth_pages/forgotPassword.dart';
 import 'package:auth_demo/auth_pages/signIn.dart';
 import 'package:auth_demo/auth_pages/signUp.dart';
 import 'package:flutter/material.dart';
+import 'package:auth_demo/theme/colors/light_colors.dart';
 
 class Authentication extends StatefulWidget {
   @override
@@ -46,6 +47,7 @@ class _AuthenticationState extends State<Authentication> {
     "SignUp",
     "Sign In",
   ];
+  
 
   @override
   Widget build(BuildContext context) {
@@ -72,17 +74,29 @@ class _AuthenticationState extends State<Authentication> {
                         width: 150,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(75),
-                          color: Colors.grey,
+                          color: Colors.transparent,
                         ),
                         child: Center(
-                          child: Text(
-                            "Logo",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).scaffoldBackgroundColor,
+                          child: CircleAvatar(
+                              backgroundColor: LightColors.kBlue,
+                              radius: 60.0,
+                              backgroundImage: AssetImage(
+                                'assets/images/avatar.png',
+                              ),
                             ),
-                          ),
+                        ),
+                      ),
+                       Container(
+                        child: Center(
+                          child: Text(
+                              "Scheduler",
+                              style: TextStyle(
+                              fontSize: 25,
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                            ),
                         ),
                       ),
                       SizedBox(

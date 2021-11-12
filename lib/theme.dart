@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auth_demo/theme/colors/light_colors.dart';
 
 ThemeData darkTheme() {
   return ThemeData(
@@ -40,26 +41,26 @@ ThemeData darkTheme() {
           fontWeight: FontWeight.normal,
           fontFamily: "Open Sans"),
       button: TextStyle(
-          color: Color(0xFF1C2028),
+          color: Colors.white,
           fontSize: 15,
           fontWeight: FontWeight.bold,
           fontFamily: "Open Sans"),
     ),
     buttonTheme: ButtonThemeData(
-      buttonColor: Color(0xFF0CE8CE),
+      buttonColor: Colors.white,
       textTheme: ButtonTextTheme.primary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30)
       )
     ),
     accentColor: Color(0xFF0CE8CE),
-    primaryColor: Color(0xFF2C3039),
-    canvasColor: Colors.grey,
-    cardColor: Color(0xFF2C3039),
+    primaryColor: LightColors.kDarkYellow,
+    canvasColor: LightColors.kDarkYellow,
+    cardColor: LightColors.kRed,
     cursorColor: Color(0xFF2C3039),
     unselectedWidgetColor: Colors.white,
-    scaffoldBackgroundColor: Color(0xFF1C2028),
-    backgroundColor: Color(0xFF1C2028),
+    scaffoldBackgroundColor: LightColors.kDarkBlue,
+    backgroundColor: LightColors.kDarkYellow,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     snackBarTheme: SnackBarThemeData(

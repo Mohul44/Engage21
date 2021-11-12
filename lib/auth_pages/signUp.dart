@@ -19,7 +19,7 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController emailTextField = TextEditingController();
   final TextEditingController passwordTextField = TextEditingController();
   final GlobalKey<FormState> _signUpFormKey = GlobalKey<FormState>();
-
+final TextEditingController nameTextField = TextEditingController();
   // Run Action When Loading
   bool loading = false;
 
@@ -41,6 +41,29 @@ class _SignUpState extends State<SignUp> {
           children: [
             SizedBox(
               height: 3,
+            ),
+            TextFormField(
+              controller: nameTextField,
+              autocorrect: false,
+              enableSuggestions: false,
+              keyboardType: TextInputType.emailAddress,
+              cursorColor: Theme.of(context).accentColor,
+              obscureText: false,
+              style: Theme.of(context).textTheme.headline5,
+              decoration: InputDecoration(labelText: "Name"),
+              validator: (email) {
+                if (email.isEmpty) {
+                  return "Please enter an email adress";
+                } else if (email.contains("@") == false) {
+                  return "Invalid email adress";
+                } else if (errorMessage["email"].isNotEmpty) {
+                  return errorMessage["email"];
+                }
+                return null;
+              },
+            ),
+            SizedBox(
+              height: 20,
             ),
             TextFormField(
               controller: emailTextField,
@@ -148,7 +171,7 @@ class _SignUpState extends State<SignUp> {
                       loading = true;
                     });
                     await AuthService()
-                        .signUp(emailTextField.text, passwordTextField.text)
+                        .signUp(emailTextField.text, passwordTextField.text, nameTextField.text)
                         .then((value) {
                       if (value["network"].isNotEmpty) {
                         widget.authScaffoldKey.currentState

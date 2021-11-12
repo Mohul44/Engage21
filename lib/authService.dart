@@ -96,16 +96,15 @@ class AuthService {
   }
 
   // Create User With Email And Password
-  Future<Map<String, String>> signUp(String email, String password) async {
+  Future<Map<String, String>> signUp(String email, String password, String name) async {
     try {
-      await _firebaseInstance
+      final authResult = await _firebaseInstance
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((user) {
         if (user != null) {
           // Save User Information To Database
           _usersCollection.document(user.user.uid).setData(
             {
-              "name" : user.user.displayName,
               "email": user.user.email,
               "uid": user.user.uid,
               "tasks" : [],
@@ -116,7 +115,10 @@ class AuthService {
         } else {
           return null;
         }
+        
       });
+          authResult.user.updateProfile(displayName : name);
+    return authResult.user.uid;
     } on PlatformException catch (error) {
       if (error.message ==
           "An internal error has occurred. [ Unable to resolve host \"www.googleapis.com\":No address associated with hostname ]") {
