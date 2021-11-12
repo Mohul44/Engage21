@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "380792770090",
+    "project_id": "engagescheduler-e71b5",
+    "storage_bucket": "engagescheduler-e71b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380792770090:android:95f15dde7497c808f3bd53",
+        "android_client_info": {
+          "package_name": "com.example.auth_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380792770090-ijsn7d9fgqfa8806cki0lp95bkh2b6oi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZfLVGuFbWz9Xjdy7wgMWVALjXu-zYwrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380792770090-ijsn7d9fgqfa8806cki0lp95bkh2b6oi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
