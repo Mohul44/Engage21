@@ -112,7 +112,7 @@ class _AuthenticationState extends State<Authentication> {
                       controller: authPageController,
                       physics: NeverScrollableScrollPhysics(),
                       onPageChanged: (value) {
-                        setState(() {
+                        if (this.mounted)if (this.mounted)setState(() {
                           page = value;
                         });
                       },

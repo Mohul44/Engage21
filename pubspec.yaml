@@ -1,7 +1,7 @@
 name: auth_demo
 description: A new Flutter project.
 
-publish_to: 'none' 
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -13,14 +13,13 @@ dependencies:
     sdk: flutter
   percent_indicator: ^3.4.0
   cupertino_icons: ^1.0.0
-  firebase_auth: 
+  firebase_auth:
+  provider: ^6.0.1
   cloud_firestore: ^0.13.5
-  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 
 flutter:
   uses-material-design: true

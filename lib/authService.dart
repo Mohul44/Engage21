@@ -1,17 +1,84 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:auth_demo/models/tasks.dart';
 
 class AuthService {
+  final String uid;
+  final String docid;
+  AuthService({this.uid, this.docid});
   final FirebaseAuth _firebaseInstance = FirebaseAuth.instance;
   final CollectionReference _usersCollection =
       Firestore.instance.collection("users");
+  final CollectionReference _taskCollection =
+      Firestore.instance.collection("Tasks");
 
   Map<String, String> errorMessage = {
     "email": "",
     "password": "",
     "network": "",
   };
+
+  List<Task> _taskListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      // print(doc.data);
+      print(doc.data);
+      return Task(
+        documentuid: doc.documentID,
+        title: doc.data['Course'] ?? '',
+        subtitle: doc.data['Lecturer'] ?? '',
+        startTime: doc.data['Starting time'] ?? '',
+        venue: doc.data['Venue'] ?? '',
+        currentFilled: doc.data['Currently Filled'] ?? 0,
+        offline: doc.data['offline'] ?? false,
+        //map
+        mp: doc.data['mp'] ?? {},
+      );
+    }).toList();
+  }
+
+  // List<dynamic> get listBool{
+  //   List<dynamic> mylist;
+  //   String email;
+  //   print("userid is ${this.uid}");
+  //    _usersCollection.document(this.uid).get().then((DocumentSnapshot documentSnapshot){
+  //     if(documentSnapshot.exists){
+  //       print('document exists on databse data is ${documentSnapshot.data}');
+  //       mylist = documentSnapshot.data['tasksBoolean'];
+  //       print(mylist);
+  //       return  mylist;
+  //     }
+  //     else{
+  //       print('document does not exist');
+  //     }
+  //   }
+  //   );
+  //   print(mylist);
+  //   return mylist;
+  //   //return _taskPerUser.snapshots().map(_taskListFromSnapshot);
+  // }
+
+  List<DocumentReference> get tasksPerUSer {
+    List<DocumentReference> mylist;
+    String email;
+    _usersCollection
+        .document(this.uid)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        print('document exists on databse data is ${documentSnapshot.data}');
+        mylist = documentSnapshot.data['tasks'];
+      } else {
+        print('document does not exist');
+      }
+    });
+    return mylist;
+    //return _taskPerUser.snapshots().map(_taskListFromSnapshot);
+  }
+
+  Stream<List<Task>> get tasks {
+    return _taskCollection.snapshots().map(_taskListFromSnapshot);
+  }
 
   // User State
   Stream<FirebaseUser> authStateChanges() {
@@ -25,10 +92,56 @@ class AuthService {
     return _firebaseInstance.currentUser();
   }
 
-  // Sign Out
+  Future currentUserFirestore(String userid) async {
+    return _taskCollection.document(userid);
+  }
+
   Future<void> signOut() async {
     FirebaseAuth _firebaseInstance = FirebaseAuth.instance;
     return _firebaseInstance.signOut();
+  }
+
+  Future<void> updateTask(String name, int strength, bool offline) async {
+    return await _taskCollection.document(docid).updateData({
+      'Currently Filled': strength,
+      'mp': {
+        this.uid.toString(): offline,
+      }
+      // 'taskBoolList' : FieldValue.arrayUnion({name});
+      // 'List of users' : FieldValue.arrayUnion({})
+    });
+  }
+  //   Future<void> deleteTaskUser() async {
+  //   return await _taskCollection.document(docid).updateData({
+  //     'Currently Filled': strength,
+  //     'mp': {
+  //       this.uid.toString(): offline,
+  //     }
+  //     // 'taskBoolList' : FieldValue.arrayUnion({name});
+  //     // 'List of users' : FieldValue.arrayUnion({})
+  //   });
+  // }
+
+  Future<void> addUserToTask() async {
+    String useridstring = this.uid.toString();
+    return await _taskCollection
+        .document(docid)
+        .updateData({'mp.${useridstring}': false});
+  }
+
+  Future<void> addTask(String course, String lecturer, List<bool> repeat,
+      String startingtime, String venue) async {
+    _taskCollection.add({
+      "Course": course,
+      "Lecturer": lecturer,
+      "Repeat": repeat,
+      "Starting time": startingtime,
+      "Venue": venue,
+      "Currently Filled": 0,
+      "Max Capacity": 10,
+      "offline": false,
+      'mp': {},
+    });
   }
 
   // Reset Password
@@ -96,9 +209,10 @@ class AuthService {
   }
 
   // Create User With Email And Password
-  Future<Map<String, String>> signUp(String email, String password, String name) async {
+  Future<Map<String, String>> signUp(
+      String email, String password, String name) async {
     try {
-      final authResult = await _firebaseInstance
+      await _firebaseInstance
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((user) {
         if (user != null) {
@@ -107,18 +221,20 @@ class AuthService {
             {
               "email": user.user.email,
               "uid": user.user.uid,
-              "tasks" : [],
-              "tasksBoolean" : [],
-            }, 
+              "tasks": [],
+              "tasksBoolean": [],
+              "name": name,
+            },
           );
-          return null;
+          UserUpdateInfo userUpdateInfo = new UserUpdateInfo();
+          userUpdateInfo.displayName = name;
+          user.user.updateProfile(userUpdateInfo);
+          return Null;
         } else {
-          return null;
+          return Null;
         }
-        
       });
-          authResult.user.updateProfile(displayName : name);
-    return authResult.user.uid;
+      // await authResult.user.updateProfile(displayName : name);
     } on PlatformException catch (error) {
       if (error.message ==
           "An internal error has occurred. [ Unable to resolve host \"www.googleapis.com\":No address associated with hostname ]") {

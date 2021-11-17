@@ -129,7 +129,7 @@ class _SignInState extends State<SignIn> {
                       )
                     : Text("Sign In"),
                 onPressed: () async {
-                  setState(() {
+                  if (this.mounted)setState(() {
                     errorMessage["email"] = "";
                     errorMessage["netwrok"] = "";
                     errorMessage["password"] = "";
@@ -144,7 +144,7 @@ class _SignInState extends State<SignIn> {
                   // 7. If Valid => Home
 
                   if (_signInFormKey.currentState.validate()) {
-                    setState(() {
+                    if (this.mounted)setState(() {
                       loading = true;
                     });
                     await AuthService()
@@ -153,11 +153,11 @@ class _SignInState extends State<SignIn> {
                       if (value["network"].isNotEmpty) {
                         widget.authScaffoldKey.currentState
                             .showSnackBar(widget.networkErrorSnackBar);
-                        setState(() {
+                        if (this.mounted)setState(() {
                           loading = false;
                         });
                       }
-                      setState(() {
+                      if (this.mounted)setState(() {
                         errorMessage = value;
                         loading = false;
                       });
