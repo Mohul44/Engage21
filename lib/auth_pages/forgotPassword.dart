@@ -111,7 +111,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               onPressed: () async {
-                setState(() {
+                if (this.mounted)setState(() {
                   errorMessage["email"] = "";
                   errorMessage["netwrok"] = "";
                   errorMessage["password"] = "";
@@ -126,7 +126,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 // 7. If Valid => Sign In
 
                 if (_forgotPasswordFormKey.currentState.validate()) {
-                  setState(() {
+                  if (this.mounted)if (this.mounted)setState(() {
                     loading = true;
                   });
                   await AuthService()
@@ -135,11 +135,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     if (value["network"].isNotEmpty) {
                       widget.authScaffoldKey.currentState
                           .showSnackBar(widget.networkErrorSnackBar);
-                      setState(() {
+                      if (this.mounted)setState(() {
                         loading = false;
                       });
                     }
-                    setState(() {
+                    if (this.mounted)setState(() {
                       errorMessage = value;
                       loading = false;
                     });

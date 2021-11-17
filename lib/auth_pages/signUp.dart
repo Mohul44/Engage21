@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:auth_demo/authService.dart';
 import 'package:flutter/material.dart';
 
@@ -18,16 +20,17 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final TextEditingController emailTextField = TextEditingController();
   final TextEditingController passwordTextField = TextEditingController();
-  final GlobalKey<FormState> _signUpFormKey = GlobalKey<FormState>();
-final TextEditingController nameTextField = TextEditingController();
+  final TextEditingController nameTextField = TextEditingController();
+    final GlobalKey<FormState> _signUpFormKey = GlobalKey<FormState>();
   // Run Action When Loading
   bool loading = false;
-
+  final name = "Mohul_Name";
   // Map For Displaying Erorr Messages
   Map<String, String> errorMessage = {
     "email": "",
     "password": "",
     "network": "",
+    "name": "",
   };
 
   @override
@@ -46,18 +49,16 @@ final TextEditingController nameTextField = TextEditingController();
               controller: nameTextField,
               autocorrect: false,
               enableSuggestions: false,
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.name,
               cursorColor: Theme.of(context).accentColor,
               obscureText: false,
               style: Theme.of(context).textTheme.headline5,
               decoration: InputDecoration(labelText: "Name"),
-              validator: (email) {
-                if (email.isEmpty) {
-                  return "Please enter an email adress";
-                } else if (email.contains("@") == false) {
-                  return "Invalid email adress";
-                } else if (errorMessage["email"].isNotEmpty) {
-                  return errorMessage["email"];
+              validator: (name) {
+                if (name.isEmpty) {
+                  return "Please enter name";
+                } else if (errorMessage["name"].isNotEmpty) {
+                  return errorMessage["name"];
                 }
                 return null;
               },
@@ -152,7 +153,7 @@ final TextEditingController nameTextField = TextEditingController();
                       )
                     : Text("Sign Up"),
                 onPressed: () async {
-                  setState(() {
+                  if (this.mounted)setState(() {
                     errorMessage["email"] = "";
                     errorMessage["netwrok"] = "";
                     errorMessage["password"] = "";
@@ -166,27 +167,27 @@ final TextEditingController nameTextField = TextEditingController();
                   // 6. Check Form Validation Again
                   // 7. If Valid => Home
 
-                  if (_signUpFormKey.currentState.validate()) {
-                    setState(() {
+                
+                    if (this.mounted)setState(() {
                       loading = true;
                     });
                     await AuthService()
-                        .signUp(emailTextField.text, passwordTextField.text, nameTextField.text)
+                        .signUp(emailTextField.text, passwordTextField.text,nameTextField.text)
                         .then((value) {
                       if (value["network"].isNotEmpty) {
                         widget.authScaffoldKey.currentState
                             .showSnackBar(widget.networkErrorSnackBar);
-                        setState(() {
+                        if (this.mounted)setState(() {
                           loading = false;
                         });
                       }
-                      setState(() {
+                      if (this.mounted)setState(() {
                         errorMessage = value;
                         loading = false;
                       });
-                      _signUpFormKey.currentState.validate();
+                     
                     });
-                  }
+                  
                 },
               ),
             ),

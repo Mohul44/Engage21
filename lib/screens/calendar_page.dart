@@ -1,3 +1,4 @@
+import 'package:auth_demo/screens/add_task_home.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_demo/dates_list.dart';
 import 'package:auth_demo/theme/colors/light_colors.dart';
@@ -13,8 +14,8 @@ class CalendarPage extends StatelessWidget {
       child: Text(
         '------------------------------------------',
         maxLines: 1,
-        style:
-            TextStyle(fontSize: 20.0, color: Colors.black12, letterSpacing: 5),
+        style: TextStyle(
+            fontSize: 20.0, color: LightColors.kLavender, letterSpacing: 5),
       ),
     );
   }
@@ -22,7 +23,7 @@ class CalendarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: LightColors.kLightYellow,
+      backgroundColor: LightColors.kDarkBlue,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(
@@ -38,16 +39,11 @@ class CalendarPage extends StatelessWidget {
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
-                      'Today',
-                      style: TextStyle(
-                          fontSize: 30.0, fontWeight: FontWeight.w700),
-                    ),
                     Container(
                       height: 40.0,
                       width: 120,
                       decoration: BoxDecoration(
-                        color: LightColors.kGreen,
+                        color: LightColors.kLightYellow,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: TextButton(
@@ -55,7 +51,7 @@ class CalendarPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CreateNewTaskPage(),
+                              builder: (context) => AddTask(),
                             ),
                           );
                         },
@@ -63,7 +59,34 @@ class CalendarPage extends StatelessWidget {
                           child: Text(
                             'Add task',
                             style: TextStyle(
-                                color: Colors.white,
+                                color: LightColors.kDarkBlue,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 40.0,
+                      width: 120,
+                      decoration: BoxDecoration(
+                        color: LightColors.kLightGreen,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CreateNewTaskPage(key),
+                            ),
+                          );
+                        },
+                        child: Center(
+                          child: Text(
+                            'Add Lecture',
+                            style: TextStyle(
+                                color: LightColors.kDarkBlue,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 16),
                           ),
@@ -89,7 +112,7 @@ class CalendarPage extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'April, 2020',
+                  'November, 2021',
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                 ),
               ),
@@ -103,9 +126,9 @@ class CalendarPage extends StatelessWidget {
                     return CalendarDates(
                       day: days[index],
                       date: dates[index],
-                      dayColor: index == 0 ? LightColors.kRed : Colors.black54,
+                      dayColor: index == 0 ? LightColors.kRed : Colors.white70,
                       dateColor:
-                          index == 0 ? LightColors.kRed : LightColors.kDarkBlue,
+                          index == 0 ? LightColors.kRed : LightColors.kLavender,
                     );
                   },
                 ),
@@ -134,7 +157,7 @@ class CalendarPage extends StatelessWidget {
                                   '${time[index]} ${time[index] > 8 ? 'PM' : 'AM'}',
                                   style: TextStyle(
                                     fontSize: 16.0,
-                                    color: Colors.black54,
+                                    color: LightColors.kLavender,
                                   ),
                                 ),
                               ),
