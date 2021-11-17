@@ -91,7 +91,7 @@ class TeacherHomePage extends StatelessWidget {
                               IconButton(
                                 icon: Icon(
                                   Icons.power_settings_new,
-                                  color: LightColors.kDarkBlue,
+                                  color: LightColors.kLavender,
                                 ),
                                 onPressed: () => AuthService().signOut(),
                               ),
@@ -144,7 +144,7 @@ class TeacherHomePage extends StatelessWidget {
                                               snapshot.data['name'],
                                               style: new TextStyle(
                                                 fontSize: 20.0,
-                                                color: Colors.black87,
+                                                color: LightColors.kLavender,
                                               ),
                                             );
                                           }),
@@ -155,7 +155,7 @@ class TeacherHomePage extends StatelessWidget {
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
                                           fontSize: 16.0,
-                                          color: Colors.black45,
+                                          color: LightColors.kLavender,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
@@ -208,12 +208,6 @@ class TeacherHomePage extends StatelessWidget {
                                 height:
                                     MediaQuery.of(context).size.height * 0.01,
                               ),
-                              TaskColumn(
-                                icon: Icons.blur_circular,
-                                iconBackgroundColor: LightColors.kDarkYellow,
-                                title: 'In Progress',
-                                subtitle: '1 tasks now. 1 started',
-                              ),
                               SizedBox(height: 15.0),
                               TaskColumn(
                                 icon: Icons.check_circle_outline,
@@ -234,7 +228,7 @@ class TeacherHomePage extends StatelessWidget {
                               subheading('Lectures'),
                               Container(
                                 height:
-                                    MediaQuery.of(context).size.height * 0.33,
+                                    MediaQuery.of(context).size.height * 0.37,
                                 width: MediaQuery.of(context).size.width,
                                 child: StudentList(userUid.toString()),
                                 // child: ListView(

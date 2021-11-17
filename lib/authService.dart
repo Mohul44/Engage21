@@ -111,6 +111,16 @@ class AuthService {
       // 'List of users' : FieldValue.arrayUnion({})
     });
   }
+
+  Future<void> delteTaskUser(int strength) async {
+    String useridstring = this.uid.toString();
+    return await _taskCollection.document(docid).updateData({
+      'Currently Filled': strength,
+      'mp.${useridstring}': FieldValue.delete(),
+      // 'taskBoolList' : FieldValue.arrayUnion({name});
+      // 'List of users' : FieldValue.arrayUnion({})
+    });
+  }
   //   Future<void> deleteTaskUser() async {
   //   return await _taskCollection.document(docid).updateData({
   //     'Currently Filled': strength,
@@ -127,6 +137,10 @@ class AuthService {
     return await _taskCollection
         .document(docid)
         .updateData({'mp.${useridstring}': false});
+  }
+
+  Future<void> deleteTask() async {
+    return await _taskCollection.document(docid).delete();
   }
 
   Future<void> addTask(String course, String lecturer, List<bool> repeat,

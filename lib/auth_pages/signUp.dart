@@ -21,7 +21,7 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController emailTextField = TextEditingController();
   final TextEditingController passwordTextField = TextEditingController();
   final TextEditingController nameTextField = TextEditingController();
-    final GlobalKey<FormState> _signUpFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _signUpFormKey = GlobalKey<FormState>();
   // Run Action When Loading
   bool loading = false;
   final name = "Mohul_Name";
@@ -153,11 +153,12 @@ class _SignUpState extends State<SignUp> {
                       )
                     : Text("Sign Up"),
                 onPressed: () async {
-                  if (this.mounted)setState(() {
-                    errorMessage["email"] = "";
-                    errorMessage["netwrok"] = "";
-                    errorMessage["password"] = "";
-                  });
+                  if (this.mounted)
+                    setState(() {
+                      errorMessage["email"] = "";
+                      errorMessage["netwrok"] = "";
+                      errorMessage["password"] = "";
+                    });
 
                   // 1. Check Form Validation
                   // 2. Set State "loading" = true
@@ -167,27 +168,28 @@ class _SignUpState extends State<SignUp> {
                   // 6. Check Form Validation Again
                   // 7. If Valid => Home
 
-                
-                    if (this.mounted)setState(() {
+                  if (this.mounted)
+                    setState(() {
                       loading = true;
                     });
-                    await AuthService()
-                        .signUp(emailTextField.text, passwordTextField.text,nameTextField.text)
-                        .then((value) {
-                      if (value["network"].isNotEmpty) {
-                        widget.authScaffoldKey.currentState
-                            .showSnackBar(widget.networkErrorSnackBar);
-                        if (this.mounted)setState(() {
+                  await AuthService()
+                      .signUp(emailTextField.text, passwordTextField.text,
+                          nameTextField.text)
+                      .then((value) {
+                    if (value["network"].isNotEmpty) {
+                      widget.authScaffoldKey.currentState
+                          .showSnackBar(widget.networkErrorSnackBar);
+                      if (this.mounted)
+                        setState(() {
                           loading = false;
                         });
-                      }
-                      if (this.mounted)setState(() {
+                    }
+                    if (this.mounted)
+                      setState(() {
                         errorMessage = value;
                         loading = false;
                       });
-                     
-                    });
-                  
+                  });
                 },
               ),
             ),

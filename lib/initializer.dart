@@ -15,6 +15,7 @@ class Initializer extends StatelessWidget {
         // if the stream has data, the user is logged in
         if (snapshot.hasData) {
           // isLoggedIn
+          print(snapshot.data.uid);
           return HomePage();
         } else if (snapshot.hasData == false &&
             snapshot.connectionState == ConnectionState.active) {

@@ -39,7 +39,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
         Expanded(
           flex: 1,
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: MediaQuery.of(context).size.width * 0.44,
             margin: EdgeInsets.symmetric(vertical: 5.0),
             padding: EdgeInsets.all(15.0),
             decoration: BoxDecoration(
@@ -47,7 +47,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
               borderRadius: BorderRadius.circular(20.0),
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Column(
@@ -107,47 +107,105 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Switch(
-                      value: widget.offline,
-                      onChanged: (value) {
-                        int strength = widget.currentFilled;
-                        if (strength >= 10) {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              // return object of type Dialog
-                              return AlertDialog(
-                                backgroundColor: LightColors.kDarkBlue,
-                                title: new Text("Cannot Attend offline"),
-                                content: new Text(
-                                  "Maximum seating capacity reached, please attend online class through MS Teams",
-                                  style: TextStyle(color: Colors.white70),
-                                ),
-                                actions: <Widget>[
-                                  // usually buttons at the bottom of the dialog
-                                  new FlatButton(
-                                    child: new Text("Close"),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                ],
+                    Row(
+                      children: <Widget>[
+                        Switch(
+                          value: widget.offline,
+                          onChanged: (value) {
+                            int strength = widget.currentFilled;
+                            if (strength >= 10) {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  // return object of type Dialog
+                                  return AlertDialog(
+                                    backgroundColor: LightColors.kDarkBlue,
+                                    title: new Text("Cannot Attend offline"),
+                                    content: new Text(
+                                      "Maximum seating capacity reached, please attend online class through MS Teams",
+                                      style: TextStyle(color: Colors.white70),
+                                    ),
+                                    actions: <Widget>[
+                                      // usually buttons at the bottom of the dialog
+                                      new FlatButton(
+                                        child: new Text("Close"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
                               );
-                            },
-                          );
-                        } else {
-                          if (this.mounted)
-                            setState(() {
-                              strength += widget.offline == false ? 1 : -1;
-                              widget.offline = !widget.offline;
-                              AuthService(
-                                      uid: widget.userid, docid: widget.docid)
-                                  .updateTask(
-                                      widget.docid, strength, widget.offline);
-                            });
-                        }
-                      },
-                      activeColor: Colors.green,
+                            } else {
+                              if (this.mounted)
+                                setState(() {
+                                  strength += widget.offline == false ? 1 : -1;
+                                  widget.offline = !widget.offline;
+                                  AuthService(
+                                          uid: widget.userid,
+                                          docid: widget.docid)
+                                      .updateTask(widget.docid, strength,
+                                          widget.offline);
+                                });
+                            }
+                          },
+                          activeColor: Colors.green,
+                        ),
+                        ActionChip(
+                          onPressed: () => {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                // return object of type Dialog
+                                return AlertDialog(
+                                  backgroundColor: LightColors.kRed,
+                                  title: new Text("Disenroll from lecture"),
+                                  content: new Text(
+                                    "Deleting this lecture would remove this from your schedule, however you can add it back again !",
+                                    style: TextStyle(color: Colors.white70),
+                                  ),
+                                  actions: <Widget>[
+                                    new FlatButton(
+                                      child: new Text("Yes"),
+                                      onPressed: () {
+                                        if (this.mounted)
+                                          setState(() {
+                                            int strength2 =
+                                                widget.offline == false
+                                                    ? 0
+                                                    : -1;
+                                            AuthService(
+                                                    uid: widget.userid,
+                                                    docid: widget.docid)
+                                                .delteTaskUser(
+                                                    widget.currentFilled +
+                                                        strength2);
+                                          });
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    // usually buttons at the bottom of the dialog
+                                    new FlatButton(
+                                      child: new Text("Cancel"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          },
+                          label: Text(
+                            "Disenroll",
+                            style: TextStyle(
+                                color: widget.cardColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          backgroundColor: LightColors.kLavender,
+                        ),
+                      ],
                     ),
                   ],
                 ),
