@@ -1,5 +1,3 @@
-// ignore_for_file: empty_statements
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +22,10 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
   TextEditingController Lecturer = new TextEditingController();
   TextEditingController StartingTime = new TextEditingController();
   TextEditingController Venue = new TextEditingController();
-  final GlobalKey<FormState> _addTaskFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _addTaskFormKey = GlobalKey<FormState>();
+  int group1Value = 1;
   List<bool> mylist = [false, true, false, true, false, true, false];
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -43,6 +43,8 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
           builder: (context, snapshot) {
             return SafeArea(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   TopContainer(
                     padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
@@ -53,6 +55,9 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             MyBackButton(),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.15,
+                            ),
                             Text(
                               'Update profile',
                               style: TextStyle(
@@ -123,27 +128,118 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
                       ],
                     ),
                   ),
+                  // Container(
+                  //   padding: EdgeInsets.fromLTRB(10, 5, 10, 10),
+                  //   child: Text(
+                  //     'Vaccination status',
+                  //     style: TextStyle(
+                  //         fontSize: 30.0, fontWeight: FontWeight.w700),
+                  //   ),
+                  // ),
                   Container(
-                    height: 100,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Flexible(
+                          child: Row(
+                            children: [
+                              Radio(
+                                value: 1,
+                                groupValue: group1Value,
+                                onChanged: (value) {
+                                  setState(() {
+                                    group1Value = value;
+                                  });
+                                },
+                              ),
+                              Expanded(child: Text("Not vaccinated")),
+                            ],
+                          ),
+                        ),
+                        Flexible(
+                          child: Row(
+                            children: [
+                              Radio(
+                                value: 2,
+                                groupValue: group1Value,
+                                onChanged: (value) {
+                                  setState(() {
+                                    group1Value = value;
+                                  });
+                                },
+                              ),
+                              Expanded(child: Text("Partially vaccinated")),
+                            ],
+                          ),
+                        ),
+                        Flexible(
+                          child: Row(
+                            children: [
+                              Radio(
+                                value: 3,
+                                groupValue: group1Value,
+                                onChanged: (value) {
+                                  setState(() {
+                                    group1Value = value;
+                                  });
+                                },
+                              ),
+                              Expanded(child: Text("Completely Vaccinated")),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  Container(
+                    height: 80,
                     width: width,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         Container(
                           child: ElevatedButton(
-                              child: Text('Update Profile'),
+                              child: Text('Upload vaccination certificate'),
+                              onPressed: () async {}),
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          width: width - 40,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 120,
+                    width: width,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Container(
+                          child: ElevatedButton(
+                              child: Text(
+                                'Update Profile',
+                                style: TextStyle(
+                                    fontSize: 20, color: LightColors.kDarkBlue),
+                              ),
                               onPressed: () async {
                                 if (_addTaskFormKey.currentState.validate()) {
                                   if (Course.text.isEmpty)
                                     Course.text = snapshot.data['name'];
 
                                   await AuthService(uid: widget.userid)
-                                      .updateProfile(Course.text, Venue.text);
+                                      .updateProfile(
+                                          Course.text, Venue.text, group1Value);
                                 }
                                 ;
                               }),
                           alignment: Alignment.center,
-                          margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
+                          margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
                           width: width - 40,
                           decoration: BoxDecoration(
                             color: Colors.transparent,

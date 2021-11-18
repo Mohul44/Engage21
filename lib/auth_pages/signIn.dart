@@ -10,7 +10,7 @@ class SignIn extends StatefulWidget {
   }) : super(key: key);
 
   final PageController authPageController;
-  final GlobalKey<ScaffoldState> authScaffoldKey;
+  GlobalKey<ScaffoldState> authScaffoldKey;
   final SnackBar networkErrorSnackBar;
 
   @override
@@ -20,7 +20,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final TextEditingController emailTextField = TextEditingController();
   final TextEditingController passwordTextField = TextEditingController();
-  final GlobalKey<FormState> _signInFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _signInFormKey = GlobalKey<FormState>();
 
   // Run Action When Loading
   bool loading = false;
@@ -129,11 +129,12 @@ class _SignInState extends State<SignIn> {
                       )
                     : Text("Sign In"),
                 onPressed: () async {
-                  if (this.mounted)setState(() {
-                    errorMessage["email"] = "";
-                    errorMessage["netwrok"] = "";
-                    errorMessage["password"] = "";
-                  });
+                  if (this.mounted)
+                    setState(() {
+                      errorMessage["email"] = "";
+                      errorMessage["netwrok"] = "";
+                      errorMessage["password"] = "";
+                    });
 
                   // 1. Check Form Validation
                   // 2. Set State "loading" = true
@@ -144,23 +145,26 @@ class _SignInState extends State<SignIn> {
                   // 7. If Valid => Home
 
                   if (_signInFormKey.currentState.validate()) {
-                    if (this.mounted)setState(() {
-                      loading = true;
-                    });
+                    if (this.mounted)
+                      setState(() {
+                        loading = true;
+                      });
                     await AuthService()
                         .signIn(emailTextField.text, passwordTextField.text)
                         .then((value) {
                       if (value["network"].isNotEmpty) {
                         widget.authScaffoldKey.currentState
                             .showSnackBar(widget.networkErrorSnackBar);
-                        if (this.mounted)setState(() {
+                        if (this.mounted)
+                          setState(() {
+                            loading = false;
+                          });
+                      }
+                      if (this.mounted)
+                        setState(() {
+                          errorMessage = value;
                           loading = false;
                         });
-                      }
-                      if (this.mounted)setState(() {
-                        errorMessage = value;
-                        loading = false;
-                      });
                     });
                     _signInFormKey.currentState.validate();
                   }

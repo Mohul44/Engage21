@@ -8,11 +8,13 @@ class Users {
   final String userid;
   final int value;
   int currentFilled;
+  int vaccine;
   Users(
       {this.name,
       this.email,
       this.taskList,
       this.taskBoolList,
       this.userid,
-      this.value});
+      this.value,
+      this.vaccine});
 }

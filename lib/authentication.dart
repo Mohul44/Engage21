@@ -10,7 +10,7 @@ class Authentication extends StatefulWidget {
 }
 
 class _AuthenticationState extends State<Authentication> {
-  final GlobalKey<ScaffoldState> _authScaffoldKey = GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _authScaffoldKey = GlobalKey<ScaffoldState>();
   PageController authPageController =
       PageController(keepPage: true, initialPage: 1);
 

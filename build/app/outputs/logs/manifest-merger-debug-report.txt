@@ -6,10 +6,16 @@ INJECTED from D:\flutter-firebase-auth-template-main\android\app\src\main\Androi
 INJECTED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:1:1-47:12
 MERGED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:1:1-47:12
 MERGED from [:firebase_auth] D:\flutter-firebase-auth-template-main\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:firebase_storage] D:\flutter-firebase-auth-template-main\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:cloud_firestore] D:\flutter-firebase-auth-template-main\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] D:\flutter-firebase-auth-template-main\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:flutter_document_picker] D:\flutter-firebase-auth-template-main\build\flutter_document_picker\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_plugin_pdf_viewer] D:\flutter-firebase-auth-template-main\build\flutter_plugin_pdf_viewer\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite] D:\flutter-firebase-auth-template-main\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider] D:\flutter-firebase-auth-template-main\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\826286926f43cb26a6c632c13e8edd84\jetified-firebase-auth-20.0.1\AndroidManifest.xml:17:1-83:12
 MERGED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\540483eac31359efa04a04c8feab6941\jetified-firebase-firestore-22.0.0\AndroidManifest.xml:2:1-26:12
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:15:1-39:12
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\9abf1704e28fe6b2ac45e4d2cd63fbf3\firebase-auth-interop-19.0.0\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-common:19.4.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\52bf0115b8123175eb81c28ac7e80f52\jetified-firebase-common-19.4.0\AndroidManifest.xml:15:1-40:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\461da40e6f0884e5cbf310611b33e9a9\play-services-auth-api-phone-17.4.0\AndroidManifest.xml:2:1-7:12
@@ -56,6 +62,8 @@ application
 ADDED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:8:5-46:19
 MERGED from [:firebase_auth] D:\flutter-firebase-auth-template-main\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_auth] D:\flutter-firebase-auth-template-main\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_storage] D:\flutter-firebase-auth-template-main\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_storage] D:\flutter-firebase-auth-template-main\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:cloud_firestore] D:\flutter-firebase-auth-template-main\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:cloud_firestore] D:\flutter-firebase-auth-template-main\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_core] D:\flutter-firebase-auth-template-main\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
@@ -64,6 +72,8 @@ MERGED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\mypc\.gradle\cac
 MERGED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\826286926f43cb26a6c632c13e8edd84\jetified-firebase-auth-20.0.1\AndroidManifest.xml:26:5-81:19
 MERGED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\540483eac31359efa04a04c8feab6941\jetified-firebase-firestore-22.0.0\AndroidManifest.xml:16:5-24:19
 MERGED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\540483eac31359efa04a04c8feab6941\jetified-firebase-firestore-22.0.0\AndroidManifest.xml:16:5-24:19
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:29:5-37:19
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:29:5-37:19
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\9abf1704e28fe6b2ac45e4d2cd63fbf3\firebase-auth-interop-19.0.0\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\9abf1704e28fe6b2ac45e4d2cd63fbf3\firebase-auth-interop-19.0.0\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-common:19.4.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\52bf0115b8123175eb81c28ac7e80f52\jetified-firebase-common-19.4.0\AndroidManifest.xml:25:5-38:19
@@ -136,14 +146,26 @@ INJECTED from D:\flutter-firebase-auth-template-main\android\app\src\main\Androi
 INJECTED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml
 MERGED from [:firebase_auth] D:\flutter-firebase-auth-template-main\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_auth] D:\flutter-firebase-auth-template-main\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_storage] D:\flutter-firebase-auth-template-main\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_storage] D:\flutter-firebase-auth-template-main\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] D:\flutter-firebase-auth-template-main\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] D:\flutter-firebase-auth-template-main\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] D:\flutter-firebase-auth-template-main\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] D:\flutter-firebase-auth-template-main\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_document_picker] D:\flutter-firebase-auth-template-main\build\flutter_document_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_document_picker] D:\flutter-firebase-auth-template-main\build\flutter_document_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_pdf_viewer] D:\flutter-firebase-auth-template-main\build\flutter_plugin_pdf_viewer\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_pdf_viewer] D:\flutter-firebase-auth-template-main\build\flutter_plugin_pdf_viewer\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] D:\flutter-firebase-auth-template-main\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] D:\flutter-firebase-auth-template-main\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] D:\flutter-firebase-auth-template-main\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] D:\flutter-firebase-auth-template-main\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\826286926f43cb26a6c632c13e8edd84\jetified-firebase-auth-20.0.1\AndroidManifest.xml:21:5-44
 MERGED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\826286926f43cb26a6c632c13e8edd84\jetified-firebase-auth-20.0.1\AndroidManifest.xml:21:5-44
 MERGED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\540483eac31359efa04a04c8feab6941\jetified-firebase-firestore-22.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\540483eac31359efa04a04c8feab6941\jetified-firebase-firestore-22.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\9abf1704e28fe6b2ac45e4d2cd63fbf3\firebase-auth-interop-19.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\9abf1704e28fe6b2ac45e4d2cd63fbf3\firebase-auth-interop-19.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common:19.4.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\52bf0115b8123175eb81c28ac7e80f52\jetified-firebase-common-19.4.0\AndroidManifest.xml:20:5-22:41
@@ -208,10 +230,14 @@ MERGED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\mypc\.gradle\cac
 MERGED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\826286926f43cb26a6c632c13e8edd84\jetified-firebase-auth-20.0.1\AndroidManifest.xml:23:5-67
 MERGED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\540483eac31359efa04a04c8feab6941\jetified-firebase-firestore-22.0.0\AndroidManifest.xml:14:5-67
 MERGED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\540483eac31359efa04a04c8feab6941\jetified-firebase-firestore-22.0.0\AndroidManifest.xml:14:5-67
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:27:5-67
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:27:5-67
 	android:name
 		ADDED from D:\flutter-firebase-auth-template-main\android\app\src\debug\AndroidManifest.xml:6:22-64
 service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [:firebase_auth] D:\flutter-firebase-auth-template-main\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_storage] D:\flutter-firebase-auth-template-main\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_storage] D:\flutter-firebase-auth-template-main\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:cloud_firestore] D:\flutter-firebase-auth-template-main\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:cloud_firestore] D:\flutter-firebase-auth-template-main\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_core] D:\flutter-firebase-auth-template-main\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
@@ -220,6 +246,8 @@ MERGED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\mypc\.gradle\cac
 MERGED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\826286926f43cb26a6c632c13e8edd84\jetified-firebase-auth-20.0.1\AndroidManifest.xml:74:9-80:19
 MERGED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\540483eac31359efa04a04c8feab6941\jetified-firebase-firestore-22.0.0\AndroidManifest.xml:17:9-23:19
 MERGED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\540483eac31359efa04a04c8feab6941\jetified-firebase-firestore-22.0.0\AndroidManifest.xml:17:9-23:19
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:30:9-36:19
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:30:9-36:19
 MERGED from [com.google.firebase:firebase-common:19.4.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\52bf0115b8123175eb81c28ac7e80f52\jetified-firebase-common-19.4.0\AndroidManifest.xml:33:9-37:35
 MERGED from [com.google.firebase:firebase-common:19.4.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\52bf0115b8123175eb81c28ac7e80f52\jetified-firebase-common-19.4.0\AndroidManifest.xml:33:9-37:35
 	android:exported
@@ -236,6 +264,12 @@ ADDED from [:firebase_auth] D:\flutter-firebase-auth-template-main\build\firebas
 		ADDED from [:firebase_auth] D:\flutter-firebase-auth-template-main\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 	android:name
 		ADDED from [:firebase_auth] D:\flutter-firebase-auth-template-main\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-122
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar
+ADDED from [:firebase_storage] D:\flutter-firebase-auth-template-main\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:firebase_storage] D:\flutter-firebase-auth-template-main\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:firebase_storage] D:\flutter-firebase-auth-template-main\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-126
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.cloudfirestore.FlutterFirebaseAppRegistrar
 ADDED from [:cloud_firestore] D:\flutter-firebase-auth-template-main\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
 	android:value
@@ -252,6 +286,8 @@ uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\826286926f43cb26a6c632c13e8edd84\jetified-firebase-auth-20.0.1\AndroidManifest.xml:24:5-79
 MERGED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\540483eac31359efa04a04c8feab6941\jetified-firebase-firestore-22.0.0\AndroidManifest.xml:13:5-79
 MERGED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\540483eac31359efa04a04c8feab6941\jetified-firebase-firestore-22.0.0\AndroidManifest.xml:13:5-79
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:26:5-79
+MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:26:5-79
 MERGED from [io.grpc:grpc-android:1.28.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\4526a9c01fabd3735f7a21ffe9548f90\grpc-android-1.28.0\AndroidManifest.xml:11:5-79
 MERGED from [io.grpc:grpc-android:1.28.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\4526a9c01fabd3735f7a21ffe9548f90\grpc-android-1.28.0\AndroidManifest.xml:11:5-79
 	android:name
@@ -330,6 +366,12 @@ ADDED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle
 		ADDED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\540483eac31359efa04a04c8feab6941\jetified-firebase-firestore-22.0.0\AndroidManifest.xml:22:17-82
 	android:name
 		ADDED from [com.google.firebase:firebase-firestore:22.0.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\540483eac31359efa04a04c8feab6941\jetified-firebase-firestore-22.0.0\AndroidManifest.xml:21:17-111
+meta-data#com.google.firebase.components:com.google.firebase.storage.StorageRegistrar
+ADDED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:33:13-35:85
+	android:value
+		ADDED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:35:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:34:17-107
 provider#com.google.firebase.provider.FirebaseInitProvider
 ADDED from [com.google.firebase:firebase-common:19.4.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\52bf0115b8123175eb81c28ac7e80f52\jetified-firebase-common-19.4.0\AndroidManifest.xml:26:9-31:39
 	android:authorities

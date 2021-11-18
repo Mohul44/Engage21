@@ -1,4 +1,5 @@
 import 'package:auth_demo/models/tasks.dart';
+import 'package:auth_demo/screens/update_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_demo/screens/calendar_page.dart';
@@ -29,6 +30,7 @@ class HomePage extends StatelessWidget {
   final FirebaseAuth _firebaseInstance = FirebaseAuth.instance;
   final CollectionReference _usersCollection =
       Firestore.instance.collection("users");
+  int vaccine = 1;
   Text subheading(String title) {
     return Text(
       title,
@@ -85,8 +87,21 @@ class HomePage extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Icon(Icons.account_circle_sharp,
-                                  color: LightColors.kLavender, size: 30.0),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.account_circle_sharp,
+                                  color: LightColors.kLavender,
+                                  size: 30.0,
+                                ),
+                                onPressed: () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            UpdateProfile(userUid)),
+                                  ),
+                                },
+                              ),
                               IconButton(
                                 icon: Icon(
                                   Icons.power_settings_new,
@@ -139,6 +154,7 @@ class HomePage extends StatelessWidget {
                                                 ),
                                               );
                                             }
+                                            vaccine = snapshot.data['Vaccine'];
                                             return new Text(
                                               snapshot.data['name'],
                                               style: new TextStyle(
@@ -253,7 +269,7 @@ class HomePage extends StatelessWidget {
                                 height:
                                     MediaQuery.of(context).size.height * 0.33,
                                 width: MediaQuery.of(context).size.width,
-                                child: TaskList(userUid.toString()),
+                                child: TaskList(userUid.toString(), vaccine),
                                 // child: ListView(
                                 //   scrollDirection: Axis.horizontal,
                                 //   shrinkWrap: true,

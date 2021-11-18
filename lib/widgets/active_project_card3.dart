@@ -41,7 +41,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
         Expanded(
           flex: 1,
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.44,
+            width: MediaQuery.of(context).size.width * 0.5,
             margin: EdgeInsets.symmetric(vertical: 5.0),
             padding: EdgeInsets.all(15.0),
             decoration: BoxDecoration(

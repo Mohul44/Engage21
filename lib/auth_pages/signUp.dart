@@ -11,7 +11,7 @@ class SignUp extends StatefulWidget {
     @required this.networkErrorSnackBar,
   }) : super(key: key);
 
-  final GlobalKey<ScaffoldState> authScaffoldKey;
+  GlobalKey<ScaffoldState> authScaffoldKey;
   final SnackBar networkErrorSnackBar;
 
   @override
@@ -22,7 +22,7 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController emailTextField = TextEditingController();
   final TextEditingController passwordTextField = TextEditingController();
   final TextEditingController nameTextField = TextEditingController();
-  final GlobalKey<FormState> _signUpFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _signUpFormKey = GlobalKey<FormState>();
   int _value = 1;
   // Run Action When Loading
   bool loading = false;

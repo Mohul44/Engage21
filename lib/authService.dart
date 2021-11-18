@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
@@ -189,10 +191,12 @@ class AuthService {
     });
   }
 
-  Future<void> updateProfile(String name, String password) async {
+  Future<void> updateProfile(
+      String name, String password, int vaccinationStatus) async {
     if (password.isNotEmpty) _changePassword(password);
     return await _usersCollection.document(this.uid.toString()).updateData({
       'name': name,
+      'Vaccine': vaccinationStatus,
       // 'taskBoolList' : FieldValue.arrayUnion({name});
       // 'List of users' : FieldValue.arrayUnion({})
     });
@@ -279,6 +283,7 @@ class AuthService {
               "tasksBoolean": [],
               "name": name,
               "role": value,
+              'Vaccine': 1,
             },
           );
           return Null;

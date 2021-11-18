@@ -14,6 +14,7 @@ class ActiveProjectCard extends StatefulWidget {
   bool offline;
   String docid;
   String userid;
+  int vaccine;
   ActiveProjectCard({
     this.cardColor,
     this.loadingPercent,
@@ -25,6 +26,7 @@ class ActiveProjectCard extends StatefulWidget {
     this.offline,
     this.docid,
     this.userid,
+    this.vaccine,
   });
 
   @override
@@ -113,7 +115,31 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                           value: widget.offline,
                           onChanged: (value) {
                             int strength = widget.currentFilled;
-                            if (strength >= 10) {
+                            if (widget.vaccine == 1) {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  // return object of type Dialog
+                                  return AlertDialog(
+                                    backgroundColor: LightColors.kDarkBlue,
+                                    title: new Text("Not vaccinated"),
+                                    content: new Text(
+                                      "Students who are not even partially vaccinated would not be allowed to attend offline class",
+                                      style: TextStyle(color: Colors.white70),
+                                    ),
+                                    actions: <Widget>[
+                                      // usually buttons at the bottom of the dialog
+                                      new FlatButton(
+                                        child: new Text("Close"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            } else if (strength >= 10) {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {

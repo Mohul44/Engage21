@@ -9,7 +9,8 @@ import 'package:auth_demo/theme/colors/light_colors.dart';
 
 class TaskList extends StatefulWidget {
   final String userid;
-  const TaskList(this.userid);
+  final int vaccine;
+  const TaskList(this.userid, this.vaccine);
   @override
   _TaskListState createState() => _TaskListState();
 }
@@ -47,6 +48,7 @@ class _TaskListState extends State<TaskList> {
                 offline: tasks[index].mp[widget.userid],
                 docid: tasks[index].documentuid,
                 userid: widget.userid,
+                vaccine: widget.vaccine,
               ),
             );
           else

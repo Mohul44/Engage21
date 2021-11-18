@@ -21,7 +21,7 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
   TextEditingController Lecturer = new TextEditingController();
   TextEditingController StartingTime = new TextEditingController();
   TextEditingController Venue = new TextEditingController();
-  final GlobalKey<FormState> _addTaskFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _addTaskFormKey = GlobalKey<FormState>();
   List<bool> mylist = [false, true, false, true, false, true, false];
   @override
   Widget build(BuildContext context) {
@@ -451,9 +451,10 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                               // return object of type Dialog
                               return AlertDialog(
                                 backgroundColor: LightColors.kDarkBlue,
-                                title: new Text("Cannot Attend offline"),
+                                title:
+                                    new Text("Lecture slot added successfully"),
                                 content: new Text(
-                                  "Maximum seating capacity reached, please attend online class through MS Teams",
+                                  "Return to home page to view changes",
                                   style: TextStyle(color: Colors.white70),
                                 ),
                                 actions: <Widget>[
