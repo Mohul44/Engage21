@@ -33,24 +33,24 @@ class _StudentListState extends State<StudentList> {
         itemBuilder: (context, index) {
           print("task is ${tasks[index]}");
           print("task map is ${tasks[index].mp}");
-          if (tasks[index].mp.containsKey(widget.userid))
-            return Container(
-              padding: EdgeInsets.all(5.0),
-              child: ActiveProjectCard(
-                cardColor: myColors[index % (myColors.length)],
-                loadingPercent: 0.45,
-                title: tasks[index].title,
-                subtitle: tasks[index].subtitle,
-                startTime: tasks[index].startTime,
-                capacity: 10,
-                currentFilled: tasks[index].currentFilled,
-                offline: tasks[index].mp[widget.userid.toString()],
-                docid: tasks[index].documentuid,
-                userid: widget.userid,
-              ),
-            );
-          else
-            return Container();
+          // if (tasks[index].mp.containsKey(widget.userid))
+          return Container(
+            padding: EdgeInsets.all(5.0),
+            child: ActiveProjectCard(
+              cardColor: myColors[index % (myColors.length)],
+              loadingPercent: 0.45,
+              title: tasks[index].title,
+              subtitle: tasks[index].subtitle,
+              startTime: tasks[index].startTime,
+              capacity: 10,
+              currentFilled: tasks[index].currentFilled,
+              offline: tasks[index].mp[widget.userid.toString()],
+              docid: tasks[index].documentuid,
+              userid: widget.userid,
+            ),
+          );
+          // else
+          //   return Container();
         });
   }
 }

@@ -10,9 +10,8 @@ import 'package:auth_demo/theme/colors/light_colors.dart';
 import '../authService.dart';
 
 class CreateNewTaskPage extends StatefulWidget {
-  CreateNewTaskPage(
-    Key key,
-  ) : super(key: key);
+  final String userid;
+  const CreateNewTaskPage(this.userid);
   @override
   _CreateNewTaskPageState createState() => _CreateNewTaskPageState();
 }
@@ -446,8 +445,31 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                     child: ElevatedButton(
                         child: Text('Register'),
                         onPressed: () async {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              // return object of type Dialog
+                              return AlertDialog(
+                                backgroundColor: LightColors.kDarkBlue,
+                                title: new Text("Cannot Attend offline"),
+                                content: new Text(
+                                  "Maximum seating capacity reached, please attend online class through MS Teams",
+                                  style: TextStyle(color: Colors.white70),
+                                ),
+                                actions: <Widget>[
+                                  // usually buttons at the bottom of the dialog
+                                  new FlatButton(
+                                    child: new Text("Close"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                           if (_addTaskFormKey.currentState.validate()) {
-                            await AuthService().addTask(
+                            await AuthService(uid: widget.userid).addTask(
                                 Course.text,
                                 Lecturer.text,
                                 mylist,

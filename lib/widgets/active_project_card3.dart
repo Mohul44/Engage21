@@ -49,7 +49,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
               borderRadius: BorderRadius.circular(20.0),
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Column(
@@ -58,7 +58,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                     Text(
                       widget.title,
                       style: TextStyle(
-                        fontSize: 14.0,
+                        fontSize: 18.0,
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
                       ),
@@ -66,7 +66,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                     Text(
                       widget.subtitle,
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 15.0,
                         color: Colors.white54,
                         fontWeight: FontWeight.w400,
                       ),
@@ -74,18 +74,16 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                     Text(
                       widget.startTime,
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 15.0,
                         color: Colors.white54,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+
                     Text(
                       "Max Capacity  " + widget.capacity.toString(),
                       style: TextStyle(
-                        fontSize: 13.0,
+                        fontSize: 16.0,
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
@@ -93,77 +91,132 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                     Text(
                       "Currently filled  " + widget.currentFilled.toString(),
                       style: TextStyle(
-                        fontSize: 13.0,
+                        fontSize: 16.0,
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    TextButton(
-                      onPressed: () {
+
+                    ActionChip(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                      onPressed: () => {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ShowList(widget.docid),
+                            builder: (context) => ShowList(widget.docid,
+                                widget.currentFilled, widget.offline),
                           ),
-                        );
+                        )
                       },
-                      child: Center(
-                        child: Text(
-                          'Show list',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16),
-                        ),
+                      label: Text(
+                        "Show List",
+                        style: TextStyle(
+                            color: widget.cardColor,
+                            fontWeight: FontWeight.bold),
                       ),
+                      backgroundColor: Colors.white,
                     ),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            // return object of type Dialog
-                            return AlertDialog(
-                              backgroundColor: LightColors.kRed,
-                              title: new Text("Delete lecture"),
-                              content: new Text(
-                                "Deleting this lecture would remove this from all students schedule",
-                                style: TextStyle(color: Colors.white70),
-                              ),
-                              actions: <Widget>[
-                                new FlatButton(
-                                  child: new Text("Yes"),
-                                  onPressed: () {
-                                    if (this.mounted)
-                                      setState(() {
-                                        AuthService(
-                                                uid: widget.userid,
-                                                docid: widget.docid)
-                                            .deleteTask();
-                                      });
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                                // usually buttons at the bottom of the dialog
-                                new FlatButton(
-                                  child: new Text("Cancel"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      icon: Icon(Icons.remove, size: 20),
-                      label: Text("Delete lecture"),
-                      style: ElevatedButton.styleFrom(
-                          primary: LightColors.kPalePink),
-                    )
+                    ActionChip(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                      onPressed: () => {},
+                      label: Text(
+                        "Delete lecture",
+                        style: TextStyle(
+                            color: LightColors.kRed,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      backgroundColor: Colors.white,
+                    ),
+                    // ElevatedButton.icon(
+                    //   onPressed: () {
+                    //     showDialog(
+                    //       context: context,
+                    //       builder: (BuildContext context) {
+                    //         // return object of type Dialog
+                    //         return AlertDialog(
+                    //           backgroundColor: LightColors.kRed,
+                    //           title: new Text("Delete lecture"),
+                    //           content: new Text(
+                    //             "Deleting this lecture would remove this from all students schedule",
+                    //             style: TextStyle(color: Colors.white70),
+                    //           ),
+                    //           actions: <Widget>[
+                    //             new FlatButton(
+                    //               child: new Text("Yes"),
+                    //               onPressed: () {
+                    //                 if (this.mounted)
+                    //                   setState(() {
+                    //                     AuthService(
+                    //                             uid: widget.userid,
+                    //                             docid: widget.docid)
+                    //                         .deleteTask();
+                    //                   });
+                    //                 Navigator.of(context).pop();
+                    //               },
+                    //             ),
+                    //             // usually buttons at the bottom of the dialog
+                    //             new FlatButton(
+                    //               child: new Text("Cancel"),
+                    //               onPressed: () {
+                    //                 Navigator.of(context).pop();
+                    //               },
+                    //             ),
+                    //           ],
+                    //         );
+                    //       },
+                    //     );
+                    //   },
+                    //   icon: Icon(Icons.line_style, size: 20),
+                    //   label: Text("Show List"),
+                    //   style: ElevatedButton.styleFrom(
+                    //       primary: LightColors.kPalePink),
+                    // ),
+                    // ElevatedButton.icon(
+                    //   onPressed: () {
+                    //     showDialog(
+                    //       context: context,
+                    //       builder: (BuildContext context) {
+                    //         // return object of type Dialog
+                    //         return AlertDialog(
+                    //           backgroundColor: LightColors.kRed,
+                    //           title: new Text("Delete lecture"),
+                    //           content: new Text(
+                    //             "Deleting this lecture would remove this from all students schedule",
+                    //             style: TextStyle(color: Colors.white70),
+                    //           ),
+                    //           actions: <Widget>[
+                    //             new FlatButton(
+                    //               child: new Text("Yes"),
+                    //               onPressed: () {
+                    //                 if (this.mounted)
+                    //                   setState(() {
+                    //                     AuthService(
+                    //                             uid: widget.userid,
+                    //                             docid: widget.docid)
+                    //                         .deleteTask();
+                    //                   });
+                    //                 Navigator.of(context).pop();
+                    //               },
+                    //             ),
+                    //             // usually buttons at the bottom of the dialog
+                    //             new FlatButton(
+                    //               child: new Text("Cancel"),
+                    //               onPressed: () {
+                    //                 Navigator.of(context).pop();
+                    //               },
+                    //             ),
+                    //           ],
+                    //         );
+                    //       },
+                    //     );
+                    //   },
+                    //   icon: Icon(Icons.remove, size: 20),
+                    //   label: Text("Delete lecture"),
+                    //   style: ElevatedButton.styleFrom(
+                    //       primary: LightColors.kPalePink),
+                    // ),
                   ],
                 ),
               ],

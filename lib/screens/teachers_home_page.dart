@@ -69,11 +69,11 @@ class TeacherHomePage extends StatelessWidget {
             String userName = name;
             userName = userName == null ? "Null" : userName;
             // Get Current User UID
-
+            int role = 1;
             String userUid = snapshot.data.uid;
 
             return StreamProvider<List<Task>>.value(
-              value: AuthService(uid: userid).tasks,
+              value: AuthService(uid: userid).tasks2,
               initialData: [],
               child: Column(
                 children: <Widget>[
@@ -87,7 +87,7 @@ class TeacherHomePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Icon(Icons.account_circle_sharp,
-                                  color: LightColors.kDarkBlue, size: 30.0),
+                                  color: LightColors.kLavender, size: 30.0),
                               IconButton(
                                 icon: Icon(
                                   Icons.power_settings_new,
@@ -129,8 +129,8 @@ class TeacherHomePage extends StatelessWidget {
                                               .collection('users')
                                               .document(userUid)
                                               .snapshots(),
-                                          builder: (context, snapshot) {
-                                            if (!snapshot.hasData) {
+                                          builder: (context, snapshot2) {
+                                            if (!snapshot2.hasData) {
                                               return new Text(
                                                 "Loading",
                                                 style: new TextStyle(
@@ -140,8 +140,9 @@ class TeacherHomePage extends StatelessWidget {
                                                 ),
                                               );
                                             }
+                                            role = snapshot2.data['role'] ?? 1;
                                             return new Text(
-                                              snapshot.data['name'],
+                                              snapshot2.data['name'],
                                               style: new TextStyle(
                                                 fontSize: 20.0,
                                                 color: LightColors.kLavender,
@@ -188,7 +189,7 @@ class TeacherHomePage extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                CalendarPage()),
+                                                CalendarPage(userid)),
                                       );
                                     },
                                     child: calendarIcon(),

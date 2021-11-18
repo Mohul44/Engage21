@@ -80,6 +80,13 @@ class AuthService {
     return _taskCollection.snapshots().map(_taskListFromSnapshot);
   }
 
+  Stream<List<Task>> get tasks2 {
+    final Query _taskCollection2 = Firestore.instance
+        .collection("Tasks")
+        .where('Author', isEqualTo: uid.toString());
+    return _taskCollection2.snapshots().map(_taskListFromSnapshot);
+  }
+
   // User State
   Stream<FirebaseUser> authStateChanges() {
     FirebaseAuth _firebaseInstance = FirebaseAuth.instance;
@@ -112,11 +119,21 @@ class AuthService {
     });
   }
 
-  Future<void> delteTaskUser(int strength) async {
+  Future<void> deleteTaskUser(int strength) async {
     String useridstring = this.uid.toString();
     return await _taskCollection.document(docid).updateData({
       'Currently Filled': strength,
       'mp.${useridstring}': FieldValue.delete(),
+      // 'taskBoolList' : FieldValue.arrayUnion({name});
+      // 'List of users' : FieldValue.arrayUnion({})
+    });
+  }
+
+  Future<void> deleteTaskUserOffline(int strength) async {
+    String useridstring = this.uid.toString();
+    return await _taskCollection.document(docid).updateData({
+      'Currently Filled': strength,
+      'mp.${useridstring}': false,
       // 'taskBoolList' : FieldValue.arrayUnion({name});
       // 'List of users' : FieldValue.arrayUnion({})
     });
@@ -155,6 +172,29 @@ class AuthService {
       "Max Capacity": 10,
       "offline": false,
       'mp': {},
+      'Author': uid.toString(),
+    });
+  }
+
+  void _changePassword(String password) async {
+    //Create an instance of the current user.
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+
+    //Pass in the password to updatePassword.
+    user.updatePassword(password).then((_) {
+      print("Successfully changed password");
+    }).catchError((error) {
+      print("Password can't be changed" + error.toString());
+      //This might happen, when the wrong password is in, the user isn't found, or if the user hasn't logged in recently.
+    });
+  }
+
+  Future<void> updateProfile(String name, String password) async {
+    if (password.isNotEmpty) _changePassword(password);
+    return await _usersCollection.document(this.uid.toString()).updateData({
+      'name': name,
+      // 'taskBoolList' : FieldValue.arrayUnion({name});
+      // 'List of users' : FieldValue.arrayUnion({})
     });
   }
 
@@ -224,7 +264,7 @@ class AuthService {
 
   // Create User With Email And Password
   Future<Map<String, String>> signUp(
-      String email, String password, String name) async {
+      String email, String password, String name, int value) async {
     try {
       await _firebaseInstance
           .createUserWithEmailAndPassword(email: email, password: password)
@@ -238,11 +278,9 @@ class AuthService {
               "tasks": [],
               "tasksBoolean": [],
               "name": name,
+              "role": value,
             },
           );
-          UserUpdateInfo userUpdateInfo = new UserUpdateInfo();
-          userUpdateInfo.displayName = name;
-          user.user.updateProfile(userUpdateInfo);
           return Null;
         } else {
           return Null;

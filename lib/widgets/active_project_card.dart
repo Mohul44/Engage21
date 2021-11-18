@@ -178,7 +178,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                                             AuthService(
                                                     uid: widget.userid,
                                                     docid: widget.docid)
-                                                .delteTaskUser(
+                                                .deleteTaskUser(
                                                     widget.currentFilled +
                                                         strength2);
                                           });

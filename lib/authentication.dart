@@ -15,7 +15,7 @@ class _AuthenticationState extends State<Authentication> {
       PageController(keepPage: true, initialPage: 1);
 
   int page = 1;
-  
+
   // No Internet Connection SnackBar
   SnackBar networkErrorSnackBar = SnackBar(
     content: Row(
@@ -47,7 +47,6 @@ class _AuthenticationState extends State<Authentication> {
     "SignUp",
     "Sign In",
   ];
-  
 
   @override
   Widget build(BuildContext context) {
@@ -60,14 +59,13 @@ class _AuthenticationState extends State<Authentication> {
               BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30),
+              padding: const EdgeInsets.symmetric(vertical: 10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Column(
                     children: [
-
                       // Logo Template
                       Container(
                         height: 150,
@@ -78,29 +76,29 @@ class _AuthenticationState extends State<Authentication> {
                         ),
                         child: Center(
                           child: CircleAvatar(
-                              backgroundColor: LightColors.kBlue,
-                              radius: 60.0,
-                              backgroundImage: AssetImage(
-                                'assets/images/avatar.png',
-                              ),
+                            backgroundColor: LightColors.kBlue,
+                            radius: 60.0,
+                            backgroundImage: AssetImage(
+                              'assets/images/avatar.png',
                             ),
+                          ),
                         ),
                       ),
-                       Container(
+                      Container(
                         child: Center(
                           child: Text(
-                              "Scheduler",
-                              style: TextStyle(
+                            "Scheduler",
+                            style: TextStyle(
                               fontSize: 25,
                               fontStyle: FontStyle.italic,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
-                            ),
+                          ),
                         ),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 10,
                       ),
                     ],
                   ),
@@ -112,12 +110,12 @@ class _AuthenticationState extends State<Authentication> {
                       controller: authPageController,
                       physics: NeverScrollableScrollPhysics(),
                       onPageChanged: (value) {
-                        if (this.mounted)if (this.mounted)setState(() {
-                          page = value;
-                        });
+                        if (this.mounted) if (this.mounted)
+                          setState(() {
+                            page = value;
+                          });
                       },
                       children: [
-
                         // Forgot Password Page
                         ForgotPassword(
                           authPageController: authPageController,
@@ -177,13 +175,3 @@ class _AuthenticationState extends State<Authentication> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-

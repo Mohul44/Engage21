@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:auth_demo/authService.dart';
+import 'package:auth_demo/theme/colors/light_colors.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -22,6 +23,7 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController passwordTextField = TextEditingController();
   final TextEditingController nameTextField = TextEditingController();
   final GlobalKey<FormState> _signUpFormKey = GlobalKey<FormState>();
+  int _value = 1;
   // Run Action When Loading
   bool loading = false;
   final name = "Mohul_Name";
@@ -40,11 +42,9 @@ class _SignUpState extends State<SignUp> {
       child: Form(
         key: _signUpFormKey,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 3,
-            ),
             TextFormField(
               controller: nameTextField,
               autocorrect: false,
@@ -63,9 +63,7 @@ class _SignUpState extends State<SignUp> {
                 return null;
               },
             ),
-            SizedBox(
-              height: 20,
-            ),
+
             TextFormField(
               controller: emailTextField,
               autocorrect: false,
@@ -86,9 +84,7 @@ class _SignUpState extends State<SignUp> {
                 return null;
               },
             ),
-            SizedBox(
-              height: 20,
-            ),
+
             TextFormField(
               controller: passwordTextField,
               autocorrect: false,
@@ -107,9 +103,7 @@ class _SignUpState extends State<SignUp> {
                 return null;
               },
             ),
-            SizedBox(
-              height: 20,
-            ),
+
             TextFormField(
               autocorrect: false,
               enableSuggestions: false,
@@ -129,8 +123,31 @@ class _SignUpState extends State<SignUp> {
                 return null;
               },
             ),
-            SizedBox(
-              height: 20,
+            DropdownButton(
+              dropdownColor: LightColors.kBlue,
+              value: _value,
+              style: new TextStyle(
+                color: LightColors.kLavender,
+              ),
+              items: [
+                DropdownMenuItem(
+                  child: Text("Student"),
+                  value: 1,
+                ),
+                DropdownMenuItem(
+                  child: Text("Teacher"),
+                  value: 2,
+                ),
+              ],
+              onChanged: (int value) {
+                setState(() {
+                  _value = value;
+                });
+              },
+              hint: Text(
+                "Select Role",
+                style: TextStyle(color: LightColors.kLavender),
+              ),
             ),
 
             // Sign Up Button
@@ -174,7 +191,7 @@ class _SignUpState extends State<SignUp> {
                     });
                   await AuthService()
                       .signUp(emailTextField.text, passwordTextField.text,
-                          nameTextField.text)
+                          nameTextField.text, _value)
                       .then((value) {
                     if (value["network"].isNotEmpty) {
                       widget.authScaffoldKey.currentState

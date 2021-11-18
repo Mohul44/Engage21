@@ -163,6 +163,17 @@ class HomePage extends StatelessWidget {
                                         ),
                                       ),
                                     ),
+                                    Container(
+                                      child: Text(
+                                        userEmail,
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          fontSize: 12.0,
+                                          color: LightColors.kLavender,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 )
                               ],
@@ -191,7 +202,7 @@ class HomePage extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                CalendarPage()),
+                                                CalendarPage(userid)),
                                       );
                                     },
                                     child: calendarIcon(),
@@ -202,27 +213,30 @@ class HomePage extends StatelessWidget {
                                   height: MediaQuery.of(context).size.height *
                                       0.01),
                               TaskColumn(
-                                icon: Icons.alarm,
+                                icon: Icons.blur_circular,
                                 iconBackgroundColor: LightColors.kRed,
-                                title: 'To Do',
-                                subtitle: '5 tasks now. 1 started',
+                                title: 'In Progress',
+                                subtitle: '1 tasks now. 1 started',
                               ),
                               SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.01,
                               ),
                               TaskColumn(
-                                icon: Icons.blur_circular,
-                                iconBackgroundColor: LightColors.kDarkYellow,
-                                title: 'In Progress',
-                                subtitle: '1 tasks now. 1 started',
-                              ),
-                              SizedBox(height: 15.0),
-                              TaskColumn(
                                 icon: Icons.check_circle_outline,
                                 iconBackgroundColor: LightColors.kBlue,
                                 title: 'Done',
                                 subtitle: '18 tasks now. 13 started',
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.01,
+                              ),
+                              TaskColumn(
+                                icon: Icons.medication,
+                                iconBackgroundColor: LightColors.kDarkYellow,
+                                title: 'Vaccination status',
+                                subtitle: 'Not vaccinated',
                               ),
                             ],
                           ),
