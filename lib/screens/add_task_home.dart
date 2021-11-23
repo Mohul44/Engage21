@@ -80,7 +80,13 @@ class AddTask extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   TopContainer(
-                    height: MediaQuery.of(context).size.height * 0.4,
+                    padding: const EdgeInsets.fromLTRB(
+                      20,
+                      20,
+                      20,
+                      0,
+                    ),
+                    height: MediaQuery.of(context).size.height * 0.37,
                     width: width,
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -89,15 +95,15 @@ class AddTask extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               MyBackButton(),
-                              IconButton(
-                                  icon: Icon(
-                                    Icons.power_settings_new,
-                                    color: LightColors.kLavender,
-                                  ),
-                                  onPressed: () => {
-                                        AuthService().signOut(),
-                                        Navigator.pop(context),
-                                      }),
+                              // IconButton(
+                              //     icon: Icon(
+                              //       Icons.power_settings_new,
+                              //       color: LightColors.kLavender,
+                              //     ),
+                              //     onPressed: () => {
+                              //           AuthService().signOut(),
+                              //           Navigator.pop(context),
+                              //         }),
                             ],
                           ),
                           Padding(
@@ -215,12 +221,9 @@ class AddTask extends StatelessWidget {
                                 height: 20,
                               ),
                               subheading('Lectures'),
-                              SizedBox(
-                                height: 10,
-                              ),
                               Container(
                                 height:
-                                    MediaQuery.of(context).size.height * 0.45,
+                                    MediaQuery.of(context).size.height * 0.5,
                                 width: MediaQuery.of(context).size.width,
                                 child: AddTaskStudent(userUid.toString()),
                               ),

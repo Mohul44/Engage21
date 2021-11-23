@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 
 class TaskContainer extends StatelessWidget {
   final String title;
-  final String subtitle;
+  // final String subtitle;
   final Color boxColor;
-
+  final String teacher;
+  final String venue;
   TaskContainer({
     this.title,
-    this.subtitle,
+    // this.subtitle,
     this.boxColor,
+    this.teacher,
+    this.venue,
   });
 
   @override
@@ -24,16 +27,16 @@ class TaskContainer extends StatelessWidget {
             title,
             style: TextStyle(
                 fontSize: 16.0,
-                fontWeight: FontWeight.w600,
-                color: LightColors.kDarkBlue),
+                fontWeight: FontWeight.bold,
+                color: LightColors.kLavender),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: Text(
-              subtitle,
+              "${venue}        ${teacher}",
               style: TextStyle(
                 fontSize: 14.0,
-                color: Colors.black54,
+                color: LightColors.kPalePink,
                 fontWeight: FontWeight.w400,
               ),
             ),

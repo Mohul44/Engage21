@@ -26,11 +26,16 @@ void getUserName(String uid) async {
   print(name);
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final FirebaseAuth _firebaseInstance = FirebaseAuth.instance;
   final CollectionReference _usersCollection =
       Firestore.instance.collection("users");
-  int vaccine = 1;
+  int vaccine = 2;
   Text subheading(String title) {
     return Text(
       title,
@@ -70,7 +75,7 @@ class HomePage extends StatelessWidget {
             String userName = name;
             userName = userName == null ? "Null" : userName;
             // Get Current User UID
-
+            int totalLectures = 0;
             String userUid = snapshot.data.uid;
 
             return StreamProvider<List<Task>>.value(
@@ -197,175 +202,124 @@ class HomePage extends StatelessWidget {
                           )
                         ]),
                   ),
-                  SingleChildScrollView(
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          color: Colors.transparent,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 10.0),
+                  StreamBuilder(
+                      stream: Firestore.instance
+                          .collection('users')
+                          .document(userUid)
+                          .snapshots(),
+                      builder: (context, snapshot3) {
+                        if (!snapshot3.hasData) {
+                          return new Text(
+                            "Loading",
+                            style: new TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.yellow,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          );
+                        }
+                        return SingleChildScrollView(
                           child: Column(
                             children: <Widget>[
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  subheading('My Tasks'),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                CalendarPage(userid)),
-                                      );
-                                    },
-                                    child: calendarIcon(),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.01),
-                              TaskColumn(
-                                icon: Icons.blur_circular,
-                                iconBackgroundColor: LightColors.kRed,
-                                title: 'In Progress',
-                                subtitle: '1 tasks now. 1 started',
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.01,
-                              ),
-                              TaskColumn(
-                                icon: Icons.check_circle_outline,
-                                iconBackgroundColor: LightColors.kBlue,
-                                title: 'Done',
-                                subtitle: '18 tasks now. 13 started',
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.01,
-                              ),
-                              TaskColumn(
-                                icon: Icons.medication,
-                                iconBackgroundColor: LightColors.kDarkYellow,
-                                title: 'Vaccination status',
-                                subtitle: 'Not vaccinated',
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          color: Colors.transparent,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 5.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              subheading('Lectures'),
                               Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.33,
-                                width: MediaQuery.of(context).size.width,
-                                child: TaskList(userUid.toString(), vaccine),
-                                // child: ListView(
-                                //   scrollDirection: Axis.horizontal,
-                                //   shrinkWrap: true,
-                                //   children: <Widget>[
-                                //       ActiveProjectCard(
-                                //       cardColor: LightColors.kDarkYellow,
-                                //       loadingPercent: 0.45,
-                                //       title: 'Machine Learning',
-                                //       subtitle: 'LTC:5105',
-                                //       startTime: '4 PM',
-                                //       capacity: 10,
-                                //       currentFilled: 0,
-                                //       offline: false,
-                                //     ),
-                                //        SizedBox(width: 20.0),
-                                //     ActiveProjectCard(
-                                //       cardColor: LightColors.kGreen,
-                                //       loadingPercent: 0.25,
-                                //       title: 'Kick off',
-                                //       subtitle: 'Microsoft teams',
-                                //       startTime: '3 PM',
-                                //       capacity: 10,
-                                //       currentFilled: 0,
-                                //       offline: false,
-                                //     ),
-                                //        SizedBox(width: 20.0),
-                                //      ActiveProjectCard(
-                                //       cardColor: LightColors.kRed,
-                                //       loadingPercent: 0.6,
-                                //       title: 'Artificial Intelligence',
-                                //       subtitle: 'LTC:5102',
-                                //       startTime: '12 PM',
-                                //       capacity: 10,
-                                //       currentFilled: 0,
-                                //       offline: true,
-                                //     ),
-
-                                //   ],
-                                // ),
+                                color: Colors.transparent,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 10.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        subheading('My Tasks'),
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            primary: LightColors.kGreen,
+                                            shape: CircleBorder(),
+                                            padding: EdgeInsets.all(20),
+                                          ),
+                                          child: Icon(
+                                            Icons.calendar_today,
+                                            size: 20.0,
+                                            color: Colors.white,
+                                          ),
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      CalendarPage(userid)),
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.01),
+                                    TaskColumn(
+                                        icon: Icons.blur_circular,
+                                        iconBackgroundColor: LightColors.kRed,
+                                        title: 'Lectures enrolled',
+                                        subtitle: snapshot3
+                                            .data['Total Lectures']
+                                            .toString()),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.01,
+                                    ),
+                                    // TaskColumn(
+                                    //   icon: Icons.check_circle_outline,
+                                    //   iconBackgroundColor: LightColors.kBlue,
+                                    //   title: 'Done',
+                                    //   subtitle: '18 tasks now. 13 started',
+                                    // ),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.01,
+                                    ),
+                                    TaskColumn(
+                                      icon: Icons.medication,
+                                      iconBackgroundColor:
+                                          LightColors.kDarkYellow,
+                                      title: 'Vaccination status',
+                                      subtitle: snapshot3.data['Vaccine'] == 1
+                                          ? "Not vaccinated"
+                                          : snapshot3.data['Vaccine'] == 2
+                                              ? "Partially vaccinated"
+                                              : "Vaccinated",
+                                    ),
+                                  ],
+                                ),
                               ),
-                              // Row(
-                              //   children: <Widget>[
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kGreen,
-                              //       loadingPercent: 0.25,
-                              //       title: 'Kick off',
-                              //       subtitle: 'Microsoft teams',
-                              //       startTime: '3 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: false,
-                              //     ),
-                              //     SizedBox(width: 20.0),
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kRed,
-                              //       loadingPercent: 0.6,
-                              //       title: 'Artificial Intelligence',
-                              //       subtitle: 'LTC:5102',
-                              //       startTime: '12 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: true,
-                              //     ),
-                              //   ],
-                              // ),
-                              // Row(
-                              //   children: <Widget>[
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kDarkYellow,
-                              //       loadingPercent: 0.45,
-                              //       title: 'Machine Learning',
-                              //       subtitle: 'LTC:5105',
-                              //       startTime: '4 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: false,
-                              //     ),
-                              //     SizedBox(width: 20.0),
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kBlue,
-                              //       loadingPercent: 0.9,
-                              //       title: 'Online Flutter Course',
-                              //       subtitle: 'Online only',
-                              //       startTime: '2 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: true,
-                              //     ),
-                              //   ],
-                              // ),
+                              Container(
+                                color: Colors.transparent,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 5.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    subheading('Lectures'),
+                                    Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.33,
+                                      width: MediaQuery.of(context).size.width,
+                                      child:
+                                          TaskList(userUid.toString(), vaccine),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
+                        );
+                      }),
                 ],
               ),
             );

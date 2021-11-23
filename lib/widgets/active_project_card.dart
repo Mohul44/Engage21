@@ -72,7 +72,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                       ),
                     ),
                     Text(
-                      widget.startTime,
+                      "IST ${widget.startTime}:00",
                       style: TextStyle(
                         fontSize: 12.0,
                         color: Colors.white54,
@@ -139,7 +139,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                                   );
                                 },
                               );
-                            } else if (strength >= 10) {
+                            } else if (strength >= 5) {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {

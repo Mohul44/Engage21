@@ -11,6 +11,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:auth_demo/authService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'tasks_list.dart';
 import 'package:auth_demo/models/tasks.dart';
 
@@ -30,6 +31,12 @@ class _ShowList extends State<ShowList> {
     LightColors.kPalePink,
     LightColors.kLightYellow2,
   ];
+  String _url =
+      "https://firebasestorage.googleapis.com/v0/b/engagescheduler-e71b5.appspot.com/o/vaccine_certificates%2FecW1hycM2WgAe0tOtx8wARCk0WI2?alt=media&token=ec3f098f-fb0a-448e-81b2-a6f731a47e2a";
+  void _launchURL(String _url2) async {
+    if (!await launch(_url2)) throw 'Could not launch $_url2';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,6 +110,43 @@ class _ShowList extends State<ShowList> {
                                 }
                                 if (value == true) {
                                   return GestureDetector(
+                                    onTap: () {
+                                      String url2 = _url;
+                                      if (snapshot2.data['downloadURL']
+                                          .toString()
+                                          .isEmpty) {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            // return object of type Dialog
+                                            return AlertDialog(
+                                              backgroundColor:
+                                                  LightColors.kDarkBlue,
+                                              title: new Text(
+                                                  "Vaccine certificate not found"),
+                                              content: new Text(
+                                                "Double tap the student name to remove the sutdent from offline class+",
+                                                style: TextStyle(
+                                                    color: Colors.white70),
+                                              ),
+                                              actions: <Widget>[
+                                                // usually buttons at the bottom of the dialog
+                                                new FlatButton(
+                                                  child: new Text("Close"),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      } else {
+                                        url2 = snapshot2.data['downloadURL']
+                                            .toString();  
+                                        _launchURL(url2);
+                                      }
+                                    },
                                     onDoubleTap: () {
                                       if (this.mounted)
                                         setState(() {

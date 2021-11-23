@@ -8,11 +8,11 @@ class SignUp extends StatefulWidget {
   SignUp({
     Key key,
     @required this.authScaffoldKey,
-    @required this.networkErrorSnackBar,
+    // @required this.networkErrorSnackBar,
   }) : super(key: key);
 
   GlobalKey<ScaffoldState> authScaffoldKey;
-  final SnackBar networkErrorSnackBar;
+  // final SnackBar networkErrorSnackBar;
 
   @override
   _SignUpState createState() => _SignUpState();
@@ -22,17 +22,15 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController emailTextField = TextEditingController();
   final TextEditingController passwordTextField = TextEditingController();
   final TextEditingController nameTextField = TextEditingController();
-  GlobalKey<FormState> _signUpFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _signUpFormKey = GlobalKey<FormState>();
   int _value = 1;
   // Run Action When Loading
   bool loading = false;
-  final name = "Mohul_Name";
   // Map For Displaying Erorr Messages
   Map<String, String> errorMessage = {
-    "email": "",
-    "password": "",
-    "network": "",
-    "name": "",
+    "email": "email",
+    "password": "password",
+    "network": "network",
   };
 
   @override
@@ -50,6 +48,7 @@ class _SignUpState extends State<SignUp> {
               autocorrect: false,
               enableSuggestions: false,
               keyboardType: TextInputType.name,
+              autofocus: true,
               cursorColor: Theme.of(context).accentColor,
               obscureText: false,
               style: Theme.of(context).textTheme.headline5,
@@ -57,8 +56,6 @@ class _SignUpState extends State<SignUp> {
               validator: (name) {
                 if (name.isEmpty) {
                   return "Please enter name";
-                } else if (errorMessage["name"].isNotEmpty) {
-                  return errorMessage["name"];
                 }
                 return null;
               },
@@ -67,8 +64,9 @@ class _SignUpState extends State<SignUp> {
             TextFormField(
               controller: emailTextField,
               autocorrect: false,
+              autofocus: true,
               enableSuggestions: false,
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.text,
               cursorColor: Theme.of(context).accentColor,
               obscureText: false,
               style: Theme.of(context).textTheme.headline5,
@@ -76,8 +74,6 @@ class _SignUpState extends State<SignUp> {
               validator: (email) {
                 if (email.isEmpty) {
                   return "Please enter an email adress";
-                } else if (email.contains("@") == false) {
-                  return "Invalid email adress";
                 } else if (errorMessage["email"].isNotEmpty) {
                   return errorMessage["email"];
                 }
@@ -88,6 +84,7 @@ class _SignUpState extends State<SignUp> {
             TextFormField(
               controller: passwordTextField,
               autocorrect: false,
+              autofocus: true,
               enableSuggestions: false,
               keyboardType: TextInputType.visiblePassword,
               cursorColor: Theme.of(context).accentColor,
@@ -107,6 +104,7 @@ class _SignUpState extends State<SignUp> {
             TextFormField(
               autocorrect: false,
               enableSuggestions: false,
+              autofocus: true,
               keyboardType: TextInputType.visiblePassword,
               cursorColor: Theme.of(context).accentColor,
               obscureText: true,
@@ -117,8 +115,6 @@ class _SignUpState extends State<SignUp> {
                   return "Please rewrite your password";
                 } else if (passwordTextField.text != rewritePassword) {
                   return "Password does not match";
-                } else if (errorMessage["password"].isNotEmpty) {
-                  return errorMessage["password"];
                 }
                 return null;
               },
@@ -153,62 +149,69 @@ class _SignUpState extends State<SignUp> {
             // Sign Up Button
             Container(
               height: 50,
-              width: MediaQuery.of(context).size.width,
+              width: MediaQuery.of(context).size.width * 0.4,
               child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                child: loading
-                    ? Container(
-                        height: 18,
-                        width: 18,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              Theme.of(context).scaffoldBackgroundColor),
-                        ),
-                      )
-                    : Text("Sign Up"),
-                onPressed: () async {
-                  if (this.mounted)
-                    setState(() {
-                      errorMessage["email"] = "";
-                      errorMessage["netwrok"] = "";
-                      errorMessage["password"] = "";
-                    });
-
-                  // 1. Check Form Validation
-                  // 2. Set State "loading" = true
-                  // 3. Call "signUp" Future inside AuthService()
-                  // 4. Catch NetworkError - Show SnackBar
-                  // 5. Set State "errorMessage" = value
-                  // 6. Check Form Validation Again
-                  // 7. If Valid => Home
-
-                  if (this.mounted)
-                    setState(() {
-                      loading = true;
-                    });
-                  await AuthService()
-                      .signUp(emailTextField.text, passwordTextField.text,
-                          nameTextField.text, _value)
-                      .then((value) {
-                    if (value["network"].isNotEmpty) {
-                      widget.authScaffoldKey.currentState
-                          .showSnackBar(widget.networkErrorSnackBar);
-                      if (this.mounted)
-                        setState(() {
-                          loading = false;
-                        });
-                    }
+                  color: Theme.of(context).accentColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: loading
+                      ? Container(
+                          height: 18,
+                          width: 18,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Theme.of(context).scaffoldBackgroundColor),
+                          ),
+                        )
+                      : Text("Sign Up"),
+                  onPressed: () async {
                     if (this.mounted)
                       setState(() {
-                        errorMessage = value;
-                        loading = false;
+                        errorMessage["email"] = "";
+                        errorMessage["network"] = "";
+                        errorMessage["password"] = "";
                       });
-                  });
-                },
-              ),
+
+                    // 1. Check Form Validation
+                    // 2. Set State "loading" = true
+                    // 3. Call "signUp" Future inside AuthService()
+                    // 4. Catch NetworkError - Show SnackBar
+                    // 5. Set State "errorMessage" = value
+                    // 6. Check Form Validation Again
+                    // 7. If Valid => Home
+                    if (_signUpFormKey.currentState.validate()) {
+                      if (this.mounted)
+                        setState(() {
+                          loading = true;
+                        });
+                      print(
+                          "heree 0 ${emailTextField.text} ${passwordTextField.text} ${nameTextField.text}");
+                      await AuthService()
+                          .signUp(emailTextField.text, passwordTextField.text,
+                              nameTextField.text, _value)
+                          .then((value) {
+                        print(
+                            "heree 1 ${emailTextField.text} ${passwordTextField.text} ${nameTextField.text}");
+                        // if (value["network"].isNotEmpty) {
+                        //   widget.authScaffoldKey.currentState
+                        //       .showSnackBar(widget.networkErrorSnackBar);
+                        //   if (this.mounted)
+                        //     setState(() {
+                        //       loading = false;
+                        //     });
+                        // }
+                        if (this.mounted) print(value);
+                        setState(() {
+                          print("here2");
+                          errorMessage = value;
+                          loading = false;
+                        });
+                      });
+                      _signUpFormKey.currentState.validate();
+                    }
+                  }),
             ),
           ],
         ),

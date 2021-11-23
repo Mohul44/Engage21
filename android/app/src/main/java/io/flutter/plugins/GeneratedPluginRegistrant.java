@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import io.flutter.Log;
 
 import io.flutter.embedding.engine.FlutterEngine;
-import io.flutter.embedding.engine.plugins.shim.ShimPluginRegistry;
 
 /**
  * Generated file. Do not edit.
@@ -16,11 +15,15 @@ import io.flutter.embedding.engine.plugins.shim.ShimPluginRegistry;
 public final class GeneratedPluginRegistrant {
   private static final String TAG = "GeneratedPluginRegistrant";
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
-    ShimPluginRegistry shimPluginRegistry = new ShimPluginRegistry(flutterEngine);
     try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.firebase.cloudfirestore.CloudFirestorePlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin cloud_firestore, io.flutter.plugins.firebase.cloudfirestore.CloudFirestorePlugin", e);
+    }
+    try {
+      flutterEngine.getPlugins().add(new com.mr.flutter.plugin.filepicker.FilePickerPlugin());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin file_picker, com.mr.flutter.plugin.filepicker.FilePickerPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.firebaseauth.FirebaseAuthPlugin());
@@ -43,19 +46,19 @@ public final class GeneratedPluginRegistrant {
       Log.e(TAG, "Error registering plugin flutter_document_picker, com.sidlatau.flutterdocumentpicker.FlutterDocumentPickerPlugin", e);
     }
     try {
-      pt.tribeiro.flutter_plugin_pdf_viewer.FlutterPluginPdfViewerPlugin.registerWith(shimPluginRegistry.registrarFor("pt.tribeiro.flutter_plugin_pdf_viewer.FlutterPluginPdfViewerPlugin"));
+      flutterEngine.getPlugins().add(new io.flutter.plugins.flutter_plugin_android_lifecycle.FlutterAndroidLifecyclePlugin());
     } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin flutter_plugin_pdf_viewer, pt.tribeiro.flutter_plugin_pdf_viewer.FlutterPluginPdfViewerPlugin", e);
+      Log.e(TAG, "Error registering plugin flutter_plugin_android_lifecycle, io.flutter.plugins.flutter_plugin_android_lifecycle.FlutterAndroidLifecyclePlugin", e);
     }
     try {
-      flutterEngine.getPlugins().add(new io.flutter.plugins.pathprovider.PathProviderPlugin());
+      flutterEngine.getPlugins().add(new dev.britto.pdf_viewer_plugin.PdfViewerPlugin());
     } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin path_provider, io.flutter.plugins.pathprovider.PathProviderPlugin", e);
+      Log.e(TAG, "Error registering plugin pdf_viewer_plugin, dev.britto.pdf_viewer_plugin.PdfViewerPlugin", e);
     }
     try {
-      flutterEngine.getPlugins().add(new com.tekartik.sqflite.SqflitePlugin());
+      flutterEngine.getPlugins().add(new io.flutter.plugins.urllauncher.UrlLauncherPlugin());
     } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin sqflite, com.tekartik.sqflite.SqflitePlugin", e);
+      Log.e(TAG, "Error registering plugin url_launcher, io.flutter.plugins.urllauncher.UrlLauncherPlugin", e);
     }
   }
 }

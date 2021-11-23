@@ -23,10 +23,10 @@ class _StudentTaskListState extends State<AddTaskStudent> {
     final tasks = Provider.of<List<Task>>(context);
 
     List<Color> myColors = [
+      LightColors.kBlue,
       LightColors.kRed,
       LightColors.kGreen,
       LightColors.kDarkBlue,
-      LightColors.kDarkYellow,
     ];
     return ListView.builder(
         scrollDirection: Axis.horizontal,

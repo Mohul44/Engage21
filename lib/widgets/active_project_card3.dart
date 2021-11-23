@@ -72,14 +72,13 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                       ),
                     ),
                     Text(
-                      widget.startTime,
+                      "IST ${widget.startTime}:00",
                       style: TextStyle(
                         fontSize: 15.0,
                         color: Colors.white54,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-
                     Text(
                       "Max Capacity  " + widget.capacity.toString(),
                       style: TextStyle(
@@ -96,7 +95,6 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-
                     ActionChip(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8))),
@@ -120,103 +118,52 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                     ActionChip(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8))),
-                      onPressed: () => {},
+                      onPressed: () => {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            // return object of type Dialog
+                            return AlertDialog(
+                              backgroundColor: widget.cardColor,
+                              title: new Text("Delete lecture"),
+                              content: new Text(
+                                "Deleting this lecture would remove this from everyone's schedule !",
+                                style: TextStyle(color: Colors.white70),
+                              ),
+                              actions: <Widget>[
+                                new FlatButton(
+                                  child: new Text("Yes"),
+                                  onPressed: () {
+                                    if (this.mounted)
+                                      setState(() {
+                                        AuthService(
+                                                uid: widget.userid,
+                                                docid: widget.docid)
+                                            .deleteTask();
+                                      });
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                                // usually buttons at the bottom of the dialog
+                                new FlatButton(
+                                  child: new Text("Cancel"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      },
                       label: Text(
                         "Delete lecture",
                         style: TextStyle(
-                            color: LightColors.kRed,
+                            color: widget.cardColor,
                             fontWeight: FontWeight.bold),
                       ),
                       backgroundColor: Colors.white,
                     ),
-                    // ElevatedButton.icon(
-                    //   onPressed: () {
-                    //     showDialog(
-                    //       context: context,
-                    //       builder: (BuildContext context) {
-                    //         // return object of type Dialog
-                    //         return AlertDialog(
-                    //           backgroundColor: LightColors.kRed,
-                    //           title: new Text("Delete lecture"),
-                    //           content: new Text(
-                    //             "Deleting this lecture would remove this from all students schedule",
-                    //             style: TextStyle(color: Colors.white70),
-                    //           ),
-                    //           actions: <Widget>[
-                    //             new FlatButton(
-                    //               child: new Text("Yes"),
-                    //               onPressed: () {
-                    //                 if (this.mounted)
-                    //                   setState(() {
-                    //                     AuthService(
-                    //                             uid: widget.userid,
-                    //                             docid: widget.docid)
-                    //                         .deleteTask();
-                    //                   });
-                    //                 Navigator.of(context).pop();
-                    //               },
-                    //             ),
-                    //             // usually buttons at the bottom of the dialog
-                    //             new FlatButton(
-                    //               child: new Text("Cancel"),
-                    //               onPressed: () {
-                    //                 Navigator.of(context).pop();
-                    //               },
-                    //             ),
-                    //           ],
-                    //         );
-                    //       },
-                    //     );
-                    //   },
-                    //   icon: Icon(Icons.line_style, size: 20),
-                    //   label: Text("Show List"),
-                    //   style: ElevatedButton.styleFrom(
-                    //       primary: LightColors.kPalePink),
-                    // ),
-                    // ElevatedButton.icon(
-                    //   onPressed: () {
-                    //     showDialog(
-                    //       context: context,
-                    //       builder: (BuildContext context) {
-                    //         // return object of type Dialog
-                    //         return AlertDialog(
-                    //           backgroundColor: LightColors.kRed,
-                    //           title: new Text("Delete lecture"),
-                    //           content: new Text(
-                    //             "Deleting this lecture would remove this from all students schedule",
-                    //             style: TextStyle(color: Colors.white70),
-                    //           ),
-                    //           actions: <Widget>[
-                    //             new FlatButton(
-                    //               child: new Text("Yes"),
-                    //               onPressed: () {
-                    //                 if (this.mounted)
-                    //                   setState(() {
-                    //                     AuthService(
-                    //                             uid: widget.userid,
-                    //                             docid: widget.docid)
-                    //                         .deleteTask();
-                    //                   });
-                    //                 Navigator.of(context).pop();
-                    //               },
-                    //             ),
-                    //             // usually buttons at the bottom of the dialog
-                    //             new FlatButton(
-                    //               child: new Text("Cancel"),
-                    //               onPressed: () {
-                    //                 Navigator.of(context).pop();
-                    //               },
-                    //             ),
-                    //           ],
-                    //         );
-                    //       },
-                    //     );
-                    //   },
-                    //   icon: Icon(Icons.remove, size: 20),
-                    //   label: Text("Delete lecture"),
-                    //   style: ElevatedButton.styleFrom(
-                    //       primary: LightColors.kPalePink),
-                    // ),
                   ],
                 ),
               ],

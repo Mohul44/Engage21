@@ -23,7 +23,7 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
   TextEditingController StartingTime = new TextEditingController();
   TextEditingController Venue = new TextEditingController();
   GlobalKey<FormState> _addTaskFormKey = GlobalKey<FormState>();
-  int group1Value = 1;
+  int group1Value = 2;
   List<bool> mylist = [false, true, false, true, false, true, false];
 
   @override
@@ -59,7 +59,7 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
                               width: MediaQuery.of(context).size.width * 0.15,
                             ),
                             Text(
-                              'Update profile',
+                              'update profile',
                               style: TextStyle(
                                   fontSize: 30.0, fontWeight: FontWeight.w700),
                             ),
@@ -153,7 +153,7 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
                                   });
                                 },
                               ),
-                              Expanded(child: Text("Not vaccinated")),
+                              Expanded(child: Text("not vaccinated")),
                             ],
                           ),
                         ),
@@ -169,7 +169,7 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
                                   });
                                 },
                               ),
-                              Expanded(child: Text("Partially vaccinated")),
+                              Expanded(child: Text("partially vaccinated")),
                             ],
                           ),
                         ),
@@ -185,70 +185,97 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
                                   });
                                 },
                               ),
-                              Expanded(child: Text("Completely Vaccinated")),
+                              Expanded(child: Text("completely vaccinated")),
                             ],
                           ),
                         ),
                       ],
                     ),
                   ),
-
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Text("upload vaccination certificate",
+                      style: TextStyle(fontSize: 20)),
                   Container(
-                    height: 80,
-                    width: width,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Container(
-                          child: ElevatedButton(
-                              child: Text('Upload vaccination certificate'),
-                              onPressed: () async {}),
-                          alignment: Alignment.center,
-                          margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                          width: width - 40,
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Theme.of(context).accentColor,
+                          shape: CircleBorder(),
                         ),
-                      ],
+                        child: Icon(
+                          Icons.add,
+                          size: 20.0,
+                          color: LightColors.kDarkBlue,
+                        ),
+                        onPressed: () async {
+                          AuthService(uid: widget.userid).pickFile();
+                        }),
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.fromLTRB(2, 10, 2, 10),
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(30),
                     ),
                   ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Container(
-                    height: 120,
-                    width: width,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Container(
-                          child: ElevatedButton(
-                              child: Text(
-                                'Update Profile',
-                                style: TextStyle(
-                                    fontSize: 20, color: LightColors.kDarkBlue),
-                              ),
-                              onPressed: () async {
-                                if (_addTaskFormKey.currentState.validate()) {
-                                  if (Course.text.isEmpty)
-                                    Course.text = snapshot.data['name'];
-
-                                  await AuthService(uid: widget.userid)
-                                      .updateProfile(
-                                          Course.text, Venue.text, group1Value);
-                                }
-                                ;
-                              }),
-                          alignment: Alignment.center,
-                          margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                          width: width - 40,
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Theme.of(context).accentColor,
                         ),
-                      ],
+                        child: Text(
+                          'update Profile',
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: LightColors.kDarkBlue,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onPressed: () async {
+                          if (_addTaskFormKey.currentState.validate()) {
+                            if (Course.text.isEmpty)
+                              Course.text = snapshot.data['name'];
+
+                            await AuthService(uid: widget.userid).updateProfile(
+                                Course.text, Venue.text, group1Value);
+                          }
+                        }),
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    width: width - 40,
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(30),
                     ),
                   ),
+
+                  // Container(
+                  //   height: 120,
+                  //   width: width,
+                  //   child: Row(
+                  //     crossAxisAlignment: CrossAxisAlignment.stretch,
+                  //     children: <Widget>[
+                  //       Container(
+                  //         child: ElevatedButton(
+                  //             child: Text(
+                  //               'View certificate',
+                  //               style: TextStyle(
+                  //                   fontSize: 20, color: LightColors.kDarkBlue),
+                  //             ),
+                  //             onPressed: () async {}),
+                  //         alignment: Alignment.center,
+                  //         margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  //         width: width - 40,
+                  //         decoration: BoxDecoration(
+                  //           color: Colors.transparent,
+                  //           borderRadius: BorderRadius.circular(30),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
             );

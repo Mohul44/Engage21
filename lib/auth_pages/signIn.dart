@@ -1,4 +1,5 @@
 import 'package:auth_demo/authService.dart';
+import 'package:auth_demo/theme/colors/light_colors.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -6,12 +7,12 @@ class SignIn extends StatefulWidget {
     Key key,
     @required this.authPageController,
     @required this.authScaffoldKey,
-    @required this.networkErrorSnackBar,
+    // @required this.networkErrorSnackBar,
   }) : super(key: key);
 
   final PageController authPageController;
   GlobalKey<ScaffoldState> authScaffoldKey;
-  final SnackBar networkErrorSnackBar;
+  // final SnackBar networkErrorSnackBar;
 
   @override
   _SignInState createState() => _SignInState();
@@ -112,8 +113,9 @@ class _SignInState extends State<SignIn> {
             // Sign In Button
             Container(
               height: 50,
-              width: MediaQuery.of(context).size.width,
+              width: MediaQuery.of(context).size.width * 0.4,
               child: RaisedButton(
+                color: Theme.of(context).accentColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
@@ -152,14 +154,14 @@ class _SignInState extends State<SignIn> {
                     await AuthService()
                         .signIn(emailTextField.text, passwordTextField.text)
                         .then((value) {
-                      if (value["network"].isNotEmpty) {
-                        widget.authScaffoldKey.currentState
-                            .showSnackBar(widget.networkErrorSnackBar);
-                        if (this.mounted)
-                          setState(() {
-                            loading = false;
-                          });
-                      }
+                      // if (value["network"].isNotEmpty) {
+                      //   widget.authScaffoldKey.currentState
+                      //       .showSnackBar(widget.networkErrorSnackBar);
+                      //   if (this.mounted)
+                      //     setState(() {
+                      //       loading = false;
+                      //     });
+                      // }
                       if (this.mounted)
                         setState(() {
                           errorMessage = value;

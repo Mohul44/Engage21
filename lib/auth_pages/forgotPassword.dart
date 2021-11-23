@@ -6,12 +6,12 @@ class ForgotPassword extends StatefulWidget {
     Key key,
     @required this.authPageController,
     @required this.authScaffoldKey,
-    @required this.networkErrorSnackBar,
+    // @required this.networkErrorSnackBar,
   }) : super(key: key);
 
   final PageController authPageController;
   GlobalKey<ScaffoldState> authScaffoldKey;
-  final SnackBar networkErrorSnackBar;
+  // final SnackBar networkErrorSnackBar;
 
   @override
   _ForgotPasswordState createState() => _ForgotPasswordState();
@@ -134,14 +134,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   await AuthService()
                       .forgotPassword(emailTextField.text)
                       .then((value) {
-                    if (value["network"].isNotEmpty) {
-                      widget.authScaffoldKey.currentState
-                          .showSnackBar(widget.networkErrorSnackBar);
-                      if (this.mounted)
-                        setState(() {
-                          loading = false;
-                        });
-                    }
+                    // if (value["network"].isNotEmpty) {
+                    //   widget.authScaffoldKey.currentState
+                    //       .showSnackBar(widget.networkErrorSnackBar);
+                    //   if (this.mounted)
+                    //     setState(() {
+                    //       loading = false;
+                    //     });
+                    // }
                     if (this.mounted)
                       setState(() {
                         errorMessage = value;

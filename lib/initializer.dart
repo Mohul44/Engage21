@@ -16,7 +16,6 @@ class Initializer extends StatelessWidget {
         if (snapshot.hasData) {
           final String userid = snapshot.data.uid;
           // isLoggedIn
-
           return StreamBuilder(
               stream: Firestore.instance
                   .collection('users')
@@ -33,8 +32,8 @@ class Initializer extends StatelessWidget {
                     ),
                   );
                 }
-                print("ATTnton                                       ");
-                int role = snapshot2.data['role'];
+                print(snapshot2.data);
+                int role = snapshot2.data['role'] ?? 1;
                 if (role == 2) return TeacherHomePage();
                 return HomePage();
               });

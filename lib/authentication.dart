@@ -120,20 +120,20 @@ class _AuthenticationState extends State<Authentication> {
                         ForgotPassword(
                           authPageController: authPageController,
                           authScaffoldKey: _authScaffoldKey,
-                          networkErrorSnackBar: networkErrorSnackBar,
+                          // networkErrorSnackBar: networkErrorSnackBar,
                         ),
 
                         // SignIn Page
                         SignIn(
                           authPageController: authPageController,
                           authScaffoldKey: _authScaffoldKey,
-                          networkErrorSnackBar: networkErrorSnackBar,
+                          // networkErrorSnackBar: networkErrorSnackBar,
                         ),
 
                         // SignUp Page
                         SignUp(
                           authScaffoldKey: _authScaffoldKey,
-                          networkErrorSnackBar: networkErrorSnackBar,
+                          // networkErrorSnackBar: networkErrorSnackBar,
                         ),
                       ],
                     ),
