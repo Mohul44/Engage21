@@ -36,8 +36,8 @@
 27        android:debuggable="true"
 28        android:icon="@mipmap/ic_launcher"
 28-->D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:12:9-43
-29        android:label="auth_demo"
-29-->D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:11:9-34
+29        android:label="engage_scheduler"
+29-->D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:11:9-41
 30        android:usesCleartextTraffic="true" >
 30-->D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:9:9-46
 31        <activity

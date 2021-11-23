@@ -1,10 +1,10 @@
-import 'package:auth_demo/authService.dart';
-import 'package:auth_demo/authentication.dart';
+import 'package:engage_scheduler/authService.dart';
+import 'package:engage_scheduler/authentication.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:auth_demo/screens/home_page.dart';
-import 'package:auth_demo/screens/teachers_home_page.dart';
+import 'package:engage_scheduler/screens/home_page.dart';
+import 'package:engage_scheduler/screens/teachers_home_page.dart';
 
 class Initializer extends StatelessWidget {
   @override

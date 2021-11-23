@@ -1,5 +1,5 @@
-import 'package:auth_demo/theme/theme_home.dart';
-import 'package:auth_demo/initializer.dart';
+import 'package:engage_scheduler/theme/theme_home.dart';
+import 'package:engage_scheduler/initializer.dart';
 import 'package:flutter/material.dart';
 
 void main() {

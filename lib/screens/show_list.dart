@@ -1,19 +1,19 @@
-import 'package:auth_demo/models/tasks.dart';
-import 'package:auth_demo/widgets/back_button.dart';
+import 'package:engage_scheduler/models/tasks.dart';
+import 'package:engage_scheduler/widgets/back_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:auth_demo/screens/calendar_page.dart';
-import 'package:auth_demo/theme/colors/light_colors.dart';
-import 'package:auth_demo/widgets/task_column.dart';
-import 'package:auth_demo/widgets/active_project_card.dart';
-import 'package:auth_demo/widgets/top_container.dart';
+import 'package:engage_scheduler/screens/calendar_page.dart';
+import 'package:engage_scheduler/theme/colors/light_colors.dart';
+import 'package:engage_scheduler/widgets/task_column.dart';
+import 'package:engage_scheduler/widgets/active_project_card.dart';
+import 'package:engage_scheduler/widgets/top_container.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:auth_demo/authService.dart';
+import 'package:engage_scheduler/authService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'tasks_list.dart';
-import 'package:auth_demo/models/tasks.dart';
+import 'package:engage_scheduler/models/tasks.dart';
 
 class ShowList extends StatefulWidget {
   final String taskid;
@@ -143,7 +143,7 @@ class _ShowList extends State<ShowList> {
                                         );
                                       } else {
                                         url2 = snapshot2.data['downloadURL']
-                                            .toString();  
+                                            .toString();
                                         _launchURL(url2);
                                       }
                                     },

@@ -27,7 +27,7 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="auth_demo"
+        android:label="engage_scheduler"
         android:usesCleartextTraffic="true" >
         <activity
             android:name="com.engage.scheduler.MainActivity"
