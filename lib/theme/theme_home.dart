@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:auth_demo/theme/colors/light_colors.dart';
+import 'package:engage_scheduler/theme/colors/light_colors.dart';
 
 ThemeData darkTheme() {
   return ThemeData(
@@ -47,12 +47,9 @@ ThemeData darkTheme() {
           fontFamily: "Open Sans"),
     ),
     buttonTheme: ButtonThemeData(
-      buttonColor: Colors.white,
-      textTheme: ButtonTextTheme.primary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30)
-      )
-    ),
+        buttonColor: Colors.white,
+        textTheme: ButtonTextTheme.primary,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
     accentColor: Color(0xFF0CE8CE),
     primaryColor: LightColors.kDarkYellow,
     canvasColor: LightColors.kDarkYellow,
@@ -103,10 +100,7 @@ ThemeData darkTheme() {
         borderRadius: BorderRadius.all(
           Radius.circular(10),
         ),
-        borderSide: BorderSide(
-          width: 1,
-          color: Colors.red
-        ),
+        borderSide: BorderSide(width: 1, color: Colors.red),
       ),
       labelStyle: TextStyle(
         color: Colors.white,

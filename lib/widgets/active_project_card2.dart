@@ -1,5 +1,5 @@
-import 'package:auth_demo/authService.dart';
-import 'package:auth_demo/theme/colors/light_colors.dart';
+import 'package:engage_scheduler/authService.dart';
+import 'package:engage_scheduler/theme/colors/light_colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -211,24 +211,27 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
+                              snapshot.data['Repeat'][0]
+                                  ? weekdayContainer("Sun", 1)
+                                  : weekdayContainer("Sun", 0.3),
                               snapshot.data['Repeat'][1]
                                   ? weekdayContainer("Mon", 1)
                                   : weekdayContainer("Mon", 0.3),
                               snapshot.data['Repeat'][2]
                                   ? weekdayContainer("Tue", 1)
-                                  : weekdayContainer("Mon", 0.3),
+                                  : weekdayContainer("Tue", 0.3),
                               snapshot.data['Repeat'][3]
                                   ? weekdayContainer("Wed", 1)
-                                  : weekdayContainer("Mon", 0.3),
+                                  : weekdayContainer("Wed", 0.3),
                               snapshot.data['Repeat'][4]
                                   ? weekdayContainer("Thu", 1)
-                                  : weekdayContainer("Mon", 0.3),
+                                  : weekdayContainer("Thu", 0.3),
                               snapshot.data['Repeat'][5]
                                   ? weekdayContainer("Fri", 1)
-                                  : weekdayContainer("Mon", 0.3),
+                                  : weekdayContainer("Fri", 0.3),
                               snapshot.data['Repeat'][6]
                                   ? weekdayContainer("Sat", 1)
-                                  : weekdayContainer("Mon", 0.3),
+                                  : weekdayContainer("Sat", 0.3),
                             ],
                           )
                         ],

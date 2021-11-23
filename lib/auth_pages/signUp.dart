@@ -1,7 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:auth_demo/authService.dart';
-import 'package:auth_demo/theme/colors/light_colors.dart';
+import 'package:engage_scheduler/authService.dart';
+import 'package:engage_scheduler/theme/colors/light_colors.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {

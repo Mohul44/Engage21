@@ -1,17 +1,17 @@
-import 'package:auth_demo/authService.dart';
-import 'package:auth_demo/models/tasks.dart';
-import 'package:auth_demo/screens/add_task_home.dart';
-import 'package:auth_demo/screens/calendar_task.dart';
+import 'package:engage_scheduler/authService.dart';
+import 'package:engage_scheduler/models/tasks.dart';
+import 'package:engage_scheduler/screens/add_task_home.dart';
+import 'package:engage_scheduler/screens/calendar_task.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:auth_demo/dates_list.dart';
-import 'package:auth_demo/theme/colors/light_colors.dart';
-import 'package:auth_demo/widgets/calendar_dates.dart';
-import 'package:auth_demo/widgets/task_container.dart';
-import 'package:auth_demo/screens/create_new_task_page.dart';
-import 'package:auth_demo/widgets/back_button.dart';
+import 'package:engage_scheduler/dates_list.dart';
+import 'package:engage_scheduler/theme/colors/light_colors.dart';
+import 'package:engage_scheduler/widgets/calendar_dates.dart';
+import 'package:engage_scheduler/widgets/task_container.dart';
+import 'package:engage_scheduler/screens/create_new_task_page.dart';
+import 'package:engage_scheduler/widgets/back_button.dart';
 import 'package:provider/provider.dart';
-import 'package:auth_demo/authService.dart';
+import 'package:engage_scheduler/authService.dart';
 
 class CalendarPage extends StatefulWidget {
   final String userid;

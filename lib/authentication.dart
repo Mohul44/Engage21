@@ -1,8 +1,8 @@
-import 'package:auth_demo/auth_pages/forgotPassword.dart';
-import 'package:auth_demo/auth_pages/signIn.dart';
-import 'package:auth_demo/auth_pages/signUp.dart';
+import 'package:engage_scheduler/auth_pages/forgotPassword.dart';
+import 'package:engage_scheduler/auth_pages/signIn.dart';
+import 'package:engage_scheduler/auth_pages/signUp.dart';
 import 'package:flutter/material.dart';
-import 'package:auth_demo/theme/colors/light_colors.dart';
+import 'package:engage_scheduler/theme/colors/light_colors.dart';
 
 class Authentication extends StatefulWidget {
   @override

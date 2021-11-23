@@ -1,13 +1,13 @@
-import 'package:auth_demo/authService.dart';
-import 'package:auth_demo/models/tasks.dart';
-import 'package:auth_demo/theme/colors/light_colors.dart';
-import 'package:auth_demo/widgets/task_container.dart';
+import 'package:engage_scheduler/authService.dart';
+import 'package:engage_scheduler/models/tasks.dart';
+import 'package:engage_scheduler/theme/colors/light_colors.dart';
+import 'package:engage_scheduler/widgets/task_container.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
-import 'package:auth_demo/widgets/active_project_card.dart';
-import 'package:auth_demo/theme/colors/light_colors.dart';
-import 'package:auth_demo/dates_list.dart' as global;
+import 'package:engage_scheduler/widgets/active_project_card.dart';
+import 'package:engage_scheduler/theme/colors/light_colors.dart';
+import 'package:engage_scheduler/dates_list.dart' as global;
 
 class CalendarTaskList extends StatefulWidget {
   final String userid;

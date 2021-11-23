@@ -115,7 +115,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\my
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.3.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\5fd279f3856e70e6b7f85db60eb3b1d8\core-1.3.0\AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:11:9-34
+		ADDED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:11:9-41
 	android:icon
 		ADDED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:12:9-43
 	android:usesCleartextTraffic

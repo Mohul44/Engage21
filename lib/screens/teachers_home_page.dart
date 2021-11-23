@@ -1,19 +1,19 @@
-import 'package:auth_demo/models/tasks.dart';
-import 'package:auth_demo/screens/student_list.dart';
-import 'package:auth_demo/screens/update_profile.dart';
+import 'package:engage_scheduler/models/tasks.dart';
+import 'package:engage_scheduler/screens/student_list.dart';
+import 'package:engage_scheduler/screens/update_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:auth_demo/screens/calendar_page.dart';
-import 'package:auth_demo/theme/colors/light_colors.dart';
-import 'package:auth_demo/widgets/task_column.dart';
-import 'package:auth_demo/widgets/active_project_card.dart';
-import 'package:auth_demo/widgets/top_container.dart';
+import 'package:engage_scheduler/screens/calendar_page.dart';
+import 'package:engage_scheduler/theme/colors/light_colors.dart';
+import 'package:engage_scheduler/widgets/task_column.dart';
+import 'package:engage_scheduler/widgets/active_project_card.dart';
+import 'package:engage_scheduler/widgets/top_container.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:auth_demo/authService.dart';
+import 'package:engage_scheduler/authService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'tasks_list.dart';
-import 'package:auth_demo/models/tasks.dart';
+import 'package:engage_scheduler/models/tasks.dart';
 
 var name;
 void getUserName(String uid) async {

@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:auth_demo/theme/colors/light_colors.dart';
-import 'package:auth_demo/widgets/top_container.dart';
-import 'package:auth_demo/widgets/back_button.dart';
-import 'package:auth_demo/widgets/my_text_field.dart';
-import 'package:auth_demo/screens/home_page.dart';
-import 'package:auth_demo/theme/colors/light_colors.dart';
-import 'package:auth_demo/dates_list.dart' as global;
+import 'package:engage_scheduler/theme/colors/light_colors.dart';
+import 'package:engage_scheduler/widgets/top_container.dart';
+import 'package:engage_scheduler/widgets/back_button.dart';
+import 'package:engage_scheduler/widgets/my_text_field.dart';
+import 'package:engage_scheduler/screens/home_page.dart';
+import 'package:engage_scheduler/theme/colors/light_colors.dart';
+import 'package:engage_scheduler/dates_list.dart' as global;
 
 import '../authService.dart';
 

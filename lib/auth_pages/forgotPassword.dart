@@ -1,4 +1,4 @@
-import 'package:auth_demo/authService.dart';
+import 'package:engage_scheduler/authService.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPassword extends StatefulWidget {

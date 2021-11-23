@@ -1,14 +1,14 @@
 // ignore_for_file: unnecessary_brace_in_string_interps
 import 'dart:io';
-import 'package:auth_demo/dates_list.dart' as global;
+import 'package:engage_scheduler/dates_list.dart' as global;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:auth_demo/models/tasks.dart';
+import 'package:engage_scheduler/models/tasks.dart';
 import 'package:flutter_document_picker/flutter_document_picker.dart';
-import 'package:auth_demo/utilities.dart' as global;
+import 'package:engage_scheduler/utilities.dart' as global;
 
 class AuthService {
   final String uid;
