@@ -280,7 +280,7 @@ class TeacherHomePage extends StatelessWidget {
                                     Container(
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              0.37,
+                                              0.4,
                                       width: MediaQuery.of(context).size.width,
                                       child: StudentList(userUid.toString()),
                                       // child: ListView(
