@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.example.auth_demo"
+3    package="com.engage.scheduler"
 4    android:versionCode="1"
 5    android:versionName="1.0.0" >
 6
@@ -42,7 +42,7 @@
 30-->D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:9:9-46
 31        <activity
 31-->D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:13:9-41:20
-32            android:name="com.example.auth_demo.MainActivity"
+32            android:name="com.engage.scheduler.MainActivity"
 32-->D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:14:13-41
 33            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
 33-->D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:17:13-163
@@ -258,7 +258,7 @@
 152-->[com.google.firebase:firebase-common:19.4.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\52bf0115b8123175eb81c28ac7e80f52\jetified-firebase-common-19.4.0\AndroidManifest.xml:26:9-31:39
 153            android:name="com.google.firebase.provider.FirebaseInitProvider"
 153-->[com.google.firebase:firebase-common:19.4.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\52bf0115b8123175eb81c28ac7e80f52\jetified-firebase-common-19.4.0\AndroidManifest.xml:27:13-77
-154            android:authorities="com.example.auth_demo.firebaseinitprovider"
+154            android:authorities="com.engage.scheduler.firebaseinitprovider"
 154-->[com.google.firebase:firebase-common:19.4.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\52bf0115b8123175eb81c28ac7e80f52\jetified-firebase-common-19.4.0\AndroidManifest.xml:28:13-72
 155            android:directBootAware="true"
 155-->[com.google.firebase:firebase-common:19.4.0] C:\Users\mypc\.gradle\caches\transforms-2\files-2.1\52bf0115b8123175eb81c28ac7e80f52\jetified-firebase-common-19.4.0\AndroidManifest.xml:29:13-43

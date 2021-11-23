@@ -3,7 +3,7 @@
     <string name="default_web_client_id" translatable="false">380792770090-ijsn7d9fgqfa8806cki0lp95bkh2b6oi.apps.googleusercontent.com</string>
     <string name="gcm_defaultSenderId" translatable="false">380792770090</string>
     <string name="google_api_key" translatable="false">AIzaSyBZfLVGuFbWz9Xjdy7wgMWVALjXu-zYwrY</string>
-    <string name="google_app_id" translatable="false">1:380792770090:android:95f15dde7497c808f3bd53</string>
+    <string name="google_app_id" translatable="false">1:380792770090:android:9bb37e1052251291f3bd53</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBZfLVGuFbWz9Xjdy7wgMWVALjXu-zYwrY</string>
     <string name="google_storage_bucket" translatable="false">engagescheduler-e71b5.appspot.com</string>
     <string name="project_id" translatable="false">engagescheduler-e71b5</string>

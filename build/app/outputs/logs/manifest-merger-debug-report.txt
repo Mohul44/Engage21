@@ -65,7 +65,7 @@ INJECTED from D:\flutter-firebase-auth-template-main\android\app\src\debug\Andro
 INJECTED from D:\flutter-firebase-auth-template-main\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from D:\flutter-firebase-auth-template-main\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 	package
-		ADDED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:2:5-36
+		ADDED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:2:5-35
 		INJECTED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml
 		INJECTED from D:\flutter-firebase-auth-template-main\android\app\src\debug\AndroidManifest.xml
 	android:versionName
@@ -122,7 +122,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\my
 		ADDED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:9:9-46
 	android:name
 		ADDED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:10:9-57
-activity#com.example.auth_demo.MainActivity
+activity#com.engage.scheduler.MainActivity
 ADDED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:13:9-41:20
 	android:launchMode
 		ADDED from D:\flutter-firebase-auth-template-main\android\app\src\main\AndroidManifest.xml:15:13-43

@@ -379,8 +379,6 @@ class AuthService {
             {
               "email": user.user.email,
               "uid": user.user.uid,
-              "tasks": [],
-              "tasksBoolean": [],
               "name": name,
               "role": value,
               'Vaccine': 1,

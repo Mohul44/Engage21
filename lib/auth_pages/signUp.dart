@@ -202,12 +202,12 @@ class _SignUpState extends State<SignUp> {
                         //       loading = false;
                         //     });
                         // }
-                        if (this.mounted) print(value);
-                        setState(() {
-                          print("here2");
-                          errorMessage = value;
-                          loading = false;
-                        });
+                        if (this.mounted)
+                          setState(() {
+                            print("here2");
+                            errorMessage = value;
+                            loading = false;
+                          });
                       });
                       _signUpFormKey.currentState.validate();
                     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.auth_demo"
+    package="com.engage.scheduler"
     android:versionCode="1"
     android:versionName="1.0.0" >
 
@@ -29,7 +29,7 @@
         android:label="auth_demo"
         android:usesCleartextTraffic="true" >
         <activity
-            android:name="com.example.auth_demo.MainActivity"
+            android:name="com.engage.scheduler.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
@@ -151,7 +151,7 @@
 
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.example.auth_demo.firebaseinitprovider"
+            android:authorities="com.engage.scheduler.firebaseinitprovider"
             android:directBootAware="true"
             android:exported="false"
             android:initOrder="100" />

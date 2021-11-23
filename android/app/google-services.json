@@ -9,7 +9,36 @@
       "client_info": {
         "mobilesdk_app_id": "1:380792770090:android:95f15dde7497c808f3bd53",
         "android_client_info": {
-          "package_name": "com.example.auth_demo"
+          "package_name": "com.engage.auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380792770090-ijsn7d9fgqfa8806cki0lp95bkh2b6oi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZfLVGuFbWz9Xjdy7wgMWVALjXu-zYwrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380792770090-ijsn7d9fgqfa8806cki0lp95bkh2b6oi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380792770090:android:9bb37e1052251291f3bd53",
+        "android_client_info": {
+          "package_name": "com.engage.scheduler"
         }
       },
       "oauth_client": [
