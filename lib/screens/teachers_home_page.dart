@@ -1,5 +1,6 @@
 import 'package:auth_demo/models/tasks.dart';
 import 'package:auth_demo/screens/student_list.dart';
+import 'package:auth_demo/screens/update_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_demo/screens/calendar_page.dart';
@@ -41,14 +42,20 @@ class TeacherHomePage extends StatelessWidget {
     );
   }
 
-  static CircleAvatar calendarIcon() {
-    return CircleAvatar(
-      radius: 25.0,
-      backgroundColor: LightColors.kGreen,
-      child: Icon(
-        Icons.calendar_today,
-        size: 20.0,
-        color: Colors.white,
+  static Material calendarIcon() {
+    return Material(
+      elevation: 10,
+      color: Colors.white12,
+      borderRadius: BorderRadius.circular(25),
+      shadowColor: Colors.white,
+      child: CircleAvatar(
+        radius: 25.0,
+        backgroundColor: LightColors.kGreen,
+        child: Icon(
+          Icons.calendar_today,
+          size: 20.0,
+          color: Colors.white,
+        ),
       ),
     );
   }
@@ -69,11 +76,11 @@ class TeacherHomePage extends StatelessWidget {
             String userName = name;
             userName = userName == null ? "Null" : userName;
             // Get Current User UID
-
+            int role = 1;
             String userUid = snapshot.data.uid;
 
             return StreamProvider<List<Task>>.value(
-              value: AuthService(uid: userid).tasks,
+              value: AuthService(uid: userid).tasks2,
               initialData: [],
               child: Column(
                 children: <Widget>[
@@ -86,12 +93,25 @@ class TeacherHomePage extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Icon(Icons.account_circle_sharp,
-                                  color: LightColors.kDarkBlue, size: 30.0),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.account_circle_sharp,
+                                  color: LightColors.kLavender,
+                                  size: 30.0,
+                                ),
+                                onPressed: () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            UpdateProfile(userUid)),
+                                  ),
+                                },
+                              ),
                               IconButton(
                                 icon: Icon(
                                   Icons.power_settings_new,
-                                  color: LightColors.kDarkBlue,
+                                  color: LightColors.kLavender,
                                 ),
                                 onPressed: () => AuthService().signOut(),
                               ),
@@ -129,8 +149,8 @@ class TeacherHomePage extends StatelessWidget {
                                               .collection('users')
                                               .document(userUid)
                                               .snapshots(),
-                                          builder: (context, snapshot) {
-                                            if (!snapshot.hasData) {
+                                          builder: (context, snapshot2) {
+                                            if (!snapshot2.hasData) {
                                               return new Text(
                                                 "Loading",
                                                 style: new TextStyle(
@@ -140,11 +160,12 @@ class TeacherHomePage extends StatelessWidget {
                                                 ),
                                               );
                                             }
+                                            role = snapshot2.data['role'] ?? 1;
                                             return new Text(
-                                              snapshot.data['name'],
+                                              snapshot2.data['name'],
                                               style: new TextStyle(
                                                 fontSize: 20.0,
-                                                color: Colors.black87,
+                                                color: LightColors.kLavender,
                                               ),
                                             );
                                           }),
@@ -155,7 +176,7 @@ class TeacherHomePage extends StatelessWidget {
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
                                           fontSize: 16.0,
-                                          color: Colors.black45,
+                                          color: LightColors.kLavender,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
@@ -167,172 +188,198 @@ class TeacherHomePage extends StatelessWidget {
                           )
                         ]),
                   ),
-                  SingleChildScrollView(
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          color: Colors.transparent,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 10.0),
+                  StreamBuilder(
+                      stream: Firestore.instance
+                          .collection('users')
+                          .document(userUid)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return new Text(
+                            "Loading",
+                            style: new TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.yellow,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          );
+                        }
+                        return SingleChildScrollView(
                           child: Column(
                             children: <Widget>[
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  subheading('My Tasks'),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                CalendarPage()),
-                                      );
-                                    },
-                                    child: calendarIcon(),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.01),
-                              TaskColumn(
-                                icon: Icons.alarm,
-                                iconBackgroundColor: LightColors.kRed,
-                                title: 'To Do',
-                                subtitle: '5 tasks now. 1 started',
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.01,
-                              ),
-                              TaskColumn(
-                                icon: Icons.blur_circular,
-                                iconBackgroundColor: LightColors.kDarkYellow,
-                                title: 'In Progress',
-                                subtitle: '1 tasks now. 1 started',
-                              ),
-                              SizedBox(height: 15.0),
-                              TaskColumn(
-                                icon: Icons.check_circle_outline,
-                                iconBackgroundColor: LightColors.kBlue,
-                                title: 'Done',
-                                subtitle: '18 tasks now. 13 started',
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          color: Colors.transparent,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 5.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              subheading('Lectures'),
                               Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.33,
-                                width: MediaQuery.of(context).size.width,
-                                child: StudentList(userUid.toString()),
-                                // child: ListView(
-                                //   scrollDirection: Axis.horizontal,
-                                //   shrinkWrap: true,
-                                //   children: <Widget>[
-                                //       ActiveProjectCard(
-                                //       cardColor: LightColors.kDarkYellow,
-                                //       loadingPercent: 0.45,
-                                //       title: 'Machine Learning',
-                                //       subtitle: 'LTC:5105',
-                                //       startTime: '4 PM',
-                                //       capacity: 10,
-                                //       currentFilled: 0,
-                                //       offline: false,
-                                //     ),
-                                //        SizedBox(width: 20.0),
-                                //     ActiveProjectCard(
-                                //       cardColor: LightColors.kGreen,
-                                //       loadingPercent: 0.25,
-                                //       title: 'Kick off',
-                                //       subtitle: 'Microsoft teams',
-                                //       startTime: '3 PM',
-                                //       capacity: 10,
-                                //       currentFilled: 0,
-                                //       offline: false,
-                                //     ),
-                                //        SizedBox(width: 20.0),
-                                //      ActiveProjectCard(
-                                //       cardColor: LightColors.kRed,
-                                //       loadingPercent: 0.6,
-                                //       title: 'Artificial Intelligence',
-                                //       subtitle: 'LTC:5102',
-                                //       startTime: '12 PM',
-                                //       capacity: 10,
-                                //       currentFilled: 0,
-                                //       offline: true,
-                                //     ),
-
-                                //   ],
-                                // ),
+                                color: Colors.transparent,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 10.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        subheading('My Tasks'),
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            primary: LightColors.kGreen,
+                                            shape: CircleBorder(),
+                                            padding: EdgeInsets.all(20),
+                                          ),
+                                          child: Icon(
+                                            Icons.calendar_today,
+                                            size: 20.0,
+                                            color: Colors.white,
+                                          ),
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      CalendarPage(userid)),
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.01),
+                                    TaskColumn(
+                                      icon: Icons.blur_circular,
+                                      iconBackgroundColor:
+                                          LightColors.kDarkYellow,
+                                      title: 'Total lectures',
+                                      subtitle: snapshot.data['Total Lectures']
+                                          .toString(),
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.01,
+                                    ),
+                                    SizedBox(height: 15.0),
+                                    // TaskColumn(
+                                    //   icon: Icons.check_circle_outline,
+                                    //   iconBackgroundColor: LightColors.kBlue,
+                                    //   title: 'Done',
+                                    //   subtitle: '18 tasks now. 13 started',
+                                    // ),
+                                  ],
+                                ),
                               ),
-                              // Row(
-                              //   children: <Widget>[
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kGreen,
-                              //       loadingPercent: 0.25,
-                              //       title: 'Kick off',
-                              //       subtitle: 'Microsoft teams',
-                              //       startTime: '3 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: false,
-                              //     ),
-                              //     SizedBox(width: 20.0),
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kRed,
-                              //       loadingPercent: 0.6,
-                              //       title: 'Artificial Intelligence',
-                              //       subtitle: 'LTC:5102',
-                              //       startTime: '12 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: true,
-                              //     ),
-                              //   ],
-                              // ),
-                              // Row(
-                              //   children: <Widget>[
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kDarkYellow,
-                              //       loadingPercent: 0.45,
-                              //       title: 'Machine Learning',
-                              //       subtitle: 'LTC:5105',
-                              //       startTime: '4 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: false,
-                              //     ),
-                              //     SizedBox(width: 20.0),
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kBlue,
-                              //       loadingPercent: 0.9,
-                              //       title: 'Online Flutter Course',
-                              //       subtitle: 'Online only',
-                              //       startTime: '2 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: true,
-                              //     ),
-                              //   ],
-                              // ),
+                              Container(
+                                color: Colors.transparent,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 5.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    subheading('Lectures'),
+                                    Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.37,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: StudentList(userUid.toString()),
+                                      // child: ListView(
+                                      //   scrollDirection: Axis.horizontal,
+                                      //   shrinkWrap: true,
+                                      //   children: <Widget>[
+                                      //       ActiveProjectCard(
+                                      //       cardColor: LightColors.kDarkYellow,
+                                      //       loadingPercent: 0.45,
+                                      //       title: 'Machine Learning',
+                                      //       subtitle: 'LTC:5105',
+                                      //       startTime: '4 PM',
+                                      //       capacity: 10,
+                                      //       currentFilled: 0,
+                                      //       offline: false,
+                                      //     ),
+                                      //        SizedBox(width: 20.0),
+                                      //     ActiveProjectCard(
+                                      //       cardColor: LightColors.kGreen,
+                                      //       loadingPercent: 0.25,
+                                      //       title: 'Kick off',
+                                      //       subtitle: 'Microsoft teams',
+                                      //       startTime: '3 PM',
+                                      //       capacity: 10,
+                                      //       currentFilled: 0,
+                                      //       offline: false,
+                                      //     ),
+                                      //        SizedBox(width: 20.0),
+                                      //      ActiveProjectCard(
+                                      //       cardColor: LightColors.kRed,
+                                      //       loadingPercent: 0.6,
+                                      //       title: 'Artificial Intelligence',
+                                      //       subtitle: 'LTC:5102',
+                                      //       startTime: '12 PM',
+                                      //       capacity: 10,
+                                      //       currentFilled: 0,
+                                      //       offline: true,
+                                      //     ),
+
+                                      //   ],
+                                      // ),
+                                    ),
+                                    // Row(
+                                    //   children: <Widget>[
+                                    //     ActiveProjectCard(
+                                    //       cardColor: LightColors.kGreen,
+                                    //       loadingPercent: 0.25,
+                                    //       title: 'Kick off',
+                                    //       subtitle: 'Microsoft teams',
+                                    //       startTime: '3 PM',
+                                    //       capacity: 10,
+                                    //       currentFilled: 0,
+                                    //       offline: false,
+                                    //     ),
+                                    //     SizedBox(width: 20.0),
+                                    //     ActiveProjectCard(
+                                    //       cardColor: LightColors.kRed,
+                                    //       loadingPercent: 0.6,
+                                    //       title: 'Artificial Intelligence',
+                                    //       subtitle: 'LTC:5102',
+                                    //       startTime: '12 PM',
+                                    //       capacity: 10,
+                                    //       currentFilled: 0,
+                                    //       offline: true,
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    // Row(
+                                    //   children: <Widget>[
+                                    //     ActiveProjectCard(
+                                    //       cardColor: LightColors.kDarkYellow,
+                                    //       loadingPercent: 0.45,
+                                    //       title: 'Machine Learning',
+                                    //       subtitle: 'LTC:5105',
+                                    //       startTime: '4 PM',
+                                    //       capacity: 10,
+                                    //       currentFilled: 0,
+                                    //       offline: false,
+                                    //     ),
+                                    //     SizedBox(width: 20.0),
+                                    //     ActiveProjectCard(
+                                    //       cardColor: LightColors.kBlue,
+                                    //       loadingPercent: 0.9,
+                                    //       title: 'Online Flutter Course',
+                                    //       subtitle: 'Online only',
+                                    //       startTime: '2 PM',
+                                    //       capacity: 10,
+                                    //       currentFilled: 0,
+                                    //       offline: true,
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
+                        );
+                      }),
                 ],
               ),
             );

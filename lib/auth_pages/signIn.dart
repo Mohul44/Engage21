@@ -1,4 +1,5 @@
 import 'package:auth_demo/authService.dart';
+import 'package:auth_demo/theme/colors/light_colors.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -6,12 +7,12 @@ class SignIn extends StatefulWidget {
     Key key,
     @required this.authPageController,
     @required this.authScaffoldKey,
-    @required this.networkErrorSnackBar,
+    // @required this.networkErrorSnackBar,
   }) : super(key: key);
 
   final PageController authPageController;
-  final GlobalKey<ScaffoldState> authScaffoldKey;
-  final SnackBar networkErrorSnackBar;
+  GlobalKey<ScaffoldState> authScaffoldKey;
+  // final SnackBar networkErrorSnackBar;
 
   @override
   _SignInState createState() => _SignInState();
@@ -20,7 +21,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final TextEditingController emailTextField = TextEditingController();
   final TextEditingController passwordTextField = TextEditingController();
-  final GlobalKey<FormState> _signInFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _signInFormKey = GlobalKey<FormState>();
 
   // Run Action When Loading
   bool loading = false;
@@ -112,8 +113,9 @@ class _SignInState extends State<SignIn> {
             // Sign In Button
             Container(
               height: 50,
-              width: MediaQuery.of(context).size.width,
+              width: MediaQuery.of(context).size.width * 0.4,
               child: RaisedButton(
+                color: Theme.of(context).accentColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
@@ -129,11 +131,12 @@ class _SignInState extends State<SignIn> {
                       )
                     : Text("Sign In"),
                 onPressed: () async {
-                  if (this.mounted)setState(() {
-                    errorMessage["email"] = "";
-                    errorMessage["netwrok"] = "";
-                    errorMessage["password"] = "";
-                  });
+                  if (this.mounted)
+                    setState(() {
+                      errorMessage["email"] = "";
+                      errorMessage["netwrok"] = "";
+                      errorMessage["password"] = "";
+                    });
 
                   // 1. Check Form Validation
                   // 2. Set State "loading" = true
@@ -144,23 +147,26 @@ class _SignInState extends State<SignIn> {
                   // 7. If Valid => Home
 
                   if (_signInFormKey.currentState.validate()) {
-                    if (this.mounted)setState(() {
-                      loading = true;
-                    });
+                    if (this.mounted)
+                      setState(() {
+                        loading = true;
+                      });
                     await AuthService()
                         .signIn(emailTextField.text, passwordTextField.text)
                         .then((value) {
-                      if (value["network"].isNotEmpty) {
-                        widget.authScaffoldKey.currentState
-                            .showSnackBar(widget.networkErrorSnackBar);
-                        if (this.mounted)setState(() {
+                      // if (value["network"].isNotEmpty) {
+                      //   widget.authScaffoldKey.currentState
+                      //       .showSnackBar(widget.networkErrorSnackBar);
+                      //   if (this.mounted)
+                      //     setState(() {
+                      //       loading = false;
+                      //     });
+                      // }
+                      if (this.mounted)
+                        setState(() {
+                          errorMessage = value;
                           loading = false;
                         });
-                      }
-                      if (this.mounted)setState(() {
-                        errorMessage = value;
-                        loading = false;
-                      });
                     });
                     _signInFormKey.currentState.validate();
                   }

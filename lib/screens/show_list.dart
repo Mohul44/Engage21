@@ -11,12 +11,15 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:auth_demo/authService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'tasks_list.dart';
 import 'package:auth_demo/models/tasks.dart';
 
 class ShowList extends StatefulWidget {
   final String taskid;
-  const ShowList(this.taskid);
+  final int currentFilled;
+  final bool offline;
+  const ShowList(this.taskid, this.currentFilled, this.offline);
   @override
   _ShowList createState() => _ShowList();
 }
@@ -28,6 +31,12 @@ class _ShowList extends State<ShowList> {
     LightColors.kPalePink,
     LightColors.kLightYellow2,
   ];
+  String _url =
+      "https://firebasestorage.googleapis.com/v0/b/engagescheduler-e71b5.appspot.com/o/vaccine_certificates%2FecW1hycM2WgAe0tOtx8wARCk0WI2?alt=media&token=ec3f098f-fb0a-448e-81b2-a6f731a47e2a";
+  void _launchURL(String _url2) async {
+    if (!await launch(_url2)) throw 'Could not launch $_url2';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,16 +50,14 @@ class _ShowList extends State<ShowList> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
-                    padding: EdgeInsets.fromLTRB(10, 20, 10, 40),
+                    padding: EdgeInsets.fromLTRB(10, 20, 0, 40),
                     child: MyBackButton()),
-                SizedBox(
-                  width: 30,
-                ),
                 Expanded(
                   child: Text(
-                    "Tap to remove students",
+                    "Double Tap to remove students from offline class",
+                    textAlign: TextAlign.center,
                     style:
-                        TextStyle(fontSize: 25, color: LightColors.kLavender),
+                        TextStyle(fontSize: 20, color: LightColors.kLavender),
                   ),
                 ),
               ],
@@ -84,6 +91,7 @@ class _ShowList extends State<ShowList> {
                         itemBuilder: (BuildContext context, int index) {
                           String key =
                               snapshot.data['mp'].keys.elementAt(index);
+                          bool value = snapshot.data['mp'][key];
                           return StreamBuilder(
                               stream: Firestore.instance
                                   .collection('users')
@@ -100,27 +108,72 @@ class _ShowList extends State<ShowList> {
                                     ),
                                   );
                                 }
-                                return GestureDetector(
-                                  onTap: () {
-                                    if (this.mounted)
-                                      setState(() {
-                                        // AuthService(uid: key.toString(), docid: widget.taskid)
-                                        //     .deleteTaskUser();
-                                      });
-                                  },
-                                  child: new ListTile(
-                                    tileColor:
-                                        myColors[index % myColors.length],
-                                    title: new Text(
-                                      "${snapshot2.data['name']}",
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: LightColors.kDarkBlue,
-                                        fontWeight: FontWeight.w500,
+                                if (value == true) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      String url2 = _url;
+                                      if (snapshot2.data['downloadURL']
+                                          .toString()
+                                          .isEmpty) {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            // return object of type Dialog
+                                            return AlertDialog(
+                                              backgroundColor:
+                                                  LightColors.kDarkBlue,
+                                              title: new Text(
+                                                  "Vaccine certificate not found"),
+                                              content: new Text(
+                                                "Double tap the student name to remove the sutdent from offline class+",
+                                                style: TextStyle(
+                                                    color: Colors.white70),
+                                              ),
+                                              actions: <Widget>[
+                                                // usually buttons at the bottom of the dialog
+                                                new FlatButton(
+                                                  child: new Text("Close"),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      } else {
+                                        url2 = snapshot2.data['downloadURL']
+                                            .toString();  
+                                        _launchURL(url2);
+                                      }
+                                    },
+                                    onDoubleTap: () {
+                                      if (this.mounted)
+                                        setState(() {
+                                          int currentFilled =
+                                              widget.currentFilled;
+                                          AuthService(
+                                                  uid: key.toString(),
+                                                  docid: widget.taskid)
+                                              .deleteTaskUserOffline(
+                                                  currentFilled - 1);
+                                        });
+                                    },
+                                    child: new ListTile(
+                                      tileColor:
+                                          myColors[index % myColors.length],
+                                      title: new Text(
+                                        "${snapshot2.data['name']}",
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: LightColors.kDarkBlue,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                );
+                                  );
+                                } else
+                                  return Container();
                               });
                         },
                       ),

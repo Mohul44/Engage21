@@ -9,7 +9,8 @@ import 'package:auth_demo/theme/colors/light_colors.dart';
 
 class TaskList extends StatefulWidget {
   final String userid;
-  const TaskList(this.userid);
+  final int vaccine;
+  const TaskList(this.userid, this.vaccine);
   @override
   _TaskListState createState() => _TaskListState();
 }
@@ -21,11 +22,12 @@ class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
     final tasks = Provider.of<List<Task>>(context);
+    int count = 0;
     List<Color> myColors = [
+      LightColors.kBlue,
       LightColors.kRed,
       LightColors.kGreen,
       LightColors.kDarkBlue,
-      LightColors.kDarkYellow,
     ];
     return ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -37,16 +39,17 @@ class _TaskListState extends State<TaskList> {
             return Container(
               padding: EdgeInsets.all(5.0),
               child: ActiveProjectCard(
-                cardColor: myColors[index % (myColors.length)],
+                cardColor: myColors[(count++) % (myColors.length)],
                 loadingPercent: 0.45,
                 title: tasks[index].title,
                 subtitle: tasks[index].subtitle,
                 startTime: tasks[index].startTime,
-                capacity: 10,
+                capacity: 5,
                 currentFilled: tasks[index].currentFilled,
                 offline: tasks[index].mp[widget.userid],
                 docid: tasks[index].documentuid,
                 userid: widget.userid,
+                vaccine: widget.vaccine,
               ),
             );
           else

@@ -6,12 +6,12 @@ class ForgotPassword extends StatefulWidget {
     Key key,
     @required this.authPageController,
     @required this.authScaffoldKey,
-    @required this.networkErrorSnackBar,
+    // @required this.networkErrorSnackBar,
   }) : super(key: key);
 
   final PageController authPageController;
-  final GlobalKey<ScaffoldState> authScaffoldKey;
-  final SnackBar networkErrorSnackBar;
+  GlobalKey<ScaffoldState> authScaffoldKey;
+  // final SnackBar networkErrorSnackBar;
 
   @override
   _ForgotPasswordState createState() => _ForgotPasswordState();
@@ -19,7 +19,7 @@ class ForgotPassword extends StatefulWidget {
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   final TextEditingController emailTextField = TextEditingController();
-  final GlobalKey<FormState> _forgotPasswordFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _forgotPasswordFormKey = GlobalKey<FormState>();
 
   // Run Action When Loading
   bool loading = false;
@@ -111,11 +111,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               onPressed: () async {
-                if (this.mounted)setState(() {
-                  errorMessage["email"] = "";
-                  errorMessage["netwrok"] = "";
-                  errorMessage["password"] = "";
-                });
+                if (this.mounted)
+                  setState(() {
+                    errorMessage["email"] = "";
+                    errorMessage["netwrok"] = "";
+                    errorMessage["password"] = "";
+                  });
 
                 // 1. Check Form Validation
                 // 2. Set State "loading" = true
@@ -126,23 +127,26 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 // 7. If Valid => Sign In
 
                 if (_forgotPasswordFormKey.currentState.validate()) {
-                  if (this.mounted)if (this.mounted)setState(() {
-                    loading = true;
-                  });
+                  if (this.mounted) if (this.mounted)
+                    setState(() {
+                      loading = true;
+                    });
                   await AuthService()
                       .forgotPassword(emailTextField.text)
                       .then((value) {
-                    if (value["network"].isNotEmpty) {
-                      widget.authScaffoldKey.currentState
-                          .showSnackBar(widget.networkErrorSnackBar);
-                      if (this.mounted)setState(() {
+                    // if (value["network"].isNotEmpty) {
+                    //   widget.authScaffoldKey.currentState
+                    //       .showSnackBar(widget.networkErrorSnackBar);
+                    //   if (this.mounted)
+                    //     setState(() {
+                    //       loading = false;
+                    //     });
+                    // }
+                    if (this.mounted)
+                      setState(() {
+                        errorMessage = value;
                         loading = false;
                       });
-                    }
-                    if (this.mounted)setState(() {
-                      errorMessage = value;
-                      loading = false;
-                    });
 
                     if (_forgotPasswordFormKey.currentState.validate()) {
                       widget.authScaffoldKey.currentState

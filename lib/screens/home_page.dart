@@ -1,4 +1,5 @@
 import 'package:auth_demo/models/tasks.dart';
+import 'package:auth_demo/screens/update_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_demo/screens/calendar_page.dart';
@@ -25,10 +26,16 @@ void getUserName(String uid) async {
   print(name);
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final FirebaseAuth _firebaseInstance = FirebaseAuth.instance;
   final CollectionReference _usersCollection =
       Firestore.instance.collection("users");
+  int vaccine = 2;
   Text subheading(String title) {
     return Text(
       title,
@@ -68,7 +75,7 @@ class HomePage extends StatelessWidget {
             String userName = name;
             userName = userName == null ? "Null" : userName;
             // Get Current User UID
-
+            int totalLectures = 0;
             String userUid = snapshot.data.uid;
 
             return StreamProvider<List<Task>>.value(
@@ -85,8 +92,21 @@ class HomePage extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Icon(Icons.account_circle_sharp,
-                                  color: LightColors.kLavender, size: 30.0),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.account_circle_sharp,
+                                  color: LightColors.kLavender,
+                                  size: 30.0,
+                                ),
+                                onPressed: () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            UpdateProfile(userUid)),
+                                  ),
+                                },
+                              ),
                               IconButton(
                                 icon: Icon(
                                   Icons.power_settings_new,
@@ -139,6 +159,7 @@ class HomePage extends StatelessWidget {
                                                 ),
                                               );
                                             }
+                                            vaccine = snapshot.data['Vaccine'];
                                             return new Text(
                                               snapshot.data['name'],
                                               style: new TextStyle(
@@ -163,6 +184,17 @@ class HomePage extends StatelessWidget {
                                         ),
                                       ),
                                     ),
+                                    Container(
+                                      child: Text(
+                                        userEmail,
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          fontSize: 12.0,
+                                          color: LightColors.kLavender,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 )
                               ],
@@ -170,172 +202,124 @@ class HomePage extends StatelessWidget {
                           )
                         ]),
                   ),
-                  SingleChildScrollView(
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          color: Colors.transparent,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 10.0),
+                  StreamBuilder(
+                      stream: Firestore.instance
+                          .collection('users')
+                          .document(userUid)
+                          .snapshots(),
+                      builder: (context, snapshot3) {
+                        if (!snapshot3.hasData) {
+                          return new Text(
+                            "Loading",
+                            style: new TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.yellow,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          );
+                        }
+                        return SingleChildScrollView(
                           child: Column(
                             children: <Widget>[
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  subheading('My Tasks'),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                CalendarPage()),
-                                      );
-                                    },
-                                    child: calendarIcon(),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.01),
-                              TaskColumn(
-                                icon: Icons.alarm,
-                                iconBackgroundColor: LightColors.kRed,
-                                title: 'To Do',
-                                subtitle: '5 tasks now. 1 started',
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.01,
-                              ),
-                              TaskColumn(
-                                icon: Icons.blur_circular,
-                                iconBackgroundColor: LightColors.kDarkYellow,
-                                title: 'In Progress',
-                                subtitle: '1 tasks now. 1 started',
-                              ),
-                              SizedBox(height: 15.0),
-                              TaskColumn(
-                                icon: Icons.check_circle_outline,
-                                iconBackgroundColor: LightColors.kBlue,
-                                title: 'Done',
-                                subtitle: '18 tasks now. 13 started',
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          color: Colors.transparent,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 5.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              subheading('Lectures'),
                               Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.33,
-                                width: MediaQuery.of(context).size.width,
-                                child: TaskList(userUid.toString()),
-                                // child: ListView(
-                                //   scrollDirection: Axis.horizontal,
-                                //   shrinkWrap: true,
-                                //   children: <Widget>[
-                                //       ActiveProjectCard(
-                                //       cardColor: LightColors.kDarkYellow,
-                                //       loadingPercent: 0.45,
-                                //       title: 'Machine Learning',
-                                //       subtitle: 'LTC:5105',
-                                //       startTime: '4 PM',
-                                //       capacity: 10,
-                                //       currentFilled: 0,
-                                //       offline: false,
-                                //     ),
-                                //        SizedBox(width: 20.0),
-                                //     ActiveProjectCard(
-                                //       cardColor: LightColors.kGreen,
-                                //       loadingPercent: 0.25,
-                                //       title: 'Kick off',
-                                //       subtitle: 'Microsoft teams',
-                                //       startTime: '3 PM',
-                                //       capacity: 10,
-                                //       currentFilled: 0,
-                                //       offline: false,
-                                //     ),
-                                //        SizedBox(width: 20.0),
-                                //      ActiveProjectCard(
-                                //       cardColor: LightColors.kRed,
-                                //       loadingPercent: 0.6,
-                                //       title: 'Artificial Intelligence',
-                                //       subtitle: 'LTC:5102',
-                                //       startTime: '12 PM',
-                                //       capacity: 10,
-                                //       currentFilled: 0,
-                                //       offline: true,
-                                //     ),
-
-                                //   ],
-                                // ),
+                                color: Colors.transparent,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 10.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        subheading('My Tasks'),
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            primary: LightColors.kGreen,
+                                            shape: CircleBorder(),
+                                            padding: EdgeInsets.all(20),
+                                          ),
+                                          child: Icon(
+                                            Icons.calendar_today,
+                                            size: 20.0,
+                                            color: Colors.white,
+                                          ),
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      CalendarPage(userid)),
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.01),
+                                    TaskColumn(
+                                        icon: Icons.blur_circular,
+                                        iconBackgroundColor: LightColors.kRed,
+                                        title: 'Lectures enrolled',
+                                        subtitle: snapshot3
+                                            .data['Total Lectures']
+                                            .toString()),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.01,
+                                    ),
+                                    // TaskColumn(
+                                    //   icon: Icons.check_circle_outline,
+                                    //   iconBackgroundColor: LightColors.kBlue,
+                                    //   title: 'Done',
+                                    //   subtitle: '18 tasks now. 13 started',
+                                    // ),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.01,
+                                    ),
+                                    TaskColumn(
+                                      icon: Icons.medication,
+                                      iconBackgroundColor:
+                                          LightColors.kDarkYellow,
+                                      title: 'Vaccination status',
+                                      subtitle: snapshot3.data['Vaccine'] == 1
+                                          ? "Not vaccinated"
+                                          : snapshot3.data['Vaccine'] == 2
+                                              ? "Partially vaccinated"
+                                              : "Vaccinated",
+                                    ),
+                                  ],
+                                ),
                               ),
-                              // Row(
-                              //   children: <Widget>[
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kGreen,
-                              //       loadingPercent: 0.25,
-                              //       title: 'Kick off',
-                              //       subtitle: 'Microsoft teams',
-                              //       startTime: '3 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: false,
-                              //     ),
-                              //     SizedBox(width: 20.0),
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kRed,
-                              //       loadingPercent: 0.6,
-                              //       title: 'Artificial Intelligence',
-                              //       subtitle: 'LTC:5102',
-                              //       startTime: '12 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: true,
-                              //     ),
-                              //   ],
-                              // ),
-                              // Row(
-                              //   children: <Widget>[
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kDarkYellow,
-                              //       loadingPercent: 0.45,
-                              //       title: 'Machine Learning',
-                              //       subtitle: 'LTC:5105',
-                              //       startTime: '4 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: false,
-                              //     ),
-                              //     SizedBox(width: 20.0),
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kBlue,
-                              //       loadingPercent: 0.9,
-                              //       title: 'Online Flutter Course',
-                              //       subtitle: 'Online only',
-                              //       startTime: '2 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: true,
-                              //     ),
-                              //   ],
-                              // ),
+                              Container(
+                                color: Colors.transparent,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 5.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    subheading('Lectures'),
+                                    Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.33,
+                                      width: MediaQuery.of(context).size.width,
+                                      child:
+                                          TaskList(userUid.toString(), vaccine),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
+                        );
+                      }),
                 ],
               ),
             );

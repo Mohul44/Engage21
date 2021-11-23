@@ -6,13 +6,13 @@ import 'package:auth_demo/widgets/back_button.dart';
 import 'package:auth_demo/widgets/my_text_field.dart';
 import 'package:auth_demo/screens/home_page.dart';
 import 'package:auth_demo/theme/colors/light_colors.dart';
+import 'package:auth_demo/dates_list.dart' as global;
 
 import '../authService.dart';
 
 class CreateNewTaskPage extends StatefulWidget {
-  CreateNewTaskPage(
-    Key key,
-  ) : super(key: key);
+  final String userid;
+  const CreateNewTaskPage(this.userid);
   @override
   _CreateNewTaskPageState createState() => _CreateNewTaskPageState();
 }
@@ -22,8 +22,10 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
   TextEditingController Lecturer = new TextEditingController();
   TextEditingController StartingTime = new TextEditingController();
   TextEditingController Venue = new TextEditingController();
-  final GlobalKey<FormState> _addTaskFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _addTaskFormKey = GlobalKey<FormState>();
   List<bool> mylist = [false, true, false, true, false, true, false];
+  TimeOfDay _time = TimeOfDay(hour: 7, minute: 15);
+  String _timeIndex = "8";
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -31,6 +33,19 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
       Icons.keyboard_arrow_down,
       color: Colors.black54,
     );
+    void _selectTime() async {
+      final TimeOfDay newTime = await showTimePicker(
+        minuteLabelText: "00",
+        context: context,
+        initialTime: _time,
+      );
+      if (newTime != null) {
+        setState(() {
+          _time = newTime;
+        });
+      }
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -42,11 +57,8 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
               child: Column(
                 children: <Widget>[
                   MyBackButton(),
-                  SizedBox(
-                    height: 30,
-                  ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         'Create new task',
@@ -100,26 +112,6 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                             height: 20,
                           ),
                           TextFormField(
-                            controller: StartingTime,
-                            autocorrect: false,
-                            enableSuggestions: false,
-                            keyboardType: TextInputType.name,
-                            cursorColor: Theme.of(context).accentColor,
-                            obscureText: false,
-                            style: Theme.of(context).textTheme.headline5,
-                            decoration: InputDecoration(labelText: "Time"),
-                            validator: (name) {
-                              if (name.isEmpty) {
-                                return "Please enter time";
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(width: 40),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TextFormField(
                             controller: Venue,
                             autocorrect: false,
                             enableSuggestions: false,
@@ -134,6 +126,32 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                               }
                               return null;
                             },
+                          ),
+                          SizedBox(width: 40),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            child: DropdownButton(
+                              dropdownColor: LightColors.kRed,
+                              value: _timeIndex,
+                              style: new TextStyle(
+                                color: LightColors.kLavender,
+                              ),
+                              icon: Icon(Icons.keyboard_arrow_down),
+                              items: global.time.map((items) {
+                                return DropdownMenuItem(
+                                    value: items.toString(),
+                                    child: Text(
+                                        '${items.toString()} ${items >= 12 ? 'PM' : 'AM'}'));
+                              }).toList(),
+                              onChanged: (String newValue) {
+                                setState(() {
+                                  _timeIndex = newValue;
+                                });
+                              },
+                            ),
                           ),
                           SizedBox(
                             height: 30,
@@ -318,124 +336,11 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                               ),
                             ],
                           ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.start,
-                          //   crossAxisAlignment: CrossAxisAlignment.end,
-                          //   children: <Widget>[
-                          //     Expanded(
-                          //       child: MyTextField(
-                          //         label: 'Date',
-                          //         icon: downwardIcon,
-                          //       ),
-                          //     ),
-                          //     HomePage.calendarIcon(),
-                          //   ],
-                          // )
                         ],
                       ))
                 ],
               ),
             ),
-            // Form(
-            //   key: _addTaskFormKey,
-            //   child: Expanded(
-            //       child: SingleChildScrollView(
-            //     padding: EdgeInsets.symmetric(horizontal: 20),
-            //     child: Column(
-            //       children: <Widget>[
-            //         Row(
-            //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //           children: <Widget>[
-            //              TextFormField(
-            //                 controller: StartingTime,
-            //                 autocorrect: false,
-            //                 enableSuggestions: false,
-            //                 keyboardType: TextInputType.name,
-            //                 cursorColor: Theme.of(context).accentColor,
-            //                 obscureText: false,
-            //                 style: Theme.of(context).textTheme.headline5,
-            //                 decoration: InputDecoration(labelText: "Time"),
-            //                 validator: (name) {
-            //                   if (name.isEmpty) {
-            //                     return "Please enter time";
-            //                   }
-            //                   return null;
-            //                 },
-            //               ),
-            //             SizedBox(width: 40),
-            //              TextFormField(
-            //                 controller: Venue,
-            //                 autocorrect: false,
-            //                 enableSuggestions: false,
-            //                 keyboardType: TextInputType.name,
-            //                 cursorColor: Theme.of(context).accentColor,
-            //                 obscureText: false,
-            //                 style: Theme.of(context).textTheme.headline5,
-            //                 decoration: InputDecoration(labelText: "Venue"),
-            //                 validator: (name) {
-            //                   if (name.isEmpty) {
-            //                     return "Please enter venue";
-            //                   }
-            //                   return null;
-            //                 },
-            //               ),
-            //           ],
-            //         ),
-            //         SizedBox(height: 20),
-            //         MyTextField(
-            //           label: 'Description',
-            //           minLines: 3,
-            //           maxLines: 3,
-            //         ),
-            //         SizedBox(height: 20),
-            //         Container(
-            //           width: 100,
-            //           alignment: Alignment.topLeft,
-            //           child: Column(
-            //             crossAxisAlignment: CrossAxisAlignment.start,
-            //             children: <Widget>[
-            //               Text(
-            //                 'Category',
-            //                 style: TextStyle(
-            //                   fontSize: 18,
-            //                   color: Colors.black54,
-            //                 ),
-            //               ),
-            //               Wrap(
-            //                 crossAxisAlignment: WrapCrossAlignment.start,
-            //                 //direction: Axis.vertical,
-            //                 alignment: WrapAlignment.start,
-            //                 verticalDirection: VerticalDirection.down,
-            //                 runSpacing: 0,
-            //                 //textDirection: TextDirection.rtl,
-            //                 spacing: 10.0,
-            //                 children: <Widget>[
-            //                   Chip(
-            //                     label: Text("SPORT APP"),
-            //                     backgroundColor: LightColors.kRed,
-            //                     labelStyle: TextStyle(color: Colors.white),
-            //                   ),
-            //                   Chip(
-            //                     label: Text("MEDICAL APP"),
-            //                   ),
-            //                   Chip(
-            //                     label: Text("RENT APP"),
-            //                   ),
-            //                   Chip(
-            //                     label: Text("NOTES"),
-            //                   ),
-            //                   Chip(
-            //                     label: Text("GAMING PLATFORM APP"),
-            //                   ),
-            //                 ],
-            //               ),
-            //             ],
-            //           ),
-            //         )
-            //       ],
-            //     ),
-            //   )),
-            // ),
             Container(
               height: 100,
               width: width,
@@ -447,12 +352,60 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                         child: Text('Register'),
                         onPressed: () async {
                           if (_addTaskFormKey.currentState.validate()) {
-                            await AuthService().addTask(
-                                Course.text,
-                                Lecturer.text,
-                                mylist,
-                                StartingTime.text,
-                                Venue.text);
+                            await AuthService(uid: widget.userid)
+                                .addTask(Course.text, Lecturer.text, mylist,
+                                    _timeIndex, Venue.text)
+                                .then((value) => showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        // return object of type Dialog
+                                        return AlertDialog(
+                                          backgroundColor:
+                                              LightColors.kDarkBlue,
+                                          title: new Text(
+                                              "Lecture slot added successfully"),
+                                          content: new Text(
+                                            "Return to home page to view changes",
+                                            style: TextStyle(
+                                                color: Colors.white70),
+                                          ),
+                                          actions: <Widget>[
+                                            // usually buttons at the bottom of the dialog
+                                            new FlatButton(
+                                              child: new Text("Close"),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ))
+                                .catchError((onError) {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  // return object of type Dialog
+                                  return AlertDialog(
+                                    backgroundColor: LightColors.kDarkBlue,
+                                    title: new Text("Clash"),
+                                    content: new Text(
+                                      "Choose another time or day",
+                                      style: TextStyle(color: Colors.white70),
+                                    ),
+                                    actions: <Widget>[
+                                      // usually buttons at the bottom of the dialog
+                                      new FlatButton(
+                                        child: new Text("Close"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            });
                           }
                           ;
                         }),

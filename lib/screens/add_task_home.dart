@@ -1,4 +1,5 @@
 import 'package:auth_demo/models/tasks.dart';
+import 'package:auth_demo/screens/update_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_demo/screens/calendar_page.dart';
@@ -79,7 +80,13 @@ class AddTask extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   TopContainer(
-                    height: MediaQuery.of(context).size.height * 0.4,
+                    padding: const EdgeInsets.fromLTRB(
+                      20,
+                      20,
+                      20,
+                      0,
+                    ),
+                    height: MediaQuery.of(context).size.height * 0.37,
                     width: width,
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -88,13 +95,15 @@ class AddTask extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               MyBackButton(),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.power_settings_new,
-                                  color: LightColors.kLavender,
-                                ),
-                                onPressed: () => AuthService().signOut(),
-                              ),
+                              // IconButton(
+                              //     icon: Icon(
+                              //       Icons.power_settings_new,
+                              //       color: LightColors.kLavender,
+                              //     ),
+                              //     onPressed: () => {
+                              //           AuthService().signOut(),
+                              //           Navigator.pop(context),
+                              //         }),
                             ],
                           ),
                           Padding(
@@ -184,7 +193,15 @@ class AddTask extends StatelessWidget {
                                   Icons.edit,
                                   color: LightColors.kLavender,
                                 ),
-                                onPressed: () => AuthService().signOut(),
+                                onPressed: () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          UpdateProfile(userUid),
+                                    ),
+                                  ),
+                                },
                               ),
                             ],
                           ),
@@ -204,104 +221,12 @@ class AddTask extends StatelessWidget {
                                 height: 20,
                               ),
                               subheading('Lectures'),
-                              SizedBox(
-                                height: 10,
-                              ),
                               Container(
                                 height:
                                     MediaQuery.of(context).size.height * 0.5,
                                 width: MediaQuery.of(context).size.width,
                                 child: AddTaskStudent(userUid.toString()),
-                                // child: ListView(
-                                //   scrollDirection: Axis.horizontal,
-                                //   shrinkWrap: true,
-                                //   children: <Widget>[
-                                //       ActiveProjectCard(
-                                //       cardColor: LightColors.kDarkYellow,
-                                //       loadingPercent: 0.45,
-                                //       title: 'Machine Learning',
-                                //       subtitle: 'LTC:5105',
-                                //       startTime: '4 PM',
-                                //       capacity: 10,
-                                //       currentFilled: 0,
-                                //       offline: false,
-                                //     ),
-                                //        SizedBox(width: 20.0),
-                                //     ActiveProjectCard(
-                                //       cardColor: LightColors.kGreen,
-                                //       loadingPercent: 0.25,
-                                //       title: 'Kick off',
-                                //       subtitle: 'Microsoft teams',
-                                //       startTime: '3 PM',
-                                //       capacity: 10,
-                                //       currentFilled: 0,
-                                //       offline: false,
-                                //     ),
-                                //        SizedBox(width: 20.0),
-                                //      ActiveProjectCard(
-                                //       cardColor: LightColors.kRed,
-                                //       loadingPercent: 0.6,
-                                //       title: 'Artificial Intelligence',
-                                //       subtitle: 'LTC:5102',
-                                //       startTime: '12 PM',
-                                //       capacity: 10,
-                                //       currentFilled: 0,
-                                //       offline: true,
-                                //     ),
-
-                                //   ],
-                                // ),
                               ),
-                              // Row(
-                              //   children: <Widget>[
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kGreen,
-                              //       loadingPercent: 0.25,
-                              //       title: 'Kick off',
-                              //       subtitle: 'Microsoft teams',
-                              //       startTime: '3 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: false,
-                              //     ),
-                              //     SizedBox(width: 20.0),
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kRed,
-                              //       loadingPercent: 0.6,
-                              //       title: 'Artificial Intelligence',
-                              //       subtitle: 'LTC:5102',
-                              //       startTime: '12 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: true,
-                              //     ),
-                              //   ],
-                              // ),
-                              // Row(
-                              //   children: <Widget>[
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kDarkYellow,
-                              //       loadingPercent: 0.45,
-                              //       title: 'Machine Learning',
-                              //       subtitle: 'LTC:5105',
-                              //       startTime: '4 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: false,
-                              //     ),
-                              //     SizedBox(width: 20.0),
-                              //     ActiveProjectCard(
-                              //       cardColor: LightColors.kBlue,
-                              //       loadingPercent: 0.9,
-                              //       title: 'Online Flutter Course',
-                              //       subtitle: 'Online only',
-                              //       startTime: '2 PM',
-                              //       capacity: 10,
-                              //       currentFilled: 0,
-                              //       offline: true,
-                              //     ),
-                              //   ],
-                              // ),
                             ],
                           ),
                         ),

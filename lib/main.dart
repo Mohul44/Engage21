@@ -1,4 +1,4 @@
-import 'package:auth_demo/theme.dart';
+import 'package:auth_demo/theme/theme_home.dart';
 import 'package:auth_demo/initializer.dart';
 import 'package:flutter/material.dart';
 
