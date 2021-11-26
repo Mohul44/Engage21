@@ -195,29 +195,39 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
                   SizedBox(
                     height: 40,
                   ),
-                  Text("upload vaccination certificate",
-                      style: TextStyle(fontSize: 20)),
-                  Container(
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Theme.of(context).accentColor,
-                          shape: CircleBorder(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("vaccination certificate",
+                          style: TextStyle(fontSize: 20)),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Container(
+                        child: ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                              primary: Theme.of(context).accentColor,
+                              shape: StadiumBorder(),
+                            ),
+                            label: Text("Add file"),
+                            icon: Icon(
+                              Icons.upload,
+                              size: 20.0,
+                              color: LightColors.kDarkBlue,
+                            ),
+                            onPressed: () async {
+                              AuthService(uid: widget.userid).pickFile();
+                            }),
+                        alignment: Alignment.center,
+                        margin: EdgeInsets.fromLTRB(2, 10, 2, 10),
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(30),
                         ),
-                        child: Icon(
-                          Icons.add,
-                          size: 20.0,
-                          color: LightColors.kDarkBlue,
-                        ),
-                        onPressed: () async {
-                          AuthService(uid: widget.userid).pickFile();
-                        }),
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.fromLTRB(2, 10, 2, 10),
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
+                      ),
+                    ],
                   ),
+
                   SizedBox(
                     height: 20,
                   ),

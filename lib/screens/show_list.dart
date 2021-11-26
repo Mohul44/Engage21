@@ -65,7 +65,7 @@ class _ShowList extends State<ShowList> {
               ],
             ),
             SizedBox(
-              height: 2,
+              height: 10,
             ),
             Container(
               alignment: Alignment.center,
@@ -95,7 +95,7 @@ class _ShowList extends State<ShowList> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             StreamBuilder(
                 stream: Firestore.instance

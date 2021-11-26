@@ -122,6 +122,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "firebase_messaging",
+      "rootUri": "file:///C:/Users/mypc/Downloads/flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-6.0.16",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "firebase_storage",
       "rootUri": "file:///C:/Users/mypc/Downloads/flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_storage-3.1.6",
       "packageUri": "lib/",
@@ -234,6 +240,12 @@
       "rootUri": "file:///C:/Users/mypc/Downloads/flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/percent_indicator-3.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "platform",
+      "rootUri": "file:///C:/Users/mypc/Downloads/flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/platform-2.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "1.24"
     },
     {
       "name": "plugin_platform_interface",
@@ -350,7 +362,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-11-24T22:32:23.514615Z",
+  "generated": "2021-11-26T22:24:36.239685Z",
   "generator": "pub",
   "generatorVersion": "2.14.4"
 }

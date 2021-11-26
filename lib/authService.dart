@@ -26,7 +26,6 @@ class AuthService {
   Map<String, String> errorMessage = {
     "email": "",
     "password": "",
-    "network": "",
   };
 
   List<Task> _taskListFromSnapshot(QuerySnapshot snapshot) {
@@ -302,6 +301,7 @@ class AuthService {
       'Author': uid.toString(),
       'Link': onlineMeetLink.toString(),
       'Vaccine': vaccineReq,
+      "Attendance": 0,
     });
     updateCalendar();
   }
@@ -392,14 +392,6 @@ class AuthService {
         case "ERROR_USER_NOT_FOUND":
           print("ERROR_USER_NOT_FOUND");
           errorMessage["email"] = "Email not registered. Please sign up!";
-          break;
-        case "ERROR_USER_DISABLED":
-          print("ERROR_USER_DISABLED");
-          errorMessage["email"] = "This user has been disabled";
-          break;
-        case "ERROR_TOO_MANY_REQUESTS":
-          print("ERROR_TOO_MANY_REQUESTS");
-          errorMessage["email"] = "Too many requests. Try again later!";
           break;
       }
     }
