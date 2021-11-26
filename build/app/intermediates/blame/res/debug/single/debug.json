@@ -28,12 +28,12 @@
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\1c09cccc4703b46919e29819e887f461\\media-1.0.0\\res\\layout\\notification_media_cancel_action.xml"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\color_abc_hint_foreground_material_light.xml.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\color\\abc_hint_foreground_material_light.xml"
-    },
-    {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_cab_background_top_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-hdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\color_abc_hint_foreground_material_light.xml.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\color\\abc_hint_foreground_material_light.xml"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
@@ -72,12 +72,12 @@
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_dark.xml.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
-    },
-    {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-v21_abc_list_divider_material.xml.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-v21\\abc_list_divider_material.xml"
+    },
+    {
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_dark.xml.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
@@ -96,20 +96,20 @@
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\layout-v26\\abc_screen_toolbar.xml"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable_btn_radio_off_mtrl.xml.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable\\btn_radio_off_mtrl.xml"
-    },
-    {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\5fd279f3856e70e6b7f85db60eb3b1d8\\core-1.3.0\\res\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xhdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable_btn_radio_off_mtrl.xml.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable\\btn_radio_off_mtrl.xml"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xhdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\layout_abc_popup_menu_item_layout.xml.flat",
@@ -136,12 +136,12 @@
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xxhdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_half_black_16dp.png.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xxhdpi-v4\\abc_ic_star_half_black_16dp.png"
-    },
-    {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_normal.9.png.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\5fd279f3856e70e6b7f85db60eb3b1d8\\core-1.3.0\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_half_black_16dp.png.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xxhdpi-v4\\abc_ic_star_half_black_16dp.png"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_pressed_holo_light.9.png.flat",
@@ -152,12 +152,12 @@
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-hdpi-v4\\abc_list_longpressed_holo.9.png"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxxhdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-ldrtl-xxxhdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xhdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxxhdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-ldrtl-xxxhdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
@@ -204,12 +204,12 @@
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-hdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
-    },
-    {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-hdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-hdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable_abc_btn_radio_material_anim.xml.flat",
@@ -220,24 +220,24 @@
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable-xhdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ab_share_pack_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xhdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png"
-    },
-    {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\color_abc_background_cache_hint_selector_material_dark.xml.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\color\\abc_background_cache_hint_selector_material_dark.xml"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_half_black_36dp.png.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xxhdpi-v4\\abc_ic_star_half_black_36dp.png"
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ab_share_pack_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xhdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\anim_btn_radio_to_off_mtrl_dot_group_animation.xml.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\anim\\btn_radio_to_off_mtrl_dot_group_animation.xml"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\anim_btn_radio_to_on_mtrl_ring_outer_path_animation.xml.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\anim\\btn_radio_to_on_mtrl_ring_outer_path_animation.xml"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\anim_btn_radio_to_off_mtrl_dot_group_animation.xml.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\anim\\btn_radio_to_off_mtrl_dot_group_animation.xml"
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_half_black_36dp.png.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xxhdpi-v4\\abc_ic_star_half_black_36dp.png"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_half_black_48dp.png.flat",
@@ -376,16 +376,16 @@
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-hdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable_abc_cab_background_top_material.xml.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable\\abc_cab_background_top_material.xml"
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_googleg_standard_color_18.png.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable-xhdpi-v4\\googleg_standard_color_18.png"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\anim_abc_popup_exit.xml.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\anim\\abc_popup_exit.xml"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable-xhdpi-v4\\googleg_standard_color_18.png"
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable_abc_cab_background_top_material.xml.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable\\abc_cab_background_top_material.xml"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
@@ -416,12 +416,12 @@
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xhdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_lines_media.xml.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\1c09cccc4703b46919e29819e887f461\\media-1.0.0\\res\\layout\\notification_template_lines_media.xml"
-    },
-    {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_dark_focused.xml.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
+    },
+    {
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_lines_media.xml.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\1c09cccc4703b46919e29819e887f461\\media-1.0.0\\res\\layout\\notification_template_lines_media.xml"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_half_black_36dp.png.flat",
@@ -540,12 +540,12 @@
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xhdpi-v4\\abc_text_select_handle_left_mtrl_dark.png"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\color_abc_primary_text_material_dark.xml.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\color\\abc_primary_text_material_dark.xml"
-    },
-    {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\color_abc_primary_text_material_dark.xml.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\color\\abc_primary_text_material_dark.xml"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_dark_focused.xml.flat",
@@ -580,12 +580,12 @@
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-xhdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-mdpi-v4\\abc_list_pressed_holo_dark.9.png"
-    },
-    {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable_abc_text_cursor_material.xml.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable\\abc_text_cursor_material.xml"
+    },
+    {
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\drawable-mdpi-v4\\abc_list_pressed_holo_dark.9.png"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
@@ -624,12 +624,12 @@
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\anim\\btn_radio_to_on_mtrl_ring_outer_animation.xml"
     },
     {
-        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\color_abc_primary_text_material_light.xml.flat",
-        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\color\\abc_primary_text_material_light.xml"
-    },
-    {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\layout_abc_cascading_menu_item_layout.xml.flat",
         "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\layout\\abc_cascading_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\color_abc_primary_text_material_light.xml.flat",
+        "source": "C:\\Users\\mypc\\.gradle\\caches\\transforms-2\\files-2.1\\77669d5c1193663c26ef57d9aa52ca25\\appcompat-1.2.0\\res\\color\\abc_primary_text_material_light.xml"
     },
     {
         "merged": "D:\\flutter-firebase-auth-template-main\\build\\app\\intermediates\\res\\merged\\debug\\layout_abc_action_menu_item_layout.xml.flat",

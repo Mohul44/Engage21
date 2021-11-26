@@ -164,6 +164,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_zoom_drawer",
+      "rootUri": "file:///C:/Users/mypc/Downloads/flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_zoom_drawer-2.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "http",
       "rootUri": "file:///C:/Users/mypc/Downloads/flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.12.2",
       "packageUri": "lib/",
@@ -344,7 +350,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-11-23T23:27:45.263974Z",
+  "generated": "2021-11-24T22:32:23.514615Z",
   "generator": "pub",
   "generatorVersion": "2.14.4"
 }

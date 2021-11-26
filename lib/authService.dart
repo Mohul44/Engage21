@@ -20,8 +20,9 @@ class AuthService {
   final CollectionReference _taskCollection =
       Firestore.instance.collection("Tasks");
   FirebaseStorage _storage = FirebaseStorage.instance;
-  int total_lectures;
-
+  int total_lectures = 0;
+  int attendance = 1;
+  int user_attendance;
   Map<String, String> errorMessage = {
     "email": "",
     "password": "",
@@ -41,7 +42,10 @@ class AuthService {
         currentFilled: doc.data['Currently Filled'] ?? 0,
         offline: doc.data['offline'] ?? false,
         //map
+        link: doc.data['Link'] ?? "",
+        vaccine: doc.data['Vaccine'] ?? 2,
         mp: doc.data['mp'] ?? {},
+        mp2: doc.data['mp2'] ?? {},
       );
     }).toList();
   }
@@ -130,12 +134,37 @@ class AuthService {
     });
   }
 
+  // Future<void> updateTaskAttendance(int inc) async {
+  //   String useridstring = this.uid.toString();
+  //   await getAttendanceUser();
+  //   return await _taskCollection.document(docid).updateData({
+  //     'mp2.${useridstring}': inc + user_attendance,
+  //   });
+  // }
+
+  Future<void> updateAttendance(List<bool> mylist) async {
+    DocumentSnapshot ds = await _taskCollection.document(docid).get();
+    await getAttendance();
+    int ind = 0;
+    await _taskCollection.document(docid).updateData({
+      'Attendance': (attendance + 1),
+    });
+    for (String k in ds.data['mp2'].keys) {
+      int inc = mylist[ind++] == true ? 1 : 0;
+      user_attendance = await ds.data['mp2'][k];
+      await _taskCollection.document(docid).updateData({
+        'mp2.${k}': inc + user_attendance,
+      });
+    }
+  }
+
   Future<void> deleteTaskUser(int strength) async {
     String useridstring = this.uid.toString();
-    getTotalLectures();
+    await getTotalLectures();
     await _taskCollection.document(docid).updateData({
       'Currently Filled': strength,
       'mp.${useridstring}': FieldValue.delete(),
+      'mp2.${useridstring}': FieldValue.delete(),
     });
     await _usersCollection.document(useridstring).updateData({
       'Total Lectures': (total_lectures - 1),
@@ -162,11 +191,11 @@ class AuthService {
   // }
 
   Future<void> addUserToTask() async {
-    getTotalLectures();
+    await getTotalLectures();
     String useridstring = this.uid.toString();
     await _taskCollection
         .document(docid)
-        .updateData({'mp.${useridstring}': false});
+        .updateData({'mp.${useridstring}': false, 'mp2.${useridstring}': 0});
     await _usersCollection.document(useridstring).updateData({
       'Total Lectures': total_lectures + 1,
     });
@@ -226,8 +255,14 @@ class AuthService {
     });
   }
 
-  Future<void> addTask(String course, String lecturer, List<bool> repeat,
-      String startingtime, String venue) async {
+  Future<void> addTask(
+      String course,
+      String lecturer,
+      List<bool> repeat,
+      String startingtime,
+      String venue,
+      String onlineMeetLink,
+      int vaccineReq) async {
     int start = int.parse(startingtime) - 8;
     print("starting time ${startingtime}");
     if (start < 0) start += 12;
@@ -263,7 +298,10 @@ class AuthService {
       "Max Capacity": 10,
       "offline": false,
       'mp': {},
+      'mp2': {},
       'Author': uid.toString(),
+      'Link': onlineMeetLink.toString(),
+      'Vaccine': vaccineReq,
     });
     updateCalendar();
   }
@@ -273,6 +311,20 @@ class AuthService {
         await _usersCollection.document(this.uid.toString()).get();
     total_lectures = ds.data['Total Lectures'];
   }
+
+  Future<void> getAttendance() async {
+    DocumentSnapshot ds =
+        await _taskCollection.document(this.docid.toString()).get();
+    print(ds.data);
+    attendance = ds.data['Attendance'];
+    print(attendance);
+  }
+
+  // Future<void> getAttendanceUser() async {
+  //   DocumentSnapshot ds =
+  //       await _taskCollection.document(this.docid.toString()).get();
+  //   user_attendance = ds.data['mp2'][this.uid.toString()];
+  // }
 
   void _changePassword(String password) async {
     //Create an instance of the current user.
@@ -328,10 +380,6 @@ class AuthService {
       await _firebaseInstance.signInWithEmailAndPassword(
           email: email, password: password);
     } on PlatformException catch (error) {
-      if (error.message ==
-          "An internal error has occurred. [ Unable to resolve host \"www.googleapis.com\":No address associated with hostname ]") {
-        errorMessage["network"] = "No internet connection. Try again!";
-      }
       switch (error.code) {
         case "ERROR_INVALID_EMAIL":
           print("ERROR_INVALID_EMAIL");
@@ -352,10 +400,6 @@ class AuthService {
         case "ERROR_TOO_MANY_REQUESTS":
           print("ERROR_TOO_MANY_REQUESTS");
           errorMessage["email"] = "Too many requests. Try again later!";
-          break;
-        case "ERROR_NETWORK_REQUEST_FAILED":
-          print("ERROR_NETWORK_REQUEST_FAILED");
-          errorMessage["network"] = "No internet connection. Try again!";
           break;
       }
     }

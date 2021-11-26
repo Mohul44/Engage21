@@ -2,6 +2,7 @@ import 'package:engage_scheduler/authService.dart';
 import 'package:engage_scheduler/theme/colors/light_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ActiveProjectCard extends StatefulWidget {
   Color cardColor;
@@ -14,7 +15,9 @@ class ActiveProjectCard extends StatefulWidget {
   bool offline;
   String docid;
   String userid;
+  String meetLink;
   int vaccine;
+  int vaccineReq;
   ActiveProjectCard({
     this.cardColor,
     this.loadingPercent,
@@ -27,6 +30,8 @@ class ActiveProjectCard extends StatefulWidget {
     this.docid,
     this.userid,
     this.vaccine,
+    this.vaccineReq,
+    this.meetLink,
   });
 
   @override
@@ -36,13 +41,17 @@ class ActiveProjectCard extends StatefulWidget {
 class _ActiveProjectsCard extends State<ActiveProjectCard> {
   @override
   Widget build(BuildContext context) {
+    double screeenHeihgt = MediaQuery.of(context).size.height * 1;
+    double font_size = 16.0 / 683.4 * screeenHeihgt;
+    double sized_box_spacing = 10.0 / 683.4 * screeenHeihgt;
+    print("screeen ${screeenHeihgt}");
     return Column(
       children: <Widget>[
         Expanded(
           flex: 1,
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.44,
-            margin: EdgeInsets.symmetric(vertical: 5.0),
+            width: MediaQuery.of(context).size.width * 0.5,
+            margin: EdgeInsets.symmetric(vertical: sized_box_spacing / 2),
             padding: EdgeInsets.all(15.0),
             decoration: BoxDecoration(
               color: widget.cardColor,
@@ -58,7 +67,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                     Text(
                       widget.title,
                       style: TextStyle(
-                        fontSize: 14.0,
+                        fontSize: font_size,
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
                       ),
@@ -66,7 +75,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                     Text(
                       widget.subtitle,
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: (font_size - 2.0),
                         color: Colors.white54,
                         fontWeight: FontWeight.w400,
                       ),
@@ -74,18 +83,18 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                     Text(
                       "IST ${widget.startTime}:00",
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: (font_size - 2.0),
                         color: Colors.white54,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: sized_box_spacing,
                     ),
                     Text(
                       "Max Capacity  " + widget.capacity.toString(),
                       style: TextStyle(
-                        fontSize: 13.0,
+                        fontSize: (font_size - 6.0),
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
@@ -93,18 +102,18 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                     Text(
                       "Currently filled  " + widget.currentFilled.toString(),
                       style: TextStyle(
-                        fontSize: 13.0,
+                        fontSize: (font_size - 6.0),
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: sized_box_spacing,
                     ),
                     Text(
                       "Attend offline",
                       style: TextStyle(
-                        fontSize: 14.0,
+                        fontSize: (font_size - 2.0),
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
@@ -115,16 +124,17 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                           value: widget.offline,
                           onChanged: (value) {
                             int strength = widget.currentFilled;
-                            if (widget.vaccine == 1) {
+                            if (widget.vaccine < widget.vaccineReq) {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
                                   // return object of type Dialog
                                   return AlertDialog(
                                     backgroundColor: LightColors.kDarkBlue,
-                                    title: new Text("Not vaccinated"),
+                                    title: new Text(
+                                        "Vaccination criteria not matched"),
                                     content: new Text(
-                                      "Students who are not even partially vaccinated would not be allowed to attend offline class",
+                                      "Students who are not  ${widget.vaccineReq == 2 ? "partially vaccinated" : "completely vaccinated"} would not be allowed to attend offline class",
                                       style: TextStyle(color: Colors.white70),
                                     ),
                                     actions: <Widget>[
@@ -233,6 +243,24 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                         ),
                       ],
                     ),
+                    ActionChip(
+                        backgroundColor: LightColors.kLavender,
+                        label: Text(
+                          "Get meet link",
+                          style: TextStyle(
+                              color: widget.cardColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onPressed: () => {
+                              Clipboard.setData(
+                                      ClipboardData(text: widget.meetLink))
+                                  .then((_) {
+                                Scaffold.of(context).showSnackBar(SnackBar(
+                                    duration: Duration(seconds: 1),
+                                    content: Text(
+                                        "Email address copied to clipboard")));
+                              })
+                            }),
                   ],
                 ),
               ],

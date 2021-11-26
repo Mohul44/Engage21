@@ -26,9 +26,9 @@ class ShowList extends StatefulWidget {
 
 class _ShowList extends State<ShowList> {
   List<Color> myColors = [
-    LightColors.kLavender,
-    LightColors.kLightYellow,
-    LightColors.kPalePink,
+    LightColors.kBlue,
+    LightColors.kRed,
+    LightColors.kGreen,
     LightColors.kLightYellow2,
   ];
   String _url =
@@ -37,11 +37,13 @@ class _ShowList extends State<ShowList> {
     if (!await launch(_url2)) throw 'Could not launch $_url2';
   }
 
+  List<String> mylist = ["offline", "Online", "All"];
+  String dropDownValue = "offline";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: LightColors.kBlue,
+      backgroundColor: LightColors.kDarkBlue,
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -63,7 +65,37 @@ class _ShowList extends State<ShowList> {
               ],
             ),
             SizedBox(
-              height: 20,
+              height: 2,
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: DropdownButton(
+                dropdownColor: LightColors.kGreen,
+                value: dropDownValue,
+                style: new TextStyle(
+                  color: Colors.white,
+                ),
+                icon: Icon(
+                  Icons.keyboard_arrow_down,
+                  color: Colors.white,
+                ),
+                items: mylist.map((items) {
+                  return DropdownMenuItem(
+                      value: items.toString(),
+                      child: Text(
+                        "${items}",
+                        style: TextStyle(fontSize: 20),
+                      ));
+                }).toList(),
+                onChanged: (String newValue) {
+                  setState(() {
+                    dropDownValue = newValue;
+                  });
+                },
+              ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             StreamBuilder(
                 stream: Firestore.instance
@@ -92,6 +124,12 @@ class _ShowList extends State<ShowList> {
                           String key =
                               snapshot.data['mp'].keys.elementAt(index);
                           bool value = snapshot.data['mp'][key];
+                          if (dropDownValue == "All") {
+                            value = true;
+                          }
+                          if (dropDownValue == "Online") {
+                            value = !value;
+                          }
                           return StreamBuilder(
                               stream: Firestore.instance
                                   .collection('users')
@@ -160,13 +198,15 @@ class _ShowList extends State<ShowList> {
                                         });
                                     },
                                     child: new ListTile(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 15, horizontal: 15),
                                       tileColor:
                                           myColors[index % myColors.length],
                                       title: new Text(
                                         "${snapshot2.data['name']}",
                                         style: TextStyle(
                                           fontSize: 20.0,
-                                          color: LightColors.kDarkBlue,
+                                          color: LightColors.kLavender,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),

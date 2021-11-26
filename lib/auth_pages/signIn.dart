@@ -134,7 +134,6 @@ class _SignInState extends State<SignIn> {
                   if (this.mounted)
                     setState(() {
                       errorMessage["email"] = "";
-                      errorMessage["netwrok"] = "";
                       errorMessage["password"] = "";
                     });
 
