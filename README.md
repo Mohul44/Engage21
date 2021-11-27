@@ -3,7 +3,8 @@ Application provides students to submit weekly preferences for attending class i
 
 ## Instructions
 1. Set up flutter from the steps mentioned in following link:
-https://docs.flutter.dev/get-started/install/windows
+https://docs.flutter.dev/get-started/install/windows 
+Run `flutter doctor` to check if properly installed
 
 2. Clone the repository `git clone https://github.com/Mohul44/Engage21.git`
 3. Get the dependencies using `flutter pub get`
