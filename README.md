@@ -14,13 +14,21 @@ https://docs.flutter.dev/get-started/install/windows
 
 
 ## Features 
-1. Users can sign up as teachers or students using the sign up form
+1. Users can sign up as teachers or students from the sign up page
 2. Teachers can add new lecture slot, events, talks which would be added to calendar dynamically
-3. Students can add lecture slot to their schedule,choose whether to attend offline or online, copy gmeet link and remove any lecture from their schedule 
+3. Students can add lecture slot to their schedule, choose whether to attend offline or online, copy gmeet link and remove any lecture from their schedule 
 4. Teachers can fix minimum vaccination requirement, starting time, venue, weekdays on which lecture would be conducted while creating the lecture slot
 5. Teachers can view students who are cleared to attend offline class, who will be attending online class and list of all the students enrolled
 6. Teachers can download the vaccination certificate from the offline list by tapping on the name and if found suscpicious can remove the student from offline class by double tapping
-7. Teachers can record a attendance for a lecture slot
+7. Teachers can record the attendance for a lecture slot and view the attendance of all students enrolled
+8. Firebase push notifications to keep users engaged scheduled 4 in a day
+
+## Future Extensions
+1. Will add QR code generator and barcode scanner so that attendance could be done and teacher would not require to record attendance manually
+2. For each lecture slot, teacher can add online assignments to be submitted and also access the submissions of student once they upload
+3. Adding custom avatar icon
+
+
 
 ## Interfaces
   1. Authentication Screens - Sign up, Sign in, forgot password!
@@ -31,8 +39,3 @@ https://docs.flutter.dev/get-started/install/windows
   6. Update profile
   7. Show list of offline students
   8. Mark attendance
-
-## Useful links
-   1. [Demo Video](https://youtu.be/OKKK1GOnlIU)
-   2. Presentation
-   3. [LinkedIn](https://www.linkedin.com/in/mohul-maheshwari-a2899a173/)
