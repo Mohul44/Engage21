@@ -12,6 +12,11 @@ https://docs.flutter.dev/get-started/install/windows
     <br /> https://developer.android.com/studio/run/device 
 6. Use `flutter run` command to start the application
 
+## Tech Stack:-
+1. Flutter for front end implementation
+2. Firebase Auth for authentication
+3. CLoud firestore as database
+4. Firebase cloud messaging for notifications
 
 ## Features 
 1. Users can sign up as teachers or students from the sign up page
@@ -23,13 +28,6 @@ https://docs.flutter.dev/get-started/install/windows
 7. Teachers can record the attendance for a lecture slot and view the attendance of all students enrolled
 8. Firebase push notifications to keep users engaged scheduled 4 in a day
 
-## Future Extensions
-1. Will add QR code generator and barcode scanner so that attendance could be done and teacher would not require to record attendance manually
-2. For each lecture slot, teacher can add online assignments to be submitted and also access the submissions of student once they upload
-3. Adding custom avatar icon
-
-
-
 ## Interfaces
   1. Authentication Screens - Sign up, Sign in, forgot password!
   2. Home page - Student home page, teacher home page
@@ -39,3 +37,13 @@ https://docs.flutter.dev/get-started/install/windows
   6. Update profile
   7. Show list of offline students
   8. Mark attendance
+
+## Future Extensions
+1. Will add QR code generator and barcode scanner so that attendance could be done and teacher would not require to record attendance manually
+2. For each lecture slot, teacher can add online assignments to be submitted and also access the submissions of student once they upload
+3. Adding custom avatar icon
+
+## Application flow
+
+![Application_Flow](https://user-images.githubusercontent.com/43715905/143721841-5c58d540-c95d-4f6f-8e17-b0e58d5d5ed7.png)
+
