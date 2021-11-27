@@ -1,5 +1,5 @@
 # Engage21
-Built an application for Microsoft engage 2021 project
+Built a Scheduler application for Microsoft engage 2021 project
 
 ## Instructions
 1. Set up flutter from the steps mentioned in following link:
