@@ -16,11 +16,12 @@ https://docs.flutter.dev/get-started/install/windows
 ## Features 
 1. Users can sign up as teachers or students using the sign up form
 2. Teachers can add new lecture slot, events, talks which would be added to calendar dynamically
-3. Students can add lecture slot to their schedule,choose whether to attend offline or online and later remove any lecture from the schedule
+3. Students can add lecture slot to their schedule,choose whether to attend offline or online, copy gmeet link and remove any lecture from their schedule 
 4. Teachers can fix minimum vaccination requirement, starting time, venue, weekdays on which lecture would be conducted while creating the lecture slot
 5. Teachers can view students who are cleared to attend offline class, who will be attending online class and list of all the students enrolled
 6. Teachers can download the vaccination certificate from the offline list by tapping on the name and if found suscpicious can remove the student from offline class by double tapping
-7. Teachers can also record a attendance for a lecture slot
+7. Teachers can record a attendance for a lecture slot
+
 
 
 
