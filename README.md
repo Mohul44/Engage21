@@ -22,9 +22,6 @@ https://docs.flutter.dev/get-started/install/windows
 6. Teachers can download the vaccination certificate from the offline list by tapping on the name and if found suscpicious can remove the student from offline class by double tapping
 7. Teachers can record a attendance for a lecture slot
 
-
-
-
 ## Interfaces
   1. Authentication Screens - Sign up, Sign in, forgot password!
   2. Home page - Student home page, teacher home page
@@ -34,3 +31,8 @@ https://docs.flutter.dev/get-started/install/windows
   6. Update profile
   7. Show list of offline students
   8. Mark attendance
+
+## Useful links
+   1. [Demo Video](https://youtu.be/OKKK1GOnlIU)
+   2. Presentation
+   3. [LinkedIn](https://www.linkedin.com/in/mohul-maheshwari-a2899a173/)
