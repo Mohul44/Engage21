@@ -1,5 +1,5 @@
 # Engage21
-Built a Scheduler application for Microsoft engage 2021 project
+Application provides students to submit weekly preferences for attending class in-person or remotely. The tool then assigns available seats to students who want to physically attend class and provides the faculty with a roster of who has been cleared to attend as per condition set by lecturer. Lecturer would be able to download covid certificates of students who are going to attend offline and remove those who submitted malformed certificates. Lecturer would also be able to mark daily attendance and check total attendance percentage of every attendee. Application also provides a calendar to view events, talks and lecture going on.
 
 ## Instructions
 1. Set up flutter from the steps mentioned in following link:
