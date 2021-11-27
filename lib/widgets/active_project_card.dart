@@ -55,7 +55,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
         Expanded(
           flex: 1,
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.5,
+            width: MediaQuery.of(context).size.width * 0.55,
             margin: EdgeInsets.symmetric(vertical: sized_box_spacing / 2),
             padding: EdgeInsets.all(15.0),
             decoration: BoxDecoration(
@@ -77,10 +77,11 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
+                    SizedBox(height: 10),
                     Text(
                       widget.subtitle,
                       style: TextStyle(
-                        fontSize: (font_size - 2.0),
+                        fontSize: (font_size - 6.0),
                         color: Colors.white54,
                         fontWeight: FontWeight.w400,
                       ),
@@ -88,7 +89,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                     Text(
                       "IST ${widget.startTime}:00    ${widget.venue}",
                       style: TextStyle(
-                        fontSize: (font_size - 2.0),
+                        fontSize: (font_size - 6.0),
                         color: Colors.white54,
                         fontWeight: FontWeight.w400,
                       ),
@@ -104,7 +105,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                               )
                             : Text(""),
                         widget.mylist[1] == true
-                            ? Text("Mo ",
+                            ? Text("M ",
                                 style: TextStyle(color: Colors.white60))
                             : Text(""),
                         widget.mylist[2] == true
@@ -112,7 +113,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                                 style: TextStyle(color: Colors.white60))
                             : Text(""),
                         widget.mylist[3] == true
-                            ? Text("We ",
+                            ? Text("W ",
                                 style: TextStyle(color: Colors.white60))
                             : Text(""),
                         widget.mylist[4] == true
@@ -120,7 +121,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                                 style: TextStyle(color: Colors.white60))
                             : Text(""),
                         widget.mylist[5] == true
-                            ? Text("Fi ",
+                            ? Text("F ",
                                 style: TextStyle(color: Colors.white60))
                             : Text(""),
                         widget.mylist[6] == true
@@ -142,6 +143,14 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                     ),
                     Text(
                       "Currently filled  " + widget.currentFilled.toString(),
+                      style: TextStyle(
+                        fontSize: (font_size - 6.0),
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      "Vacc req:  ${widget.vaccineReq == 1 ? "Not required" : widget.vaccineReq == 2 ? "Partial" : "Complete"}",
                       style: TextStyle(
                         fontSize: (font_size - 6.0),
                         color: Colors.white,

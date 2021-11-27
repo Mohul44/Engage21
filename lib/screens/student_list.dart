@@ -52,7 +52,7 @@ class _StudentListState extends State<StudentList> {
               venue: tasks[index].venue,
               mylist: tasks[index].repeat,
               //repeat: tasks[index].repeat,
-              //vaccineReq: tasks[index].vaccine,
+              vaccineReq: tasks[index].vaccine,
             ),
           );
           // else

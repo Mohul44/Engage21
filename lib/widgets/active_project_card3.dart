@@ -20,6 +20,7 @@ class ActiveProjectCard extends StatefulWidget {
   int length;
   String venue;
   List<dynamic> mylist;
+  int vaccineReq;
   ActiveProjectCard(
       {this.cardColor,
       this.loadingPercent,
@@ -33,7 +34,8 @@ class ActiveProjectCard extends StatefulWidget {
       this.userid,
       this.length,
       this.venue,
-      this.mylist});
+      this.mylist,
+      this.vaccineReq});
 
   @override
   _ActiveProjectsCard createState() => _ActiveProjectsCard();
@@ -141,9 +143,17 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                       "Seats reserved " +
                           widget.currentFilled.toString() +
                           "/" +
-                          widget.capacity.toString(),
+                          5.toString(),
                       style: TextStyle(
                         fontSize: 14.0 / 683.4 * screenHeight,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      "Vacc req:  ${widget.vaccineReq == 1 ? "Not required" : widget.vaccineReq == 2 ? "Partial" : "Complete"}",
+                      style: TextStyle(
+                        fontSize: (14.0 / 683.4 * screenHeight),
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),

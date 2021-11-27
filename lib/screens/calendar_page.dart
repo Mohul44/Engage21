@@ -21,10 +21,10 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> {
-  int currentDay = dayOfWeek;
+  int currentDay = dayOfWeek % 7;
   void onPressHandler(int day) {
     setState(() {
-      currentDay = day;
+      currentDay = day % 7;
     });
   }
 
