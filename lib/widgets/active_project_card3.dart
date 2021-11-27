@@ -1,5 +1,6 @@
 import 'package:engage_scheduler/authService.dart';
 import 'package:engage_scheduler/screens/add_task_home.dart';
+import 'package:engage_scheduler/screens/mark_attendance.dart';
 import 'package:engage_scheduler/screens/show_list.dart';
 import 'package:engage_scheduler/theme/colors/light_colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,6 +17,8 @@ class ActiveProjectCard extends StatefulWidget {
   bool offline;
   String docid;
   String userid;
+  int length;
+  String venue;
   ActiveProjectCard({
     this.cardColor,
     this.loadingPercent,
@@ -27,6 +30,8 @@ class ActiveProjectCard extends StatefulWidget {
     this.offline,
     this.docid,
     this.userid,
+    this.length,
+    this.venue,
   });
 
   @override
@@ -36,37 +41,42 @@ class ActiveProjectCard extends StatefulWidget {
 class _ActiveProjectsCard extends State<ActiveProjectCard> {
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    print("screeen3 ${screenHeight}");
     return Column(
       children: <Widget>[
         Expanded(
           flex: 1,
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.5,
+            width: MediaQuery.of(context).size.width * 0.55,
             margin: EdgeInsets.symmetric(vertical: 5.0),
-            padding: EdgeInsets.all(15.0),
+            padding: EdgeInsets.fromLTRB(15, 10, 15, 5),
             decoration: BoxDecoration(
               color: widget.cardColor,
               borderRadius: BorderRadius.circular(20.0),
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       widget.title,
                       style: TextStyle(
-                        fontSize: 18.0,
+                        fontSize: 18.0 / 683.4 * screenHeight,
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
+                    SizedBox(
+                      height: 5 / 683.4 * screenHeight,
+                    ),
                     Text(
                       widget.subtitle,
                       style: TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 12.0 / 683.4 * screenHeight,
                         color: Colors.white54,
                         fontWeight: FontWeight.w400,
                       ),
@@ -74,30 +84,57 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                     Text(
                       "IST ${widget.startTime}:00",
                       style: TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 12.0 / 683.4 * screenHeight,
                         color: Colors.white54,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
                     Text(
-                      "Max Capacity  " + widget.capacity.toString(),
+                      widget.venue,
                       style: TextStyle(
-                        fontSize: 16.0,
+                        fontSize: 12.0 / 683.4 * screenHeight,
+                        color: Colors.white54,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      "Students enrolled " + widget.length.toString(),
+                      style: TextStyle(
+                        fontSize: 14.0 / 683.4 * screenHeight,
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     Text(
-                      "Currently filled  " + widget.currentFilled.toString(),
+                      "Seats reserved " +
+                          widget.currentFilled.toString() +
+                          "/" +
+                          widget.capacity.toString(),
                       style: TextStyle(
-                        fontSize: 16.0,
+                        fontSize: 14.0 / 683.4 * screenHeight,
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
+                    SizedBox(
+                      height: 5 / 683.4 * screenHeight,
+                    ),
                     ActionChip(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                      backgroundColor: Colors.white70,
+                      label: Container(
+                        alignment: Alignment.center,
+                        width: 110,
+                        height: 20,
+                        child: Text(
+                          "Student list",
+                          style: TextStyle(
+                              color: widget.cardColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                       onPressed: () => {
                         Navigator.push(
                           context,
@@ -107,17 +144,43 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                           ),
                         )
                       },
-                      label: Text(
-                        "Show List",
-                        style: TextStyle(
-                            color: widget.cardColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      backgroundColor: Colors.white,
                     ),
                     ActionChip(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                      backgroundColor: Colors.white70,
+                      label: Container(
+                        alignment: Alignment.center,
+                        height: 20,
+                        width: 110,
+                        child: Text(
+                          "Mark attendance",
+                          style: TextStyle(
+                              color: widget.cardColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      onPressed: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MarkAttendance(widget.docid,
+                                widget.currentFilled, widget.offline),
+                          ),
+                        )
+                      },
+                    ),
+                    ActionChip(
+                      backgroundColor: Colors.white70,
+                      label: Container(
+                        alignment: Alignment.center,
+                        height: 20,
+                        width: 110,
+                        child: Text(
+                          "Delete lecture",
+                          style: TextStyle(
+                              color: widget.cardColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                       onPressed: () => {
                         showDialog(
                           context: context,
@@ -156,13 +219,6 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                           },
                         ),
                       },
-                      label: Text(
-                        "Delete lecture",
-                        style: TextStyle(
-                            color: widget.cardColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      backgroundColor: Colors.white,
                     ),
                   ],
                 ),

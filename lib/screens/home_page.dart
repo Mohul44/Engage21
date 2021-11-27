@@ -1,4 +1,5 @@
 import 'package:engage_scheduler/models/tasks.dart';
+import 'package:engage_scheduler/screens/add_task_home.dart';
 import 'package:engage_scheduler/screens/update_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -64,6 +65,123 @@ class _HomePageState extends State<HomePage> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: LightColors.kLightYellow,
+      drawer: FutureBuilder<FirebaseUser>(
+          future: AuthService().currentUser(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return new Text(
+                "Loading",
+                style: new TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.yellow,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            }
+            String userid = snapshot.data.uid;
+            double font_size = 18;
+            double icon_size = 20;
+            return Drawer(
+              elevation: 25,
+              child: Container(
+                color: LightColors.kDarkBlue,
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: [
+                    // const DrawerHeader(
+                    //   decoration: BoxDecoration(
+                    //     color: LightColors.kDarkBlue,
+                    //   ),
+                    //   child: Text('Drawer Header'),
+                    // ),
+                    Container(
+                      height: 200,
+                      padding: EdgeInsets.fromLTRB(10, 70, 0, 0),
+                      color: LightColors.kDarkBlue,
+                      child: Text(
+                        "Welcome\nBrowse through ... ",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.calendar_today_outlined,
+                        color: Colors.white70,
+                        size: 25,
+                      ),
+                      title: const Text(
+                        'Calendar',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CalendarPage(userid)),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.note_alt,
+                        color: Colors.white70,
+                        size: 25.0,
+                      ),
+                      title: const Text(
+                        'Add task',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddTask(),
+                          ),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.account_circle_sharp,
+                        color: Colors.white70,
+                        size: 25.0,
+                      ),
+                      title: const Text(
+                        'Update Profile',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UpdateProfile(userid)),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.cancel,
+                        color: Colors.white70,
+                        size: 25.0,
+                      ),
+                      title: const Text(
+                        'Sign out',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      onTap: () => AuthService().signOut(),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }),
       body: FutureBuilder<FirebaseUser>(
         future: AuthService().currentUser(),
         builder: (context, snapshot) {
@@ -94,17 +212,12 @@ class _HomePageState extends State<HomePage> {
                             children: <Widget>[
                               IconButton(
                                 icon: Icon(
-                                  Icons.account_circle_sharp,
+                                  Icons.menu,
                                   color: LightColors.kLavender,
                                   size: 30.0,
                                 ),
                                 onPressed: () => {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            UpdateProfile(userUid)),
-                                  ),
+                                  Scaffold.of(context).openDrawer(),
                                 },
                               ),
                               IconButton(
@@ -224,7 +337,7 @@ class _HomePageState extends State<HomePage> {
                               Container(
                                 color: Colors.transparent,
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 20.0, vertical: 10.0),
+                                    horizontal: 20.0, vertical: 5.0),
                                 child: Column(
                                   children: <Widget>[
                                     Row(
@@ -234,13 +347,23 @@ class _HomePageState extends State<HomePage> {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         subheading('My Tasks'),
-                                        ElevatedButton(
+                                        ElevatedButton.icon(
+                                          label: Text(
+                                            "Calendar",
+                                            style: TextStyle(
+                                                color: LightColors.kLavender),
+                                          ),
                                           style: ElevatedButton.styleFrom(
                                             primary: LightColors.kGreen,
-                                            shape: CircleBorder(),
-                                            padding: EdgeInsets.all(20),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      12), // <-- Radius
+                                            ),
+                                            padding: EdgeInsets.fromLTRB(
+                                                20, 5, 20, 5),
                                           ),
-                                          child: Icon(
+                                          icon: Icon(
                                             Icons.calendar_today,
                                             size: 20.0,
                                             color: Colors.white,
@@ -308,7 +431,7 @@ class _HomePageState extends State<HomePage> {
                                     Container(
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              0.33,
+                                              0.415,
                                       width: MediaQuery.of(context).size.width,
                                       child:
                                           TaskList(userUid.toString(), vaccine),

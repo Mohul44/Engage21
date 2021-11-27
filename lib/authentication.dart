@@ -3,6 +3,7 @@ import 'package:engage_scheduler/auth_pages/signIn.dart';
 import 'package:engage_scheduler/auth_pages/signUp.dart';
 import 'package:flutter/material.dart';
 import 'package:engage_scheduler/theme/colors/light_colors.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class Authentication extends StatefulWidget {
   @override
@@ -10,6 +11,13 @@ class Authentication extends StatefulWidget {
 }
 
 class _AuthenticationState extends State<Authentication> {
+  @override
+  void initState() {
+    super.initState();
+    final fbm = FirebaseMessaging();
+    fbm.requestNotificationPermissions();
+  }
+
   GlobalKey<ScaffoldState> _authScaffoldKey = GlobalKey<ScaffoldState>();
   PageController authPageController =
       PageController(keepPage: true, initialPage: 1);

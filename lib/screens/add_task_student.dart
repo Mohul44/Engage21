@@ -49,6 +49,7 @@ class _StudentTaskListState extends State<AddTaskStudent> {
               offline: boolIsAdded,
               docid: tasks[index].documentuid,
               userid: widget.userid,
+              length: tasks[index].mp.length,
             ),
           );
         });

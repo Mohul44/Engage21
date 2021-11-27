@@ -47,6 +47,8 @@ class _StudentListState extends State<StudentList> {
               offline: tasks[index].mp[widget.userid.toString()],
               docid: tasks[index].documentuid,
               userid: widget.userid,
+              length : tasks[index].mp.length,
+              venue : tasks[index].venue,
             ),
           );
           // else

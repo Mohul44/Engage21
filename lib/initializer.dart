@@ -1,10 +1,12 @@
 import 'package:engage_scheduler/authService.dart';
 import 'package:engage_scheduler/authentication.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:engage_scheduler/widgets/loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:engage_scheduler/screens/home_page.dart';
 import 'package:engage_scheduler/screens/teachers_home_page.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Initializer extends StatelessWidget {
   @override
@@ -23,14 +25,7 @@ class Initializer extends StatelessWidget {
                   .snapshots(),
               builder: (context, snapshot2) {
                 if (!snapshot2.hasData) {
-                  return new Text(
-                    "Loading",
-                    style: new TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.yellow,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  );
+                  return Loader();
                 }
                 print(snapshot2.data);
                 int role = snapshot2.data['role'] ?? 1;

@@ -1,4 +1,6 @@
 import 'package:engage_scheduler/models/tasks.dart';
+import 'package:engage_scheduler/screens/add_task_home.dart';
+import 'package:engage_scheduler/screens/create_new_task_page.dart';
 import 'package:engage_scheduler/screens/student_list.dart';
 import 'package:engage_scheduler/screens/update_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -63,8 +65,124 @@ class TeacherHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double screeenHeihgt = MediaQuery.of(context).size.height * 1;
     return Scaffold(
       backgroundColor: LightColors.kLightYellow,
+      drawer: FutureBuilder<FirebaseUser>(
+          future: AuthService().currentUser(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return new Text(
+                "Loading",
+                style: new TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.yellow,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            }
+            String userid = snapshot.data.uid;
+            return Drawer(
+              elevation: 25,
+              child: Container(
+                color: LightColors.kDarkBlue,
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: [
+                    // const DrawerHeader(
+                    //   decoration: BoxDecoration(
+                    //     color: LightColors.kDarkBlue,
+                    //   ),
+                    //   child: Text('Drawer Header'),
+                    // ),
+                    Container(
+                      height: 200,
+                      padding: EdgeInsets.fromLTRB(10, 70, 0, 0),
+                      color: LightColors.kDarkBlue,
+                      child: Text(
+                        "Welcome\nBrowse through ... ",
+                        style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.calendar_today_outlined,
+                        color: Colors.white70,
+                        size: 25.0,
+                      ),
+                      title: const Text(
+                        'Calendar',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CalendarPage(userid)),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.note_alt,
+                        color: Colors.white70,
+                        size: 25.0,
+                      ),
+                      title: const Text(
+                        'Add Lecture',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CreateNewTaskPage(userid),
+                          ),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.account_circle_sharp,
+                        color: Colors.white70,
+                        size: 25.0,
+                      ),
+                      title: const Text(
+                        'Update Profile',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UpdateProfile(userid)),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.cancel,
+                        color: Colors.white70,
+                        size: 25.0,
+                      ),
+                      title: const Text(
+                        'Sign out',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      onTap: () => AuthService().signOut(),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }),
       body: FutureBuilder<FirebaseUser>(
         future: AuthService().currentUser(),
         builder: (context, snapshot) {
@@ -95,17 +213,12 @@ class TeacherHomePage extends StatelessWidget {
                             children: <Widget>[
                               IconButton(
                                 icon: Icon(
-                                  Icons.account_circle_sharp,
+                                  Icons.menu,
                                   color: LightColors.kLavender,
                                   size: 30.0,
                                 ),
                                 onPressed: () => {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            UpdateProfile(userUid)),
-                                  ),
+                                  Scaffold.of(context).openDrawer(),
                                 },
                               ),
                               IconButton(
@@ -164,7 +277,8 @@ class TeacherHomePage extends StatelessWidget {
                                             return new Text(
                                               snapshot2.data['name'],
                                               style: new TextStyle(
-                                                fontSize: 20.0,
+                                                fontSize:
+                                                    20.0 / 683 * screeenHeihgt,
                                                 color: LightColors.kLavender,
                                               ),
                                             );
@@ -220,15 +334,25 @@ class TeacherHomePage extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         subheading('My Tasks'),
-                                        ElevatedButton(
+                                        ElevatedButton.icon(
+                                          label: Text(
+                                            "Calendar",
+                                            style: TextStyle(
+                                                color: LightColors.kLavender),
+                                          ),
                                           style: ElevatedButton.styleFrom(
                                             primary: LightColors.kGreen,
-                                            shape: CircleBorder(),
-                                            padding: EdgeInsets.all(20),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      12), // <-- Radius
+                                            ),
+                                            padding: EdgeInsets.fromLTRB(
+                                                20, 5, 20, 5),
                                           ),
-                                          child: Icon(
+                                          icon: Icon(
                                             Icons.calendar_today,
-                                            size: 20.0,
+                                            size: 20.0 / 683 * screeenHeihgt,
                                             color: Colors.white,
                                           ),
                                           onPressed: () {
@@ -259,7 +383,7 @@ class TeacherHomePage extends StatelessWidget {
                                           MediaQuery.of(context).size.height *
                                               0.01,
                                     ),
-                                    SizedBox(height: 15.0),
+                                    SizedBox(height: 5.0),
                                     // TaskColumn(
                                     //   icon: Icons.check_circle_outline,
                                     //   iconBackgroundColor: LightColors.kBlue,
@@ -280,7 +404,7 @@ class TeacherHomePage extends StatelessWidget {
                                     Container(
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              0.37,
+                                              0.46,
                                       width: MediaQuery.of(context).size.width,
                                       child: StudentList(userUid.toString()),
                                       // child: ListView(
