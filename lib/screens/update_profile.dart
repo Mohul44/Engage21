@@ -25,7 +25,7 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
   GlobalKey<FormState> _addTaskFormKey = GlobalKey<FormState>();
   int group1Value = 2;
   List<bool> mylist = [false, true, false, true, false, true, false];
-
+  bool isDocumentUploaded = false;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -216,7 +216,37 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
                               color: LightColors.kDarkBlue,
                             ),
                             onPressed: () async {
-                              AuthService(uid: widget.userid).pickFile();
+                              await AuthService(uid: widget.userid)
+                                  .pickFile()
+                                  .then((value) => {
+                                        isDocumentUploaded = true,
+                                        // showDialog(
+                                        //   context: context,
+                                        //   builder: (BuildContext context) {
+                                        //     // return object of type Dialog
+                                        //     return AlertDialog(
+                                        //       backgroundColor:
+                                        //           LightColors.kDarkBlue,
+                                        //       title: new Text(
+                                        //           "Document uploaded successfully"),
+                                        //       content: new Text(
+                                        //         "You can update yor profile as completely vaccinated now",
+                                        //         style: TextStyle(
+                                        //             color: Colors.white70),
+                                        //       ),
+                                        //       actions: <Widget>[
+                                        //         // usually buttons at the bottom of the dialog
+                                        //         new FlatButton(
+                                        //           child: new Text("Close"),
+                                        //           onPressed: () {
+                                        //             Navigator.of(context).pop();
+                                        //           },
+                                        //         ),
+                                        //       ],
+                                        //     );
+                                        //   },
+                                        // ),
+                                      });
                             }),
                         alignment: Alignment.center,
                         margin: EdgeInsets.fromLTRB(2, 10, 2, 10),
@@ -247,9 +277,59 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
                           if (_addTaskFormKey.currentState.validate()) {
                             if (Course.text.isEmpty)
                               Course.text = snapshot.data['name'];
-
-                            await AuthService(uid: widget.userid).updateProfile(
-                                Course.text, Venue.text, group1Value);
+                            if (group1Value == 3 &&
+                                isDocumentUploaded == false) {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  // return object of type Dialog
+                                  return AlertDialog(
+                                    backgroundColor: LightColors.kDarkBlue,
+                                    title: new Text("Document not uploaded"),
+                                    content: new Text(
+                                      "To be marked as completely vaccinated you need to upload vaccination certificate",
+                                      style: TextStyle(color: Colors.white70),
+                                    ),
+                                    actions: <Widget>[
+                                      // usually buttons at the bottom of the dialog
+                                      new FlatButton(
+                                        child: new Text("Close"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            } else {
+                              await AuthService(uid: widget.userid)
+                                  .updateProfile(
+                                      Course.text, Venue.text, group1Value);
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  // return object of type Dialog
+                                  return AlertDialog(
+                                    backgroundColor: LightColors.kDarkBlue,
+                                    title: new Text("Profile updated"),
+                                    content: new Text(
+                                      "Profile updated with given information",
+                                      style: TextStyle(color: Colors.white70),
+                                    ),
+                                    actions: <Widget>[
+                                      // usually buttons at the bottom of the dialog
+                                      new FlatButton(
+                                        child: new Text("Close"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
                           }
                         }),
                     alignment: Alignment.center,

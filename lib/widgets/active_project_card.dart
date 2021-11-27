@@ -256,6 +256,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                                       ClipboardData(text: widget.meetLink))
                                   .then((_) {
                                 Scaffold.of(context).showSnackBar(SnackBar(
+                                    backgroundColor: LightColors.kDarkBlue,
                                     duration: Duration(seconds: 1),
                                     content: Text(
                                         "Email address copied to clipboard")));
