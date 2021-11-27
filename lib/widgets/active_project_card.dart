@@ -1,4 +1,5 @@
 import 'package:engage_scheduler/authService.dart';
+import 'package:engage_scheduler/screens/update_profile.dart';
 import 'package:engage_scheduler/theme/colors/light_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,9 @@ class ActiveProjectCard extends StatefulWidget {
   String userid;
   String meetLink;
   int vaccine;
+  String venue;
   int vaccineReq;
+  List<dynamic> mylist;
   ActiveProjectCard({
     this.cardColor,
     this.loadingPercent,
@@ -30,8 +33,10 @@ class ActiveProjectCard extends StatefulWidget {
     this.docid,
     this.userid,
     this.vaccine,
+    this.venue,
     this.vaccineReq,
     this.meetLink,
+    this.mylist,
   });
 
   @override
@@ -81,12 +86,48 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                       ),
                     ),
                     Text(
-                      "IST ${widget.startTime}:00",
+                      "IST ${widget.startTime}:00    ${widget.venue}",
                       style: TextStyle(
                         fontSize: (font_size - 2.0),
                         color: Colors.white54,
                         fontWeight: FontWeight.w400,
                       ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text("Days: ", style: TextStyle(color: Colors.white60)),
+                        widget.mylist[0] == true
+                            ? Text(
+                                "Su ",
+                                style: TextStyle(color: Colors.white60),
+                              )
+                            : Text(""),
+                        widget.mylist[1] == true
+                            ? Text("Mo ",
+                                style: TextStyle(color: Colors.white60))
+                            : Text(""),
+                        widget.mylist[2] == true
+                            ? Text("Tu ",
+                                style: TextStyle(color: Colors.white60))
+                            : Text(""),
+                        widget.mylist[3] == true
+                            ? Text("We ",
+                                style: TextStyle(color: Colors.white60))
+                            : Text(""),
+                        widget.mylist[4] == true
+                            ? Text("Th ",
+                                style: TextStyle(color: Colors.white60))
+                            : Text(""),
+                        widget.mylist[5] == true
+                            ? Text("Fi ",
+                                style: TextStyle(color: Colors.white60))
+                            : Text(""),
+                        widget.mylist[6] == true
+                            ? Text("Sa ",
+                                style: TextStyle(color: Colors.white54))
+                            : Text(""),
+                      ],
                     ),
                     SizedBox(
                       height: sized_box_spacing,
@@ -124,7 +165,8 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                           value: widget.offline,
                           onChanged: (value) {
                             int strength = widget.currentFilled;
-                            if (widget.vaccine < widget.vaccineReq) {
+                            if (widget.vaccine < widget.vaccineReq &&
+                                value == true) {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
@@ -140,6 +182,19 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                                     actions: <Widget>[
                                       // usually buttons at the bottom of the dialog
                                       new FlatButton(
+                                        child: new Text("Update profile"),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    UpdateProfile(
+                                                        widget.userid)),
+                                          );
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      new FlatButton(
                                         child: new Text("Close"),
                                         onPressed: () {
                                           Navigator.of(context).pop();
@@ -149,7 +204,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                                   );
                                 },
                               );
-                            } else if (strength >= 5) {
+                            } else if (strength >= 5 && value == true) {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {

@@ -50,8 +50,10 @@ class _TaskListState extends State<TaskList> {
                 docid: tasks[index].documentuid,
                 userid: widget.userid,
                 vaccine: widget.vaccine,
+                venue: tasks[index].venue,
                 vaccineReq: tasks[index].vaccine,
                 meetLink: tasks[index].link,
+                mylist: tasks[index].repeat,
               ),
             );
           else

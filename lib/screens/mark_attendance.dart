@@ -15,6 +15,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'tasks_list.dart';
 import 'package:engage_scheduler/models/tasks.dart';
 
+// screen where teacher can mark attendance of students
+
 class MarkAttendance extends StatefulWidget {
   final String taskid;
   final int currentFilled;
@@ -28,8 +30,6 @@ class _ShowList extends State<MarkAttendance> {
   List<Color> myColors = [
     LightColors.kBlue,
     LightColors.kRed,
-    LightColors.kGreen,
-    LightColors.kLightYellow2,
   ];
   String _url =
       "https://firebasestorage.googleapis.com/v0/b/engagescheduler-e71b5.appspot.com/o/vaccine_certificates%2FecW1hycM2WgAe0tOtx8wARCk0WI2?alt=media&token=ec3f098f-fb0a-448e-81b2-a6f731a47e2a";
@@ -100,6 +100,7 @@ class _ShowList extends State<MarkAttendance> {
                         shrinkWrap: true,
                         itemCount: snapshot.data['mp2'].length,
                         itemBuilder: (BuildContext context, int index) {
+                          int count = 0;
                           String key =
                               snapshot.data['mp2'].keys.elementAt(index);
                           return StreamBuilder(
@@ -128,10 +129,11 @@ class _ShowList extends State<MarkAttendance> {
                                 if (true) {
                                   return Container(
                                     width: MediaQuery.of(context).size.width,
-                                    margin: EdgeInsets.symmetric(vertical: 0.0),
+                                    margin: EdgeInsets.symmetric(vertical: 1.0),
                                     padding: EdgeInsets.all(15.0),
                                     decoration: BoxDecoration(
-                                      color: myColors[index % myColors.length],
+                                      color:
+                                          myColors[count++ % myColors.length],
                                       borderRadius: BorderRadius.circular(0.0),
                                     ),
                                     child: Row(

@@ -8,6 +8,8 @@ import 'package:engage_scheduler/screens/home_page.dart';
 import 'package:engage_scheduler/screens/teachers_home_page.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+//initializing screen to check if a user is logged in, logged out and call appropriate page
+
 class Initializer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,12 @@ class Initializer extends StatelessWidget {
                   return Loader();
                 }
                 print(snapshot2.data);
-                int role = snapshot2.data['role'] ?? 1;
+                int role;
+                try {
+                  role = snapshot2.data['role'] ?? 1;
+                } catch (e) {
+                  role = 1;
+                }
                 if (role == 2) return TeacherHomePage();
                 return HomePage();
               });

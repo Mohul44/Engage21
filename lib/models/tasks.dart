@@ -9,8 +9,11 @@ class Task {
   int currentFilled;
   String link;
   int vaccine;
+  //map consisting of all users with their value false indicating online class and true indicating offline
   Map<dynamic, dynamic> mp;
+  // map consisting of all users with their respective attendance
   Map<dynamic, dynamic> mp2;
+  List<dynamic> repeat;
   Task(
       {this.documentuid,
       this.title,
@@ -23,5 +26,6 @@ class Task {
       this.mp,
       this.mp2,
       this.link,
-      this.vaccine});
+      this.vaccine,
+      this.repeat});
 }

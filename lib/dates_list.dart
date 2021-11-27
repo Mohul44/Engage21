@@ -1,4 +1,4 @@
-// Dont change this file because calendar collection has been created manually on firebase
+// Dont change this file this contains fixed global data
 List<String> days = [
   'Sun',
   'Mon',
