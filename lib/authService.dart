@@ -1,4 +1,7 @@
 // ignore_for_file: unnecessary_brace_in_string_interps
+
+//File consisting of all firebase authentication and firestore operations
+
 import 'dart:io';
 import 'package:engage_scheduler/dates_list.dart' as global;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,6 +31,8 @@ class AuthService {
     "password": "",
   };
 
+//mapping Task collection from firebase to model Task
+
   List<Task> _taskListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       // print(doc.data);
@@ -45,10 +50,13 @@ class AuthService {
         vaccine: doc.data['Vaccine'] ?? 2,
         mp: doc.data['mp'] ?? {},
         mp2: doc.data['mp2'] ?? {},
+        repeat: doc.data['Repeat'] ?? [],
+        maxCap: doc.data['Max Capacity'] ?? 5,
       );
     }).toList();
   }
 
+//get task array with reference to a user
   List<DocumentReference> get tasksPerUSer {
     List<DocumentReference> mylist;
     String email;
@@ -67,10 +75,13 @@ class AuthService {
     //return _taskPerUser.snapshots().map(_taskListFromSnapshot);
   }
 
+//get all documents in Task collection in form of Task model
+
   Stream<List<Task>> get tasks {
     return _taskCollection.snapshots().map(_taskListFromSnapshot);
   }
 
+//get all documents in Task collection authored by a particular author in form of Task model
   Stream<List<Task>> get tasks2 {
     final Query _taskCollection2 = Firestore.instance
         .collection("Tasks")
@@ -94,6 +105,7 @@ class AuthService {
     return _taskCollection.document(userid);
   }
 
+//Location of vaccination certificate files
   String getFilePath() {
     return "gs://engagescheduler-e71b5.appspot.com/vaccine_certificates/${this.uid.toString()}";
   }
@@ -107,6 +119,7 @@ class AuthService {
     return _firebaseInstance.signOut();
   }
 
+//pick a document to upload
   Future<void> pickFile() async {
     try {
       StorageReference reference =
@@ -125,6 +138,7 @@ class AuthService {
     //print("paaaaath is ${path.toString()}");
   }
 
+// update task when a user toggles offline online
   Future<void> updateTask(String name, int strength, bool offline) async {
     String useridstring = this.uid.toString();
     return await _taskCollection.document(docid).updateData({
@@ -140,7 +154,7 @@ class AuthService {
   //     'mp2.${useridstring}': inc + user_attendance,
   //   });
   // }
-
+// update attendance when a teacher marks attendance
   Future<void> updateAttendance(List<bool> mylist) async {
     DocumentSnapshot ds = await _taskCollection.document(docid).get();
     await getAttendance();
@@ -156,6 +170,8 @@ class AuthService {
       });
     }
   }
+
+// disenroll a user from a task
 
   Future<void> deleteTaskUser(int strength) async {
     String useridstring = this.uid.toString();
@@ -189,6 +205,7 @@ class AuthService {
   //   });
   // }
 
+// add a user to a task
   Future<void> addUserToTask() async {
     await getTotalLectures();
     String useridstring = this.uid.toString();
@@ -199,6 +216,8 @@ class AuthService {
       'Total Lectures': total_lectures + 1,
     });
   }
+
+// delete task
 
   Future<void> deleteTask() async {
     DocumentSnapshot ds = await _taskCollection.document(docid).get();
@@ -227,6 +246,8 @@ class AuthService {
     });
     return await _taskCollection.document(docid).delete();
   }
+
+//updating calendar
 
   Future<void> updateCalendar() async {
     Firestore.instance.collection("Tasks").snapshots().listen((snapshot) {
@@ -261,7 +282,8 @@ class AuthService {
       String startingtime,
       String venue,
       String onlineMeetLink,
-      int vaccineReq) async {
+      int vaccineReq,
+      int maxSeats) async {
     int start = int.parse(startingtime) - 8;
     print("starting time ${startingtime}");
     if (start < 0) start += 12;
@@ -291,6 +313,61 @@ class AuthService {
       "Course": course,
       "Lecturer": lecturer,
       "Repeat": repeat,
+      "Starting time": startingtime,
+      "Venue": venue,
+      "Currently Filled": 0,
+      "Max Capacity": maxSeats,
+      "offline": false,
+      'mp': {},
+      'mp2': {},
+      'Author': uid.toString(),
+      'Link': onlineMeetLink.toString(),
+      'Vaccine': vaccineReq,
+      "Attendance": 0,
+    });
+    updateCalendar();
+  }
+
+  Future<void> editTask(
+      String course,
+      String lecturer,
+      List<bool> repeat,
+      List<bool> repeat2,
+      String startingtime,
+      String venue,
+      String onlineMeetLink,
+      int vaccineReq) async {
+    int start = int.parse(startingtime) - 8;
+    print("starting time ${startingtime}");
+    if (start < 0) start += 12;
+    print(start);
+    for (var i = 0; i < 7; i++) {
+      if (repeat2[i] == true) {
+        if (global.twoDList[i][start][0].toString().isNotEmpty &&
+            repeat[i] == false) {
+          print("cannot edit task with given time and day, clash");
+          return Future.error("error");
+        }
+      }
+    }
+    for (var i = 0; i < 7; i++) {
+      if (repeat[i] == true) {
+        global.twoDList[i][start][0] = "";
+        global.twoDList[i][start][1] = "";
+        global.twoDList[i][start][2] = "";
+      }
+      if (global.twoDList[i][start][0].toString().isEmpty) {
+        if (repeat2[i] == true) {
+          global.twoDList[i][start][0] = course;
+          global.twoDList[i][start][1] = lecturer;
+          global.twoDList[i][start][2] = venue;
+        }
+      }
+    }
+    _taskCollection.add({
+      "Course": course,
+      "Lecturer": lecturer,
+      "Repeat": repeat2,
       "Starting time": startingtime,
       "Venue": venue,
       "Currently Filled": 0,

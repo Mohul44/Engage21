@@ -19,20 +19,23 @@ class ActiveProjectCard extends StatefulWidget {
   String userid;
   int length;
   String venue;
-  ActiveProjectCard({
-    this.cardColor,
-    this.loadingPercent,
-    this.title,
-    this.subtitle,
-    this.capacity,
-    this.currentFilled,
-    this.startTime,
-    this.offline,
-    this.docid,
-    this.userid,
-    this.length,
-    this.venue,
-  });
+  List<dynamic> mylist;
+  int vaccineReq;
+  ActiveProjectCard(
+      {this.cardColor,
+      this.loadingPercent,
+      this.title,
+      this.subtitle,
+      this.capacity,
+      this.currentFilled,
+      this.startTime,
+      this.offline,
+      this.docid,
+      this.userid,
+      this.length,
+      this.venue,
+      this.mylist,
+      this.vaccineReq});
 
   @override
   _ActiveProjectsCard createState() => _ActiveProjectsCard();
@@ -82,23 +85,51 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                       ),
                     ),
                     Text(
-                      "IST ${widget.startTime}:00",
+                      "IST ${widget.startTime}:00   ${widget.venue}",
                       style: TextStyle(
                         fontSize: 12.0 / 683.4 * screenHeight,
                         color: Colors.white54,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    Text(
-                      widget.venue,
-                      style: TextStyle(
-                        fontSize: 12.0 / 683.4 * screenHeight,
-                        color: Colors.white54,
-                        fontWeight: FontWeight.w400,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text("Days: ", style: TextStyle(color: Colors.white60)),
+                        widget.mylist[0] == true
+                            ? Text(
+                                "Su ",
+                                style: TextStyle(color: Colors.white60),
+                              )
+                            : Text(""),
+                        widget.mylist[1] == true
+                            ? Text("Mo ",
+                                style: TextStyle(color: Colors.white60))
+                            : Text(""),
+                        widget.mylist[2] == true
+                            ? Text("Tu ",
+                                style: TextStyle(color: Colors.white60))
+                            : Text(""),
+                        widget.mylist[3] == true
+                            ? Text("We ",
+                                style: TextStyle(color: Colors.white60))
+                            : Text(""),
+                        widget.mylist[4] == true
+                            ? Text("Th ",
+                                style: TextStyle(color: Colors.white60))
+                            : Text(""),
+                        widget.mylist[5] == true
+                            ? Text("Fi ",
+                                style: TextStyle(color: Colors.white60))
+                            : Text(""),
+                        widget.mylist[6] == true
+                            ? Text("Sa ",
+                                style: TextStyle(color: Colors.white54))
+                            : Text(""),
+                      ],
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 10,
                     ),
                     Text(
                       "Students enrolled " + widget.length.toString(),
@@ -115,6 +146,14 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                           widget.capacity.toString(),
                       style: TextStyle(
                         fontSize: 14.0 / 683.4 * screenHeight,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      "Vacc req:  ${widget.vaccineReq == 1 ? "Not required" : widget.vaccineReq == 2 ? "Partial" : "Complete"}",
+                      style: TextStyle(
+                        fontSize: (14.0 / 683.4 * screenHeight),
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),

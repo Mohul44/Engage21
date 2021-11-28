@@ -52,7 +52,7 @@ class _TaskListState extends State<CalendarTaskList> {
           itemCount: global.time.length,
           itemBuilder: (BuildContext context, int index) {
             print(
-                "value at ${widget.weekDay} ${index} is${global.twoDList[widget.weekDay][index]}");
+                "value at ${widget.weekDay} ${index} is${global.twoDList[(widget.weekDay % 7)][index]}");
             if (global.twoDList[widget.weekDay][index][0]
                 .toString()
                 .isNotEmpty) {

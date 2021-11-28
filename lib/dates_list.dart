@@ -1,4 +1,4 @@
-// Dont change this file because calendar collection has been created manually on firebase
+// Dont change this file this contains fixed global data
 List<String> days = [
   'Sun',
   'Mon',
@@ -17,10 +17,10 @@ List<String> dates = [
   '5',
   '6',
 ];
-int dayOfWeek = DateTime.now().weekday;
+int dayOfWeek = DateTime.now().weekday % 7;
 List<int> time = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 List<int> time24 = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
-
+List<int> maxSeating = [5, 10, 15, 20, 30, 40];
 int noOfDays = 7;
 int totalTime = time.length;
 

@@ -142,6 +142,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
+
                           // Text(
                           //   "Starting time  " + widget.startTime.toString(),
                           //   style: TextStyle(

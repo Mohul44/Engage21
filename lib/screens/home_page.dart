@@ -361,7 +361,7 @@ class _HomePageState extends State<HomePage> {
                                                       12), // <-- Radius
                                             ),
                                             padding: EdgeInsets.fromLTRB(
-                                                20, 5, 20, 5),
+                                                20, 2, 20, 2),
                                           ),
                                           icon: Icon(
                                             Icons.calendar_today,
@@ -423,7 +423,7 @@ class _HomePageState extends State<HomePage> {
                               Container(
                                 color: Colors.transparent,
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 20.0, vertical: 5.0),
+                                    horizontal: 20.0, vertical: 2.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
@@ -431,7 +431,7 @@ class _HomePageState extends State<HomePage> {
                                     Container(
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              0.415,
+                                              0.42,
                                       width: MediaQuery.of(context).size.width,
                                       child:
                                           TaskList(userUid.toString(), vaccine),

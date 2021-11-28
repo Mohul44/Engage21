@@ -11,7 +11,7 @@ class SignUp extends StatefulWidget {
     // @required this.networkErrorSnackBar,
   }) : super(key: key);
 
-  GlobalKey<ScaffoldState> authScaffoldKey;
+  final GlobalKey<ScaffoldState> authScaffoldKey;
   // final SnackBar networkErrorSnackBar;
 
   @override

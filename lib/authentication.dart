@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:engage_scheduler/theme/colors/light_colors.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+// page managing sign in sign up and forgot password
+
 class Authentication extends StatefulWidget {
   @override
   _AuthenticationState createState() => _AuthenticationState();

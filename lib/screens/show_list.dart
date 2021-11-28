@@ -29,7 +29,6 @@ class _ShowList extends State<ShowList> {
     LightColors.kBlue,
     LightColors.kRed,
     LightColors.kGreen,
-    LightColors.kLightYellow2,
   ];
   String _url =
       "https://firebasestorage.googleapis.com/v0/b/engagescheduler-e71b5.appspot.com/o/vaccine_certificates%2FecW1hycM2WgAe0tOtx8wARCk0WI2?alt=media&token=ec3f098f-fb0a-448e-81b2-a6f731a47e2a";
@@ -52,7 +51,7 @@ class _ShowList extends State<ShowList> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
-                    padding: EdgeInsets.fromLTRB(10, 20, 0, 40),
+                    padding: EdgeInsets.fromLTRB(10, 30, 10, 20),
                     child: MyBackButton()),
                 Expanded(
                   child: Text(
@@ -147,9 +146,11 @@ class _ShowList extends State<ShowList> {
                                   );
                                 }
                                 if (value == true) {
+                                  int count = 0;
                                   return GestureDetector(
                                     onTap: () {
                                       String url2 = _url;
+
                                       if (snapshot2.data['downloadURL']
                                           .toString()
                                           .isEmpty) {
@@ -197,19 +198,27 @@ class _ShowList extends State<ShowList> {
                                                   currentFilled - 1);
                                         });
                                     },
-                                    child: new ListTile(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 15, horizontal: 15),
-                                      tileColor:
-                                          myColors[index % myColors.length],
-                                      title: new Text(
-                                        "${snapshot2.data['name']}",
-                                        style: TextStyle(
-                                          fontSize: 20.0,
-                                          color: LightColors.kLavender,
-                                          fontWeight: FontWeight.w500,
+                                    child: Column(
+                                      children: <Widget>[
+                                        new ListTile(
+                                          contentPadding: EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 15),
+                                          tileColor:
+                                              myColors[index % myColors.length],
+                                          title: new Text(
+                                            "${snapshot2.data['name']}",
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              color: LightColors.kLavender,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                        Container(
+                                          height: 1,
+                                          color: Colors.white30,
+                                        ),
+                                      ],
                                     ),
                                   );
                                 } else

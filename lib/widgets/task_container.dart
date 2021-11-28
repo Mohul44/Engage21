@@ -28,7 +28,7 @@ class TaskContainer extends StatelessWidget {
             style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
-                color: LightColors.kLavender),
+                color: Colors.white),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
@@ -36,7 +36,7 @@ class TaskContainer extends StatelessWidget {
               "${venue}        ${teacher}",
               style: TextStyle(
                 fontSize: 14.0,
-                color: LightColors.kPalePink,
+                color: LightColors.kLavender,
                 fontWeight: FontWeight.w400,
               ),
             ),

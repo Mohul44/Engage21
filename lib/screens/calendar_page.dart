@@ -21,10 +21,10 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> {
-  int currentDay = dayOfWeek;
+  int currentDay = dayOfWeek % 7;
   void onPressHandler(int day) {
     setState(() {
-      currentDay = day;
+      currentDay = day % 7;
     });
   }
 
@@ -89,6 +89,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                   ),
                                   child: TextButton(
                                     onPressed: () {
+                                      setState(() {});
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -117,6 +118,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                   ),
                                   child: TextButton(
                                     onPressed: () {
+                                      setState(() {});
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -169,7 +171,11 @@ class _CalendarPageState extends State<CalendarPage> {
                           itemCount: days.length,
                           itemBuilder: (BuildContext context, int index) {
                             return TextButton(
-                              onPressed: () => onPressHandler(index),
+                              onPressed: () => {
+                                setState(() {
+                                  onPressHandler(index);
+                                })
+                              },
                               child: Text(
                                 days[index],
                                 style: TextStyle(

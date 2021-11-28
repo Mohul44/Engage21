@@ -2,6 +2,7 @@ import 'package:engage_scheduler/authService.dart';
 import 'package:engage_scheduler/theme/colors/light_colors.dart';
 import 'package:flutter/material.dart';
 
+// Sign in class validates email password and calls Authservice()
 class SignIn extends StatefulWidget {
   SignIn({
     Key key,
@@ -11,7 +12,7 @@ class SignIn extends StatefulWidget {
   }) : super(key: key);
 
   final PageController authPageController;
-  GlobalKey<ScaffoldState> authScaffoldKey;
+  final GlobalKey<ScaffoldState> authScaffoldKey;
   // final SnackBar networkErrorSnackBar;
 
   @override
@@ -21,7 +22,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final TextEditingController emailTextField = TextEditingController();
   final TextEditingController passwordTextField = TextEditingController();
-  GlobalKey<FormState> _signInFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _signInFormKey = GlobalKey<FormState>();
 
   // Run Action When Loading
   bool loading = false;
@@ -30,7 +31,6 @@ class _SignInState extends State<SignIn> {
   Map<String, String> errorMessage = {
     "email": "",
     "password": "",
-    "network": "",
   };
 
   @override
@@ -57,8 +57,6 @@ class _SignInState extends State<SignIn> {
               validator: (email) {
                 if (email.isEmpty) {
                   return "Please enter an email adress";
-                } else if (email.contains("@") == false) {
-                  return "Invalid email adress";
                 } else if (errorMessage["email"].isNotEmpty) {
                   return errorMessage["email"];
                 }
