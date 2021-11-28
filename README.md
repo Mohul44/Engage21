@@ -2,6 +2,7 @@
 Application provides students to submit weekly preferences for attending class in-person or remotely. The tool then assigns available seats to students who want to physically attend class and provides the faculty with a roster of who has been cleared to attend as per condition set by lecturer. Lecturer would be able to download covid certificates of students who are going to attend offline and remove those who submitted malformed certificates. Lecturer would also be able to mark daily attendance and check total attendance percentage of every attendee. Application also provides a calendar to view events, talks and lecture going on.
 
 ## Instructions
+### Windows
 1. Set up flutter from the steps mentioned in following link:
 https://docs.flutter.dev/get-started/install/windows 
 2. Run `flutter doctor` to check if properly installed
@@ -11,6 +12,9 @@ https://docs.flutter.dev/get-started/install/windows
     <br /> https://developer.android.com/studio/run/emulator
     <br /> https://developer.android.com/studio/run/device 
 6. Use `flutter run` command to start the application
+
+### Android
+Download apk from https://drive.google.com/file/d/1BSJn0C0t76aZyfr2kAcl6os4FWsX6Tdr/view?usp=sharing
 
 ## Tech Stack:-
 1. Flutter for front end implementation
