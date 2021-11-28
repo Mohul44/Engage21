@@ -15,6 +15,7 @@ https://docs.flutter.dev/get-started/install/windows
 
 ### Android
 Download apk from https://drive.google.com/file/d/1BSJn0C0t76aZyfr2kAcl6os4FWsX6Tdr/view?usp=sharing
+or https://github.com/Mohul44/Engage21/tree/main/build/app/outputs/apk/release
 
 ## Tech Stack:-
 1. Flutter for front end implementation
