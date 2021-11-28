@@ -1,3 +1,4 @@
+import 'package:engage_scheduler/screens/calendar_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:engage_scheduler/theme/colors/light_colors.dart';
@@ -27,6 +28,7 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
   List<bool> mylist = [false, true, false, true, false, true, false];
   TimeOfDay _time = TimeOfDay(hour: 7, minute: 15);
   int group1Value = 2;
+  String maxSeats = 5.toString();
   String _timeIndex = "8";
   @override
   Widget build(BuildContext context) {
@@ -157,6 +159,36 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Container(
+                                child: Text("Max seating\ncapacity"),
+                              ),
+                              SizedBox(
+                                width: 10 / 683 * screeenHeihgt,
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                child: DropdownButton(
+                                  dropdownColor: LightColors.kRed,
+                                  value: maxSeats,
+                                  style: new TextStyle(
+                                    color: LightColors.kLavender,
+                                  ),
+                                  icon: Icon(Icons.keyboard_arrow_down),
+                                  items: global.maxSeating.map((items) {
+                                    return DropdownMenuItem(
+                                        value: items.toString(),
+                                        child: Text(items.toString()));
+                                  }).toList(),
+                                  onChanged: (String newValue) {
+                                    setState(() {
+                                      maxSeats = newValue;
+                                    });
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                width: 50,
+                              ),
+                              Container(
                                 child: Text("Time"),
                               ),
                               SizedBox(
@@ -187,7 +219,7 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                             ],
                           ),
                           SizedBox(
-                            height: 10 / 683.8 * screeenHeihgt,
+                            height: 20 / 683.8 * screeenHeihgt,
                           ),
                           Container(
                             child: Text("Vaccination requirement"),
@@ -448,7 +480,8 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                                   _timeIndex,
                                   Venue.text,
                                   onLineMeetlink.text,
-                                  group1Value)
+                                  group1Value,
+                                  int.parse(maxSeats))
                               .then((value) => showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
@@ -488,6 +521,17 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                                   ),
                                   actions: <Widget>[
                                     // usually buttons at the bottom of the dialog
+                                    new FlatButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    CalendarPage(
+                                                        widget.userid)),
+                                          );
+                                        },
+                                        child: Text("Check Calendar")),
                                     new FlatButton(
                                       child: new Text("Close"),
                                       onPressed: () {

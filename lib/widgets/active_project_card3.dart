@@ -143,7 +143,7 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                       "Seats reserved " +
                           widget.currentFilled.toString() +
                           "/" +
-                          5.toString(),
+                          widget.capacity.toString(),
                       style: TextStyle(
                         fontSize: 14.0 / 683.4 * screenHeight,
                         color: Colors.white,

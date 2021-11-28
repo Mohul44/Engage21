@@ -216,6 +216,9 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
                               color: LightColors.kDarkBlue,
                             ),
                             onPressed: () async {
+                              setState(() {
+                                isDocumentUploaded = true;
+                              });
                               await AuthService(uid: widget.userid)
                                   .pickFile()
                                   .then((value) => {
@@ -279,29 +282,29 @@ class _CreateNewTaskPageState extends State<UpdateProfile> {
                               Course.text = snapshot.data['name'];
                             if (group1Value == 3 &&
                                 isDocumentUploaded == false) {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  // return object of type Dialog
-                                  return AlertDialog(
-                                    backgroundColor: LightColors.kDarkBlue,
-                                    title: new Text("Document not uploaded"),
-                                    content: new Text(
-                                      "To be marked as completely vaccinated you need to upload vaccination certificate",
-                                      style: TextStyle(color: Colors.white70),
-                                    ),
-                                    actions: <Widget>[
-                                      // usually buttons at the bottom of the dialog
-                                      new FlatButton(
-                                        child: new Text("Close"),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
+                              // showDialog(
+                              //   context: context,
+                              //   builder: (BuildContext context) {
+                              //     // return object of type Dialog
+                              //     return AlertDialog(
+                              //       backgroundColor: LightColors.kDarkBlue,
+                              //       title: new Text("Document not uploaded"),
+                              //       content: new Text(
+                              //         "To be marked as completely vaccinated you need to upload vaccination certificate",
+                              //         style: TextStyle(color: Colors.white70),
+                              //       ),
+                              //       actions: <Widget>[
+                              //         // usually buttons at the bottom of the dialog
+                              //         new FlatButton(
+                              //           child: new Text("Close"),
+                              //           onPressed: () {
+                              //             Navigator.of(context).pop();
+                              //           },
+                              //         ),
+                              //       ],
+                              //     );
+                              //   },
+                              // );
                             } else {
                               await AuthService(uid: widget.userid)
                                   .updateProfile(

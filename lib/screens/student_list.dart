@@ -42,7 +42,7 @@ class _StudentListState extends State<StudentList> {
               title: tasks[index].title,
               subtitle: tasks[index].subtitle,
               startTime: tasks[index].startTime,
-              capacity: 10,
+              capacity: tasks[index].maxCap,
               currentFilled: tasks[index].currentFilled,
               offline: tasks[index].mp[widget.userid.toString()],
               docid: tasks[index].documentuid,

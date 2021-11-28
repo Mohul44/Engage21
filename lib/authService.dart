@@ -51,6 +51,7 @@ class AuthService {
         mp: doc.data['mp'] ?? {},
         mp2: doc.data['mp2'] ?? {},
         repeat: doc.data['Repeat'] ?? [],
+        maxCap: doc.data['Max Capacity'] ?? 5,
       );
     }).toList();
   }
@@ -281,7 +282,8 @@ class AuthService {
       String startingtime,
       String venue,
       String onlineMeetLink,
-      int vaccineReq) async {
+      int vaccineReq,
+      int maxSeats) async {
     int start = int.parse(startingtime) - 8;
     print("starting time ${startingtime}");
     if (start < 0) start += 12;
@@ -314,7 +316,7 @@ class AuthService {
       "Starting time": startingtime,
       "Venue": venue,
       "Currently Filled": 0,
-      "Max Capacity": 10,
+      "Max Capacity": maxSeats,
       "offline": false,
       'mp': {},
       'mp2': {},

@@ -9,6 +9,7 @@ class Task {
   int currentFilled;
   String link;
   int vaccine;
+  int maxCap;
   //map consisting of all users with their value false indicating online class and true indicating offline
   Map<dynamic, dynamic> mp;
   // map consisting of all users with their respective attendance
@@ -27,5 +28,5 @@ class Task {
       this.mp2,
       this.link,
       this.vaccine,
-      this.repeat});
+      this.repeat,this.maxCap});
 }

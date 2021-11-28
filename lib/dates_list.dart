@@ -20,7 +20,7 @@ List<String> dates = [
 int dayOfWeek = DateTime.now().weekday % 7;
 List<int> time = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 List<int> time24 = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
-
+List<int> maxSeating = [5, 10, 15, 20, 30, 40];
 int noOfDays = 7;
 int totalTime = time.length;
 

@@ -200,7 +200,6 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                                                     UpdateProfile(
                                                         widget.userid)),
                                           );
-                                          Navigator.of(context).pop();
                                         },
                                       ),
                                       new FlatButton(
@@ -213,7 +212,8 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                                   );
                                 },
                               );
-                            } else if (strength >= 5 && value == true) {
+                            } else if (strength >= widget.capacity &&
+                                value == true) {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
@@ -322,8 +322,8 @@ class _ActiveProjectsCard extends State<ActiveProjectCard> {
                                 Scaffold.of(context).showSnackBar(SnackBar(
                                     backgroundColor: LightColors.kDarkBlue,
                                     duration: Duration(seconds: 1),
-                                    content: Text(
-                                        "Email address copied to clipboard")));
+                                    content:
+                                        Text("Meet link copied to clipboard")));
                               })
                             }),
                   ],

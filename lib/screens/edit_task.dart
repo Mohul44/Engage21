@@ -260,7 +260,7 @@ class _CreateNewTaskPageState extends State<EditTaskPage> {
                             ),
                           ),
                           SizedBox(
-                            height: 10 / 683.8 * screeenHeihgt,
+                            height: 5 / 683.8 * screeenHeihgt,
                           ),
                           Column(
                             children: <Widget>[
