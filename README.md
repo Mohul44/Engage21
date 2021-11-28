@@ -54,7 +54,7 @@ Download apk from https://drive.google.com/file/d/1BSJn0C0t76aZyfr2kAcl6os4FWsX6
 2. For each lecture slot, teacher can add online assignments to be submitted and also access the submissions of student once they upload
 3. Adding custom avatar icon
 
-## Application flow
 
-![Application_Flow](https://user-images.githubusercontent.com/43715905/143721841-5c58d540-c95d-4f6f-8e17-b0e58d5d5ed7.png)
+
+
 
