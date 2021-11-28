@@ -42,6 +42,13 @@ Download apk from https://drive.google.com/file/d/1BSJn0C0t76aZyfr2kAcl6os4FWsX6
   7. Show list of offline students
   8. Mark attendance
 
+## Agile Methodology
+1. The program was divided into 4 sprints of 5 days.
+2. In the first sprint I completed the ideation and drew UI/UX wireframes for the project.
+3. In the second sprint I completed the UI implementation for all the pages.
+4. In the third sprint I integrated the application with the firebase and completed the backend functionality.
+5. In the fourth sprint I added the X factor features such as calendar, push notifications and recording attendance and uploading vaccination certificates.
+
 ## Future Extensions
 1. Will add QR code generator and barcode scanner so that attendance could be done and teacher would not require to record attendance manually
 2. For each lecture slot, teacher can add online assignments to be submitted and also access the submissions of student once they upload
