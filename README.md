@@ -54,6 +54,11 @@ or https://github.com/Mohul44/Engage21/tree/main/build/app/outputs/apk/release
   7. Show list of offline students
   8. Mark attendance
  
+## Points to note while using application
+1. You must have an active internet connection as the application used firebase authentication
+2. Only emails with correct domain would be considered, malformed email or password shorter than 6 characters would not be accepted
+3. You would not be marked as completely vaccinated until you upload a document
+4. All the features are tested before deployment still if you face any issue restart the application or connect with me on linkedin, link given below
 
 ## Future Extensions
 1. Will add QR code generator and barcode scanner so that attendance could be done and teacher would not require to record attendance manually
